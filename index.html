@@ -16,7 +16,7 @@
         <div class="header-content">
             <div class="logo">
                 <!-- Make sure the path to your logo is correct -->
-                <img src="assets/images/logo_dark.svg" alt="Bamboo AI Logo">
+                <img src="images/logo_dark.svg" alt="Bamboo AI Logo">
                 <span>Bamboo AI Lab</span>
             </div>
             <div class="header-right">
@@ -39,13 +39,13 @@
                     </svg>
                     <span class="link-text">Contact</span>
                 </a>
-                <a href="#" class="header-link" id="showDemo">
+                <a href="#" class="header-link" onclick="showDemoModal(event)">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <polygon points="5 3 19 12 5 21 5 3"></polygon>
                     </svg>
                     <span class="link-text">Demo</span>
                 </a>
-                <a href="#" class="app-button" id="showComingSoon">Launch App</a>
+                <a href="#" class="app-button" onclick="showComingSoon(event)">Launch App</a>
             </div>
         </div>
     </header>
@@ -71,7 +71,7 @@
             </p>
             
             <div class="cta-section">
-                <button class="explore-button" id="showWaitlist">Begin Your Journey</button>
+                <button class="explore-button" onclick="showWaitlist(event)">Begin Your Journey</button>
             </div>
         </div>
     </div>
@@ -79,7 +79,7 @@
     <!-- Coming Soon Modal -->
     <div class="modal-overlay" id="comingSoonModal">
         <div class="modal-content">
-            <button class="modal-close-x" id="hideComingSoon">
+            <button class="modal-close-x" onclick="hideComingSoon()">
                 <svg viewBox="0 0 24 24" fill="none">
                     <path d="M18 6L6 18M6 6l12 12" stroke="currentColor"/>
                 </svg>
@@ -91,7 +91,7 @@
                     </svg>
                 </div>
                 <h2 class="modal-title">Coming Soon</h2>
-                <p class="modal-text" style="text-align: center; margin-bottom: 40px; font-size: 22px;">
+                <p class="modal-text" style="text-align: center; margin-bottom: 4rem;">
                     We're putting the finishing touches on Bamboo AI Lab. 
                     Our novel approach to data analysis will be ready soon. 
                     Join us on the journey to discover the questions hidden in your data.
@@ -103,17 +103,17 @@
     <!-- Waitlist Modal -->
     <div class="modal-overlay" id="waitlistModal">
         <div class="modal-content">
-            <button class="modal-close-x" id="hideWaitlist">
+            <button class="modal-close-x" onclick="hideWaitlist()">
                 <svg viewBox="0 0 24 24" fill="none">
                     <path d="M18 6L6 18M6 6l12 12" stroke="currentColor"/>
                 </svg>
             </button>
             <div class="modal-scroll-content">
                 <h2 class="modal-title">Join the Waitlist</h2>
-                <p class="modal-text" style="text-align: center; font-size: 20px; line-height: 1.6; margin-bottom: 26px;">
+                <p class="modal-text" style="text-align: center; margin-bottom: 2rem;">
                     BambooAI is an experimental tool that makes data analysis more accessible by allowing users to interact with their data through natural language conversations. It's designed to process natural language queries, generate and execute Python code for analysis and visualization, and help users derive insights without extensive coding knowledge.
                 </p>
-                <p class="modal-text" style="text-align: center; font-size: 18px; opacity: 0.8; margin-bottom: 32px;">
+                <p class="modal-text" style="text-align: center; opacity: 0.8; margin-bottom: 2rem;">
                     As a user, you will get a <em style="color: var(--accent-color); font-style: normal;">fully private, sandboxed 16GB RAM environment</em> to work with your data. Due to our limited processing capacity, we are introducing a waitlist. Please note that while the service is free, you will be required to <em style="color: var(--accent-color); font-style: normal;">provide your own API keys</em> for the AI vendors/models you wish to use.
                 </p>
                 <form class="waitlist-form" onsubmit="return false;">
@@ -137,8 +137,8 @@
 
     <!-- Demo Video Modal -->
     <div class="modal-overlay" id="demoModal">
-        <div class="modal-content" style="max-width: 1200px; background: #0a0a0a; padding: 50px 30px 30px;">
-            <button class="modal-close-x" id="hideDemoModal">
+        <div class="modal-content modal-video">
+            <button class="modal-close-x" onclick="hideDemoModal()">
                 <svg viewBox="0 0 24 24" fill="none">
                     <path d="M18 6L6 18M6 6l12 12" stroke="currentColor"/>
                 </svg>
