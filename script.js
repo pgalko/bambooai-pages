@@ -1,82 +1,84 @@
 // Create floating particles
-const particlesContainer = document.querySelector('.floating-particles');
-for (let i = 0; i < 50; i++) {
-    const particle = document.createElement('div');
-    particle.className = 'particle';
-    particle.style.left = Math.random() * 100 + '%';
-    particle.style.animationDelay = Math.random() * 20 + 's';
-    particle.style.animationDuration = (20 + Math.random() * 15) + 's';
-    particlesContainer.appendChild(particle);
-}
+        const particlesContainer = document.querySelector('.floating-particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (20 + Math.random() * 15) + 's';
+            particlesContainer.appendChild(particle);
+        }
 
-// Modal Functions
-function showModal(modalId) {
-    const modal = document.getElementById(modalId);
-    if (modal) {
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-}
+        // Coming Soon Modal Functions
+        function showComingSoon(event) {
+            event.preventDefault();
+            const modal = document.getElementById('comingSoonModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
 
-function hideModal(modalId) {
-    const modal = document.getElementById(modalId);
-    if (modal) {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
+        function hideComingSoon() {
+            const modal = document.getElementById('comingSoonModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
 
-        if (modalId === 'demoModal') {
+        // Waitlist Modal Functions
+        function showWaitlist(event) {
+            event.preventDefault();
+            const modal = document.getElementById('waitlistModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function hideWaitlist() {
+            const modal = document.getElementById('waitlistModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Demo Modal Functions
+        function showDemoModal(event) {
+            event.preventDefault();
+            const modal = document.getElementById('demoModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function hideDemoModal() {
+            const modal = document.getElementById('demoModal');
             const video = document.getElementById('demoVideo');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            // Pause the video and reset its time to prevent it from playing in the background
             video.pause();
             video.currentTime = 0;
         }
-    }
-}
 
-// Event Listeners for showing modals
-document.getElementById('showComingSoon').addEventListener('click', function(event) {
-    event.preventDefault();
-    showModal('comingSoonModal');
-});
+        // Close modals on background click
+        document.getElementById('comingSoonModal').addEventListener('click', function(event) {
+            if (event.target === this) {
+                hideComingSoon();
+            }
+        });
 
-document.getElementById('showWaitlist').addEventListener('click', function(event) {
-    event.preventDefault();
-    showModal('waitlistModal');
-});
+        document.getElementById('waitlistModal').addEventListener('click', function(event) {
+            if (event.target === this) {
+                hideWaitlist();
+            }
+        });
 
-document.getElementById('showDemo').addEventListener('click', function(event) {
-    event.preventDefault();
-    showModal('demoModal');
-});
+        document.getElementById('demoModal').addEventListener('click', function(event) {
+            if (event.target === this) {
+                hideDemoModal();
+            }
+        });
 
-// Event Listeners for hiding modals
-document.getElementById('hideComingSoon').addEventListener('click', () => hideModal('comingSoonModal'));
-document.getElementById('hideWaitlist').addEventListener('click', () => hideModal('waitlistModal'));
-document.getElementById('hideDemoModal').addEventListener('click', () => hideModal('demoModal'));
-
-// Close modals on background click
-document.getElementById('comingSoonModal').addEventListener('click', function(event) {
-    if (event.target === this) {
-        hideModal('comingSoonModal');
-    }
-});
-
-document.getElementById('waitlistModal').addEventListener('click', function(event) {
-    if (event.target === this) {
-        hideModal('waitlistModal');
-    }
-});
-
-document.getElementById('demoModal').addEventListener('click', function(event) {
-    if (event.target === this) {
-        hideModal('demoModal');
-    }
-});
-
-// Close modals on Escape key
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-        hideModal('comingSoonModal');
-        hideModal('waitlistModal');
-        hideModal('demoModal');
-    }
-});
+        // Close modals on Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                hideComingSoon();
+                hideWaitlist();
+                hideDemoModal();
+            }
+        });
