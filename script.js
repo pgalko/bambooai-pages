@@ -1,5 +1,5 @@
 // Replace with your Google Apps Script deployment URL
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyMZP_FGJNaJdLTJfjHrHL7OMHTNGSHlCqMLcErmldjMXF0CYycbcGl8uWOc2Fa0pMn/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzRf20J8lqnIpSdeEZ6HEumJYiV-AFwkZZmHk3mbjSAgu6V4awVPFATajAyNRiTuuK6/exec';
 
 // Create floating particles
 const particlesContainer = document.querySelector('.floating-particles');
