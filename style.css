@@ -703,16 +703,21 @@ header {
         min-height: 4.4rem;
     }
 
-    /* Modal optimizations for mobile */
+    /* Modal optimizations for mobile - FIXED FOR SCROLLING */
     .modal-overlay {
-        padding: 2rem 1.5rem;
+        padding: 2rem 1rem 2rem;
+        overflow-y: auto; /* Make overlay scrollable */
+        align-items: flex-start; /* Start from top */
+        padding-top: 2rem;
     }
 
     .modal-content {
         width: 100%;
         max-width: 95%;
         border-radius: 2.4rem;
-        max-height: 95vh;
+        max-height: none; /* Remove height limit - this is the key change */
+        margin: auto auto 2rem auto; /* Add bottom margin */
+        position: relative;
     }
 
     .modal-video {
