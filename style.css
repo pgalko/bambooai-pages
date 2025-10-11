@@ -927,9 +927,7 @@ header {
     .screenshot-grid:has(.screenshot-item:nth-child(4)) {
         grid-template-columns: repeat(2, 1fr);
     }
-    .screenshot-frame {
-        height: 16rem;
-    }
+
     .modal-content {
         max-width: 140rem;
     }
@@ -1021,11 +1019,6 @@ header {
     .screenshot-grid:has(.screenshot-item:nth-child(4)) {
         grid-template-columns: repeat(2, 1fr);  /* was 1fr */
         gap: 1.4rem;                             /* was 1.5rem */
-    }
-
-    /* AMENDED: responsive height to limit scroll while keeping ratio */
-    .screenshot-frame {
-        height: clamp(12rem, 28vw, 18rem);      /* was fixed 18rem */
     }
 
     .screenshot-label {
@@ -1152,7 +1145,7 @@ header {
     .tab-button { font-size: 1.4rem; padding: 0.4rem; }
     .tab-subtitle { font-size: 1.2rem; margin-bottom: 1.2rem; }
 
-    .screenshot-frame { height: 16rem; border-radius: 0.8rem; }
+    .screenshot-frame {border-radius: 0.8rem; }
     .screenshot-label { font-size: 1.1rem; }
     .hover-icon { font-size: 2rem; }
 
@@ -1181,7 +1174,6 @@ header {
 @media (max-width: 23.75em) {
     .features-showcase { padding: 0.5rem 1rem 1.5rem; }
     .tab-button { font-size: 1.3rem; }
-    .screenshot-frame { height: 14rem; }
 }
 
 /* Small screens - prevent scrollbar (short viewports) */
@@ -1190,7 +1182,6 @@ header {
     .hero-section { padding: 3.5rem 4rem 2rem; }
     .main-title { font-size: 5rem; margin-bottom: 2rem; }
     .philosophy-text { margin-bottom: 2rem; }
-    .screenshot-frame { height: 12rem; }
     .modal-content { max-height: 95vh; }
     .modal-scroll-content { padding: 3rem 4rem 2rem; }
     .modal-title { font-size: 3.2rem; margin-bottom: 1.8rem; }
@@ -1202,3 +1193,25 @@ header {
     .submit-button { margin-top: 2rem; }
 }
 
+/* Uniform tiles everywhere, regardless of image dimensions */
+.screenshot-frame {
+    aspect-ratio: 16 / 9;   /* pick 4/3 or 3/2 if you prefer */
+    height: auto;           /* kill fixed heights */
+  }
+  
+  .screenshot-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;      /* crop to fill frame uniformly */
+    object-position: center;
+  }
+  
+  /* Ensure no media query reintroduces fixed heights */
+  @media (max-width: 87.5em),
+         (max-width: 48em),
+         (max-width: 30em),
+         (max-width: 23.75em),
+         (max-height: 43.75em) {
+    .screenshot-frame { height: auto; }  /* defensive override */
+  }
+  
