@@ -923,12 +923,13 @@ header {
 
 /* Laptop - 1400px */
 @media (max-width: 87.5em) {
-    /* When there are 3 or 4 items, keep 2 columns */
     .screenshot-grid:has(.screenshot-item:nth-child(3)),
     .screenshot-grid:has(.screenshot-item:nth-child(4)) {
         grid-template-columns: repeat(2, 1fr);
     }
-
+    .screenshot-frame {
+        height: 16rem;
+    }
     .modal-content {
         max-width: 140rem;
     }
@@ -965,17 +966,17 @@ header {
     .app-button { display: none; }
     .header-right { gap: 0.8rem; }
 
-    /* Bring hero higher & reduce gaps */
+    /* AMENDED: bring hero higher & reduce gaps */
     .main-content {
-        padding: 6rem 2rem 0;
-        gap: 1.6rem;
+        padding: 6rem 2rem 0;   /* was 7rem 2rem 0 */
+        gap: 1.6rem;            /* was 2rem */
     }
 
     .hero-section {
         padding: 3rem 2.5rem 2rem;
         border-radius: 2.4rem;
-        margin-top: 4rem;
-        margin-bottom: 2rem;
+        margin-top: 4rem;       /* NEW: reduce large desktop margin on mobile */
+        margin-bottom: 2rem;    /* NEW: show screenshots sooner */
     }
 
     .tagline {
@@ -996,10 +997,10 @@ header {
         min-height: 4.4rem;
     }
 
-    /* Tighter top space */
+    /* AMENDED: tighter top space & 2-up grid on mobile/tablet */
     .features-showcase {
-        padding: 0.5rem 2rem 1.5rem;
-        margin-top: 0;
+        padding: 0.5rem 2rem 1.5rem; /* was 0.5rem 2rem 2rem */
+        margin-top: 0;               /* was 0.5rem */
     }
 
     .showcase-tabs {
@@ -1014,22 +1015,17 @@ header {
         margin-bottom: 1.5rem;
     }
 
-    /* Keep screenshots/cards in pairs (2 columns) on tablet/phones */
+    /* AMENDED: keep screenshots/cards in pairs (2 columns) */
     .screenshot-grid,
     .screenshot-grid:has(.screenshot-item:nth-child(3)),
     .screenshot-grid:has(.screenshot-item:nth-child(4)) {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.4rem;
+        grid-template-columns: repeat(2, 1fr);  /* was 1fr */
+        gap: 1.4rem;                             /* was 1.5rem */
     }
 
-    /* If a grid has exactly TWO items (Configure/Optimise), force 2 columns */
-    .screenshot-grid:has(.screenshot-item:nth-child(2)):not(:has(.screenshot-item:nth-child(3))) {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    /* Keep tile height identical to Discover tiles on mobile/tablet */
+    /* AMENDED: responsive height to limit scroll while keeping ratio */
     .screenshot-frame {
-        height: 16rem;              /* matches desktop card height */
+        height: clamp(12rem, 28vw, 18rem);      /* was fixed 18rem */
     }
 
     .screenshot-label {
@@ -1146,21 +1142,17 @@ header {
 
     .features-showcase { padding: 0.5rem 1.5rem 2rem; }
 
-    /* Keep pairs even on small phones (to match Discover look) */
+    /* Force single column on very small phones */
     .screenshot-grid,
     .screenshot-grid:has(.screenshot-item:nth-child(3)),
     .screenshot-grid:has(.screenshot-item:nth-child(4)) {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    /* Also ensure exactly-two tiles stay side-by-side */
-    .screenshot-grid:has(.screenshot-item:nth-child(2)):not(:has(.screenshot-item:nth-child(3))) {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
     }
 
     .tab-button { font-size: 1.4rem; padding: 0.4rem; }
     .tab-subtitle { font-size: 1.2rem; margin-bottom: 1.2rem; }
 
-    .screenshot-frame { border-radius: 0.8rem; }
+    .screenshot-frame { height: 16rem; border-radius: 0.8rem; }
     .screenshot-label { font-size: 1.1rem; }
     .hover-icon { font-size: 2rem; }
 
@@ -1189,6 +1181,7 @@ header {
 @media (max-width: 23.75em) {
     .features-showcase { padding: 0.5rem 1rem 1.5rem; }
     .tab-button { font-size: 1.3rem; }
+    .screenshot-frame { height: 14rem; }
 }
 
 /* Small screens - prevent scrollbar (short viewports) */
@@ -1197,6 +1190,7 @@ header {
     .hero-section { padding: 3.5rem 4rem 2rem; }
     .main-title { font-size: 5rem; margin-bottom: 2rem; }
     .philosophy-text { margin-bottom: 2rem; }
+    .screenshot-frame { height: 12rem; }
     .modal-content { max-height: 95vh; }
     .modal-scroll-content { padding: 3rem 4rem 2rem; }
     .modal-title { font-size: 3.2rem; margin-bottom: 1.8rem; }
@@ -1208,4 +1202,3 @@ header {
     .submit-button { margin-top: 2rem; }
 }
 
-  
