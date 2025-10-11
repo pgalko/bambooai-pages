@@ -923,211 +923,126 @@ header {
 
 /* Laptop - 1400px */
 @media (max-width: 87.5em) {
+    /* Keep 2 cols when there are 3 or 4 items */
     .screenshot-grid:has(.screenshot-item:nth-child(3)),
     .screenshot-grid:has(.screenshot-item:nth-child(4)) {
         grid-template-columns: repeat(2, 1fr);
     }
-    .screenshot-frame {
-        height: 16rem;
+
+    /* --- TILE NORMALIZATION (match Discover tiles) --- */
+    .screenshot-grid { align-items: stretch; }            /* stretch cards to same height */
+    .screenshot-item { display: flex; flex-direction: column; }
+    .screenshot-frame { flex: 0 0 16rem; }                /* same frame height as desktop */
+    .screenshot-label {
+        flex: 0 0 auto;
+        min-height: 1.6rem;                               /* lock label line height */
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
-    .modal-content {
-        max-width: 140rem;
-    }
-    .modal-scroll-content {
-        padding: 4rem 8rem 3.5rem;
-    }
+
+    .screenshot-frame { height: 16rem; }
+    .modal-content { max-width: 140rem; }
+    .modal-scroll-content { padding: 4rem 8rem 3.5rem; }
 }
 
 /* Tablet & phones - 768px */
 @media (max-width: 48em) {
-    header {
-        padding: 1.5rem 2rem;
-    }
+    header { padding: 1.5rem 2rem; }
 
-    .logo {
-        font-size: 2rem;
-        gap: 0.8rem;
-    }
-    .logo img {
-        height: 3rem;
-    }
+    .logo { font-size: 2rem; gap: 0.8rem; }
+    .logo img { height: 3rem; }
 
     .header-link {
-        font-size: 1.4rem;
-        padding: 1rem 1.4rem;
-        min-height: 4.4rem;
+        font-size: 1.4rem; padding: 1rem 1.4rem; min-height: 4.4rem;
     }
     .header-link .link-text { display: none; }
-    .header-link svg {
-        width: 2rem;
-        height: 2rem;
-    }
+    .header-link svg { width: 2rem; height: 2rem; }
 
     .app-button { display: none; }
     .header-right { gap: 0.8rem; }
 
-    /* AMENDED: bring hero higher & reduce gaps */
-    .main-content {
-        padding: 6rem 2rem 0;   /* was 7rem 2rem 0 */
-        gap: 1.6rem;            /* was 2rem */
-    }
-
+    /* bring hero higher & reduce gaps (keeps focus at top) */
+    .main-content { padding: 6rem 2rem 0; gap: 1.6rem; }
     .hero-section {
-        padding: 3rem 2.5rem 2rem;
-        border-radius: 2.4rem;
-        margin-top: 4rem;       /* NEW: reduce large desktop margin on mobile */
-        margin-bottom: 2rem;    /* NEW: show screenshots sooner */
+        padding: 3rem 2.5rem 2rem; border-radius: 2.4rem;
+        margin-top: 4rem; margin-bottom: 2rem;
     }
 
-    .tagline {
-        font-size: 1.4rem;
-        letter-spacing: 0.2rem;
-        margin-bottom: 1.5rem;
-    }
+    .tagline { font-size: 1.4rem; letter-spacing: 0.2rem; margin-bottom: 1.5rem; }
     .main-title { margin-bottom: 2rem; }
-    .philosophy-text {
-        font-size: 1.8rem;
-        margin-bottom: 2.5rem;
-    }
+    .philosophy-text { font-size: 1.8rem; margin-bottom: 2.5rem; }
     .cta-section { margin-top: 1.5rem; }
 
-    .explore-button {
-        padding: 1.6rem 3.2rem;
-        font-size: 1.6rem;
-        min-height: 4.4rem;
-    }
+    .explore-button { padding: 1.6rem 3.2rem; font-size: 1.6rem; min-height: 4.4rem; }
 
-    /* AMENDED: tighter top space & 2-up grid on mobile/tablet */
-    .features-showcase {
-        padding: 0.5rem 2rem 1.5rem; /* was 0.5rem 2rem 2rem */
-        margin-top: 0;               /* was 0.5rem */
-    }
+    /* screenshot gallery spacing */
+    .features-showcase { padding: 0.5rem 2rem 1.5rem; margin-top: 0; }
 
-    .showcase-tabs {
-        gap: 1rem;
-        flex-wrap: wrap;
-    }
+    .showcase-tabs { gap: 1rem; flex-wrap: wrap; }
     .tab-button { font-size: 1.6rem; }
     .tab-button::after { bottom: -0.4rem; }
     .tab-separator { display: none; }
-    .tab-subtitle {
-        font-size: 1.3rem;
-        margin-bottom: 1.5rem;
-    }
+    .tab-subtitle { font-size: 1.3rem; margin-bottom: 1.5rem; }
 
-    /* AMENDED: keep screenshots/cards in pairs (2 columns) */
+    /* keep cards in pairs (2 columns) */
     .screenshot-grid,
     .screenshot-grid:has(.screenshot-item:nth-child(3)),
     .screenshot-grid:has(.screenshot-item:nth-child(4)) {
-        grid-template-columns: repeat(2, 1fr);  /* was 1fr */
-        gap: 1.4rem;                             /* was 1.5rem */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.4rem;
+        align-items: stretch;                              /* equalize card heights */
     }
 
-    /* AMENDED: responsive height to limit scroll while keeping ratio */
-    .screenshot-frame {
-        height: clamp(12rem, 28vw, 18rem);      /* was fixed 18rem */
+    /* EXACTLY-TWO items (Configure/Optimise) stay side-by-side */
+    .screenshot-grid:has(.screenshot-item:nth-child(2)):not(:has(.screenshot-item:nth-child(3))) {
+        grid-template-columns: repeat(2, 1fr);
     }
 
+    /* --- TILE NORMALIZATION (match Discover tiles) --- */
+    .screenshot-item { display: flex; flex-direction: column; }
+    .screenshot-frame { flex: 0 0 16rem; height: 16rem; }   /* same visual size as Discover */
+    .screenshot-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
     .screenshot-label {
-        font-size: 1.2rem;
-        margin-top: 0.6rem;
+        flex: 0 0 auto;
+        min-height: 1.6rem;                                 /* prevent 2-line labels stretching one tile */
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
+
+    .screenshot-label { font-size: 1.2rem; margin-top: 0.6rem; }
 
     /* Modal optimizations for mobile */
     .modal-overlay:has(.modal-content:not(.modal-video)) {
-        padding: 2rem 1rem 2rem;
-        overflow-y: auto;
-        align-items: flex-start;
-        padding-top: 2rem;
+        padding: 2rem 1rem 2rem; overflow-y: auto; align-items: flex-start; padding-top: 2rem;
     }
     .modal-content:not(.modal-video) {
-        width: 100%;
-        max-width: 95%;
-        border-radius: 2.4rem;
-        max-height: none;
-        margin: auto auto 2rem auto;
-        position: relative;
+        width: 100%; max-width: 95%; border-radius: 2.4rem; max-height: none;
+        margin: auto auto 2rem auto; position: relative;
     }
-    .modal-video {
-        width: 100%;
-        padding: 4rem 2rem 2rem;
-    }
-    .modal-scroll-content {
-        padding: 3.5rem 2.5rem 3rem;
-    }
-    .modal-title {
-        font-size: 2.8rem;
-        margin-bottom: 2rem;
-    }
-    .modal-text {
-        font-size: 1.8rem !important;
-        line-height: 1.5;
-        margin-bottom: 1.5rem;
-    }
+    .modal-video { width: 100%; padding: 4rem 2rem 2rem; }
+    .modal-scroll-content { padding: 3.5rem 2.5rem 3rem; }
+    .modal-title { font-size: 2.8rem; margin-bottom: 2rem; }
+    .modal-text { font-size: 1.8rem !important; line-height: 1.5; margin-bottom: 1.5rem; }
     .modal-text:last-of-type { margin-bottom: 3rem; }
 
-    .tier-container {
-        flex-wrap: wrap;
-        gap: 1.6rem;
-        margin-bottom: 2rem;
-    }
-    .tier-box {
-        min-width: 100%;
-        padding: 1.6rem;
-        border-radius: 1.2rem;
-    }
-    .tier-heading {
-        font-size: 1.8rem;
-        margin-bottom: 1rem;
-    }
+    .tier-container { flex-wrap: wrap; gap: 1.6rem; margin-bottom: 2rem; }
+    .tier-box { min-width: 100%; padding: 1.6rem; border-radius: 1.2rem; }
+    .tier-heading { font-size: 1.8rem; margin-bottom: 1rem; }
     .tier-list { gap: 0.8rem; }
     .tier-item { font-size: 1.6rem; }
 
     .waitlist-form { gap: 2rem; margin-top: 1rem; }
-    .waitlist-form label {
-        font-size: 1.3rem;
-        margin-bottom: 0.8rem;
+    .waitlist-form label { font-size: 1.3rem; margin-bottom: 0.8rem; }
+    .waitlist-form input, .waitlist-form textarea {
+        padding: 1.6rem 2rem; font-size: 1.6rem; border-radius: 1.6rem; min-height: 4.4rem;
     }
-    .waitlist-form input,
-    .waitlist-form textarea {
-        padding: 1.6rem 2rem;
-        font-size: 1.6rem;
-        border-radius: 1.6rem;
-        min-height: 4.4rem;
-    }
-    .waitlist-form textarea {
-        min-height: 10rem;
-        border-radius: 2rem;
-    }
+    .waitlist-form textarea { min-height: 10rem; border-radius: 2rem; }
 
-    .submit-button {
-        padding: 1.8rem 4rem;
-        font-size: 1.6rem;
-        margin-top: 2.5rem;
-        min-height: 4.4rem;
-    }
+    .submit-button { padding: 1.8rem 4rem; font-size: 1.6rem; margin-top: 2.5rem; min-height: 4.4rem; }
 
-    .modal-close-x {
-        top: 1.5rem;
-        right: 1.5rem;
-        width: 4.4rem;
-        height: 4.4rem;
-        min-height: 4.4rem;
-    }
-    .modal-close-x svg {
-        width: 2.2rem;
-        height: 2.2rem;
-    }
+    .modal-close-x { top: 1.5rem; right: 1.5rem; width: 4.4rem; height: 4.4rem; min-height: 4.4rem; }
+    .modal-close-x svg { width: 2.2rem; height: 2.2rem; }
 
-    .modal-icon {
-        width: 6rem;
-        height: 6rem;
-        margin: 0 auto 2rem;
-    }
-    .modal-icon svg {
-        width: 3rem;
-        height: 3rem;
-    }
+    .modal-icon { width: 6rem; height: 6rem; margin: 0 auto 2rem; }
+    .modal-icon svg { width: 3rem; height: 3rem; }
     .video-container { border-radius: 1.2rem; }
     .modal-close { top: 2rem; right: 2rem; font-size: 2.4rem; }
     #modalCaption { font-size: 1.6rem; }
@@ -1135,14 +1050,13 @@ header {
 
 /* Small Mobile - 480px */
 @media (max-width: 30em) {
-    .hero-section {
-        padding: 2.5rem 1.8rem 1.5rem;
-    }
+    .hero-section { padding: 2.5rem 1.8rem 1.5rem; }
     .main-title { font-size: 3.2rem; }
 
     .features-showcase { padding: 0.5rem 1.5rem 2rem; }
 
-    /* Force single column on very small phones */
+    /* On very small phones you can keep 1 column if preferred.
+       If you still want pairs here, comment out the block below. */
     .screenshot-grid,
     .screenshot-grid:has(.screenshot-item:nth-child(3)),
     .screenshot-grid:has(.screenshot-item:nth-child(4)) {
@@ -1164,15 +1078,8 @@ header {
     .tier-heading { font-size: 1.6rem; margin-bottom: 0.8rem; }
     .tier-item { font-size: 1.5rem; }
 
-    .waitlist-form input,
-    .waitlist-form textarea {
-        padding: 1.4rem 1.8rem;
-        font-size: 1.5rem;
-    }
-    .submit-button {
-        padding: 1.6rem 3.2rem;
-        font-size: 1.5rem;
-    }
+    .waitlist-form input, .waitlist-form textarea { padding: 1.4rem 1.8rem; font-size: 1.5rem; }
+    .submit-button { padding: 1.6rem 3.2rem; font-size: 1.5rem; }
     .modal-content-wrapper img { border-radius: 0.8rem; }
     #modalCaption { font-size: 1.4rem; margin-top: 1.5rem; }
 }
@@ -1196,9 +1103,9 @@ header {
     .modal-title { font-size: 3.2rem; margin-bottom: 1.8rem; }
     .waitlist-form { gap: 1.5rem; margin-top: 1rem; }
     .waitlist-form label { margin-bottom: 0.6rem; }
-    .waitlist-form input,
-    .waitlist-form textarea { padding: 1.4rem 2rem; }
+    .waitlist-form input, .waitlist-form textarea { padding: 1.4rem 2rem; }
     .waitlist-form textarea { min-height: 8rem; }
     .submit-button { margin-top: 2rem; }
 }
+
 
