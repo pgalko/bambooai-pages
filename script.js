@@ -178,3 +178,132 @@ document.addEventListener('DOMContentLoaded', function() {
         waitlistForm.addEventListener('submit', submitWaitlistForm);
     }
 });
+
+// ============================================
+// SCREENSHOT SHOWCASE FUNCTIONALITY
+// ============================================
+
+// Tab System
+document.addEventListener('DOMContentLoaded', function() {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+    const tabSubtitle = document.getElementById('tabSubtitle');
+    
+    // Tab subtitles
+    const subtitles = {
+        'discover': 'The journey begins',
+        'analyze': 'Deep dive into data',
+        'configure': 'Your control center',
+        'optimize': 'Refine your workflow'
+    };
+    
+    // Tab switching
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetTab = button.dataset.tab;
+            
+            // Update active states
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            // Fade out current content
+            tabSubtitle.style.opacity = '0';
+            
+            setTimeout(() => {
+                // Update subtitle
+                tabSubtitle.textContent = subtitles[targetTab];
+                tabSubtitle.style.opacity = '1';
+                
+                // Switch tab panes
+                tabPanes.forEach(pane => {
+                    pane.classList.remove('active');
+                    // Reset animations
+                    const items = pane.querySelectorAll('.screenshot-item');
+                    items.forEach(item => {
+                        item.style.animation = 'none';
+                    });
+                });
+                
+                // Activate new pane
+                const newPane = document.getElementById(targetTab);
+                newPane.classList.add('active');
+                
+                // Trigger animations for new content
+                setTimeout(() => {
+                    const items = newPane.querySelectorAll('.screenshot-item');
+                    items.forEach((item, index) => {
+                        item.style.animation = `fadeInUp 0.5s ease ${0.1 * (index + 1)}s forwards`;
+                    });
+                }, 10);
+            }, 200);
+        });
+    });
+});
+
+// Lightbox Modal
+function openScreenshotModal(imageSrc, caption) {
+    const modal = document.getElementById('screenshotModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalCaption = document.getElementById('modalCaption');
+    
+    modalImage.src = imageSrc;
+    modalImage.alt = caption;
+    modalCaption.textContent = caption;
+    
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeScreenshotModal() {
+    const modal = document.getElementById('screenshotModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Close modal on background click
+document.getElementById('screenshotModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeScreenshotModal();
+    }
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', function(e) {
+    const modal = document.getElementById('screenshotModal');
+    
+    // Close on ESC
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeScreenshotModal();
+    }
+    
+    // Arrow key navigation in modal
+    if (modal.classList.contains('active')) {
+        const activeTab = document.querySelector('.tab-pane.active');
+        const items = Array.from(activeTab.querySelectorAll('.screenshot-item'));
+        const currentSrc = document.getElementById('modalImage').src;
+        const currentIndex = items.findIndex(item => 
+            item.querySelector('img').src === currentSrc
+        );
+        
+        if (e.key === 'ArrowRight' && currentIndex < items.length - 1) {
+            const nextItem = items[currentIndex + 1];
+            const nextImg = nextItem.querySelector('img');
+            const nextLabel = nextItem.querySelector('.screenshot-label').textContent;
+            openScreenshotModal(nextImg.src, nextLabel);
+        } else if (e.key === 'ArrowLeft' && currentIndex > 0) {
+            const prevItem = items[currentIndex - 1];
+            const prevImg = prevItem.querySelector('img');
+            const prevLabel = prevItem.querySelector('.screenshot-label').textContent;
+            openScreenshotModal(prevImg.src, prevLabel);
+        }
+    }
+});
+
+// Preload images for smooth transitions
+window.addEventListener('load', function() {
+    const images = document.querySelectorAll('.screenshot-frame img');
+    images.forEach(img => {
+        const tempImg = new Image();
+        tempImg.src = img.src;
+    });
+});

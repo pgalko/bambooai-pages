@@ -160,34 +160,44 @@ header {
     box-shadow: 0 1.2rem 2.4rem rgba(80, 250, 123, 0.35);
 }
 
-/* Main content */
+/* Main content - COMPACT & TOP-ALIGNED
+   The previous layout vertically centered the hero inside a 100vh section,
+   leaving a large empty space below. We start content near the top instead
+   and use a small gap to tighten the hero→tiles transition. */
 .main-content {
-    min-height: 100vh;
+    /* place content just below the fixed header */
+    padding: 10rem 4rem 0;
+    /* avoid trapping extra empty space below */
+    min-height: auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start; /* key change from center */
     align-items: center;
-    padding: 10rem 4rem;
+    gap: 2.4rem; /* gentle rhythm between hero and next section */
     position: relative;
 }
 
+/* Hero section - COMPACT VERSION */
 .hero-section {
     max-width: 100rem;
     text-align: center;
     z-index: 1;
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(255, 255, 255, 0.002);
     backdrop-filter: blur(1rem);
     -webkit-backdrop-filter: blur(1rem);
-    padding: 8rem 6rem;
+    padding: 10rem 10rem 5rem; /* compact */
     border-radius: 3.2rem;
     border: 1px solid rgba(255, 255, 255, 0.05);
     box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.3);
+    margin-inline: auto;
+    margin-top: 20rem;
+    margin-bottom: 25rem; /* Reduced */
 }
 
 .tagline {
     font-size: 1.6rem;
     color: var(--accent-color);
-    margin-bottom: 3rem;
+    margin-bottom: 2rem; /* Reduced */
     letter-spacing: 0.3rem;
     text-transform: uppercase;
     opacity: 0;
@@ -196,19 +206,19 @@ header {
 }
 
 .main-title {
-    font-size: clamp(3.6rem, 6vw, 7.2rem);
+    font-size: clamp(3.6rem, 6vw, 6.4rem); /* Slightly smaller */
     font-weight: 700;
     line-height: 1.1;
-    margin-bottom: 4rem;
+    margin-bottom: 2.5rem; /* Reduced */
     opacity: 0;
     animation: fadeInUp 1s ease 0.2s forwards;
 }
 
 .philosophy-text {
-    font-size: clamp(1.8rem, 2.5vw, 2.4rem);
-    line-height: 1.6;
+    font-size: clamp(1.8rem, 2.5vw, 2.2rem); /* Slightly smaller */
+    line-height: 1.5; /* Tighter */
     color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 5rem;
+    margin-bottom: 5rem; /* Reduced */
     opacity: 0;
     animation: fadeInUp 1s ease 0.4s forwards;
 }
@@ -230,15 +240,16 @@ header {
     }
 }
 
-/* Interactive elements */
+/* Interactive elements - COMPACT */
 .cta-section {
-    margin-top: 6rem;
+    margin-top: 5rem; /* Reduced */
+    margin-bottom: 0;
     opacity: 0;
     animation: fadeInUp 1s ease 0.6s forwards;
 }
 
 .explore-button {
-    padding: 2rem 4.8rem;
+    padding: 1.8rem 4rem; /* Slightly smaller */
     background: transparent;
     border: 0.2rem solid var(--accent-color);
     border-radius: 3.2rem;
@@ -280,27 +291,286 @@ header {
     background: rgba(80, 250, 123, 0.08);
 }
 
-/* Floating question marks */
-.question-mark {
+/* ============================================
+   SCREENSHOT SHOWCASE
+   ============================================ */
+
+/* Main showcase section - follows hero closely */
+.features-showcase {
+    width: 100%;
+    padding: 1rem 4rem 2rem; /* Minimal padding */
+    margin-top: 0.8rem; /* tightened a touch */
+    opacity: 0;
+    animation: fadeInUp 1s ease 0.7s forwards;
+    position: relative;
+    z-index: 10;
+}
+
+.showcase-container {
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+/* Tab Navigation - COMPACT */
+.showcase-tabs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.8rem;
+    margin-bottom: 0.5rem; /* Very small margin */
+}
+
+.tab-button {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.8rem; /* Smaller */
+    font-weight: 400;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    margin-bottom: 0.8rem;
+}
+
+.tab-button:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.tab-button.active {
+    color: var(--accent-color);
+}
+
+.tab-button::after {
+    content: '';
     position: absolute;
-    font-size: 2.4rem;
-    color: rgba(100, 255, 218, 0.2);
-    animation: drift 15s infinite ease-in-out;
+    bottom: -0.6rem;
+    left: 0;
+    width: 100%;
+    height: 0.2rem;
+    background: var(--accent-color);
+    transform: scaleX(0);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@keyframes drift {
-    0%, 100% {
-        transform: translate(0, 0) rotate(0deg);
-    }
-    33% {
-        transform: translate(5rem, -3rem) rotate(120deg);
-    }
-    66% {
-        transform: translate(-3rem, 2rem) rotate(240deg);
-    }
+.tab-button.active::after {
+    transform: scaleX(1);
 }
 
-/* Modal Styles */
+.tab-separator {
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 1.4rem;
+    user-select: none;
+}
+
+/* Tab subtitle - COMPACT */
+.tab-subtitle {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 1.4rem; /* Smaller */
+    font-weight: 300;
+    margin-bottom: 2rem; /* Reduced */
+    min-height: 1.8rem;
+    transition: opacity 0.3s ease;
+}
+
+/* Tab content container - COMPACT */
+.tab-content {
+    position: relative;
+    min-height: 20rem; /* Reduced */
+}
+
+/* Tab panes */
+.tab-pane {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tab-pane.active {
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Screenshot grid - COMPACT */
+.screenshot-grid {
+    display: grid;
+    gap: 2rem; /* Reduced gap */
+    grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr)); /* Smaller min-width */
+}
+
+/* Force columns for specific item counts */
+.screenshot-grid:has(.screenshot-item:nth-child(3)):not(:has(.screenshot-item:nth-child(4))) {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.screenshot-grid:has(.screenshot-item:nth-child(4)) {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* Screenshot items */
+.screenshot-item {
+    cursor: pointer;
+    opacity: 5;
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.screenshot-item:nth-child(1) { animation-delay: 0.1s; }
+.screenshot-item:nth-child(2) { animation-delay: 0.2s; }
+.screenshot-item:nth-child(3) { animation-delay: 0.3s; }
+.screenshot-item:nth-child(4) { animation-delay: 0.4s; }
+
+/* Screenshot frame - SMALLER */
+.screenshot-frame {
+    position: relative;
+    width: 100%;
+    height: 16rem; /* Reduced from 18rem */
+    border-radius: 2rem;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.screenshot-frame:hover {
+    transform: scale(1.02);
+    border-color: rgba(80, 250, 123, 0.2);
+    box-shadow: 
+        0 1rem 4rem rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(80, 250, 123, 0.1);
+}
+
+.screenshot-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Hover overlay */
+.screenshot-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(0.2rem);
+    -webkit-backdrop-filter: blur(0.2rem);
+    opacity: 0;
+    transition: opacity 0.1s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.screenshot-frame:hover .screenshot-hover {
+    opacity: 1;
+}
+
+.hover-icon {
+    color: var(--accent-color);
+    font-size: 2.5rem; /* Smaller */
+    font-weight: 200;
+    transform: translate(-0.5rem, 0.5rem);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.screenshot-frame:hover .hover-icon {
+    transform: translate(0, 0);
+}
+
+/* Screenshot label - COMPACT */
+.screenshot-label {
+    margin-top: 0.8rem; /* Reduced */
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.3rem; /* Smaller */
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+.screenshot-item:hover .screenshot-label {
+    color: rgba(255, 255, 255, 0.95);
+}
+
+/* Lightbox Modal */
+.screenshot-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(2rem);
+    -webkit-backdrop-filter: blur(2rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 3000;
+}
+
+.screenshot-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-close {
+    position: absolute;
+    top: 3rem;
+    right: 3rem;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 3rem;
+    font-weight: 200;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 3001;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-close:hover {
+    color: white;
+    transform: rotate(90deg);
+}
+
+.modal-content-wrapper {
+    max-width: 90%;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal-content-wrapper img {
+    max-width: 100%;
+    max-height: 75vh;
+    object-fit: contain;
+    border-radius: 1.2rem;
+    box-shadow: 0 2rem 8rem rgba(0, 0, 0, 0.5);
+}
+
+#modalCaption {
+    margin-top: 2rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+/* Modal Styles - KEEP EXISTING */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -349,7 +619,6 @@ header {
     transform: scale(1) translateY(0);
 }
 
-/* Specific styles for the video modal */
 .modal-video {
     width: 120rem;
     background: #0a0a0a;
@@ -624,7 +893,7 @@ header {
 .video-container {
     position: relative;
     width: 100%;
-    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    padding-top: 56.25%;
     background: #000;
     border-radius: 1.6rem;
     overflow: hidden;
@@ -638,8 +907,42 @@ header {
     height: 100%;
 }
 
-/* Responsive */
-/* 768px / 16px = 48em */
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+/* Large screens - ensure it fits in viewport */
+@media (min-height: 90rem) {
+    .main-content {
+        padding: 10rem 4rem 0;
+    }
+    
+    .hero-section {
+        padding: 6rem 6rem 3rem;
+    }
+}
+
+/* Laptop - 1400px */
+@media (max-width: 87.5em) {
+    .screenshot-grid:has(.screenshot-item:nth-child(3)),
+    .screenshot-grid:has(.screenshot-item:nth-child(4)) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .screenshot-frame {
+        height: 16rem;
+    }
+    
+    .modal-content {
+        max-width: 140rem;
+    }
+    
+    .modal-scroll-content {
+        padding: 4rem 8rem 3.5rem;
+    }
+}
+
+/* Tablet - 768px */
 @media (max-width: 48em) {
     header {
         padding: 1.5rem 2rem;
@@ -678,52 +981,104 @@ header {
     }
 
     .main-content {
-        padding: 8rem 2rem;
+        padding: 7rem 2rem 0;
+        gap: 2rem;
     }
 
     .hero-section {
-        padding: 4rem 3rem;
+        padding: 3rem 2.5rem 2rem;
         border-radius: 2.4rem;
     }
 
     .tagline {
         font-size: 1.4rem;
         letter-spacing: 0.2rem;
-        margin-bottom: 2.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .main-title {
+        margin-bottom: 2rem;
     }
 
     .philosophy-text {
         font-size: 1.8rem;
-        margin-bottom: 4rem;
+        margin-bottom: 2.5rem;
+    }
+    
+    .cta-section {
+        margin-top: 1.5rem;
     }
 
     .explore-button {
-        padding: 1.8rem 3.6rem;
+        padding: 1.6rem 3.2rem;
         font-size: 1.6rem;
         min-height: 4.4rem;
     }
+    
+    /* Screenshot gallery mobile */
+    .features-showcase {
+        padding: 0.5rem 2rem 2rem;
+        margin-top: 0.5rem;
+    }
+    
+    .showcase-tabs {
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    
+    .tab-button {
+        font-size: 1.6rem;
+    }
+    
+    .tab-button::after {
+        bottom: -0.4rem;
+    }
+    
+    .tab-separator {
+        display: none;
+    }
+    
+    .tab-subtitle {
+        font-size: 1.3rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .screenshot-grid,
+    .screenshot-grid:has(.screenshot-item:nth-child(3)),
+    .screenshot-grid:has(.screenshot-item:nth-child(4)) {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .screenshot-frame {
+        height: 18rem;
+    }
+    
+    .screenshot-label {
+        font-size: 1.2rem;
+        margin-top: 0.6rem;
+    }
 
-    /* Modal optimizations for mobile - FIXED FOR SCROLLING (waitlist only) */
+    /* Modal optimizations for mobile */
     .modal-overlay:has(.modal-content:not(.modal-video)) {
         padding: 2rem 1rem 2rem;
-        overflow-y: auto; /* Make overlay scrollable */
-        align-items: flex-start; /* Start from top */
+        overflow-y: auto;
+        align-items: flex-start;
         padding-top: 2rem;
     }
 
-    .modal-content:not(.modal-video) {  /* Only apply to waitlist modal */
+    .modal-content:not(.modal-video) {
         width: 100%;
         max-width: 95%;
         border-radius: 2.4rem;
-        max-height: none; /* Remove height limit */
-        margin: auto auto 2rem auto; /* Add bottom margin */
+        max-height: none;
+        margin: auto auto 2rem auto;
         position: relative;
     }
 
-    .modal-video {  /* Keep video modal unchanged */
+    .modal-video {
         width: 100%;
         padding: 4rem 2rem 2rem;
-        /* Keeps its original behavior */
     }
 
     .modal-scroll-content {
@@ -745,7 +1100,6 @@ header {
         margin-bottom: 3rem;
     }
     
-    /* Tier container mobile */
     .tier-container {
         flex-wrap: wrap;
         gap: 1.6rem;
@@ -771,7 +1125,6 @@ header {
         font-size: 1.6rem;
     }
     
-    /* Waitlist form mobile improvements */
     .waitlist-form {
         gap: 2rem;
         margin-top: 1rem;
@@ -829,13 +1182,53 @@ header {
     .video-container {
         border-radius: 1.2rem;
     }
+    
+    .modal-close {
+        top: 2rem;
+        right: 2rem;
+        font-size: 2.4rem;
+    }
+    
+    #modalCaption {
+        font-size: 1.6rem;
+    }
 }
 
-/* Small mobile screens - additional optimizations */
-/* 480px / 16px = 30em */
+/* Small Mobile - 480px */
 @media (max-width: 30em) {
     .hero-section {
-        padding: 3rem 2rem;
+        padding: 2.5rem 1.8rem 1.5rem;
+    }
+    
+    .main-title {
+        font-size: 3.2rem;
+    }
+    
+    .features-showcase {
+        padding: 0.5rem 1.5rem 2rem;
+    }
+    
+    .tab-button {
+        font-size: 1.4rem;
+        padding: 0.4rem;
+    }
+    
+    .tab-subtitle {
+        font-size: 1.2rem;
+        margin-bottom: 1.2rem;
+    }
+    
+    .screenshot-frame {
+        height: 16rem;
+        border-radius: 0.8rem;
+    }
+    
+    .screenshot-label {
+        font-size: 1.1rem;
+    }
+    
+    .hover-icon {
+        font-size: 2rem;
     }
 
     .modal-scroll-content {
@@ -873,23 +1266,55 @@ header {
         padding: 1.6rem 3.2rem;
         font-size: 1.5rem;
     }
-}
-
-/* Large screens */
-/* 1400px / 16px = 87.5em */
-@media (min-width: 87.5em) {
-    .modal-content {
-        max-width: 140rem;
+    
+    .modal-content-wrapper img {
+        border-radius: 0.8rem;
     }
     
-    .modal-scroll-content {
-        padding: 4rem 8rem 3.5rem;
+    #modalCaption {
+        font-size: 1.4rem;
+        margin-top: 1.5rem;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 23.75em) {
+    .features-showcase {
+        padding: 0.5rem 1rem 1.5rem;
+    }
+    
+    .tab-button {
+        font-size: 1.3rem;
+    }
+    
+    .screenshot-frame {
+        height: 14rem;
     }
 }
 
 /* Small screens - prevent scrollbar */
-/* 700px / 16px = 43.75em */
 @media (max-height: 43.75em) {
+    .main-content {
+        padding: 7rem 4rem 0;
+    }
+    
+    .hero-section {
+        padding: 3.5rem 4rem 2rem;
+    }
+    
+    .main-title {
+        font-size: 5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .philosophy-text {
+        margin-bottom: 2rem;
+    }
+    
+    .screenshot-frame {
+        height: 12rem;
+    }
+    
     .modal-content {
         max-height: 95vh;
     }

@@ -15,7 +15,6 @@
     <header>
         <div class="header-content">
             <div class="logo">
-                <!-- Make sure the path to your logo is correct -->
                 <img src="assets/images/logo_dark.svg" alt="Bamboo AI Logo">
                 <span>Bamboo AI Lab</span>
             </div>
@@ -61,10 +60,10 @@
             
             <p class="philosophy-text">
                 Most data tools help you answer questions you already have in mind. 
-                That’s handy, but it keeps you focused on what you expect to find, 
+                That's handy, but it keeps you focused on what you expect to find, 
                 overlooking the exciting possibilities waiting in your data.
                 <br><br> 
-                The best insights come from <em>questions you haven’t thought of yet</em>. 
+                The best insights come from <em>questions you haven't thought of yet</em>. 
                 Real data analysis is about sparking curiosity and wonder, diving into the unknown, 
                 and discovering ideas that offer a new perspective on how you think and see the world.
             </p>
@@ -72,6 +71,186 @@
             <div class="cta-section">
                 <button class="explore-button" onclick="showWaitlist(event)">Begin Your Journey</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Screenshot Gallery Section -->
+    <div class="features-showcase">
+        <div class="showcase-container">
+            <!-- Tab Navigation -->
+            <nav class="showcase-tabs">
+                <button class="tab-button active" data-tab="discover">Discover</button>
+                <span class="tab-separator">·</span>
+                <button class="tab-button" data-tab="analyze">Analyze</button>
+                <span class="tab-separator">·</span>
+                <button class="tab-button" data-tab="configure">Configure</button>
+                <span class="tab-separator">·</span>
+                <button class="tab-button" data-tab="optimize">Optimize</button>
+            </nav>
+            
+            <div class="tab-subtitle" id="tabSubtitle">The journey begins</div>
+            
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <!-- Discover Tab -->
+                <div class="tab-pane active" id="discover">
+                    <div class="screenshot-grid">
+                        <div class="screenshot-item" onclick="openScreenshotModal('assets/images/Workflow Map.png', 'Workflow Map')">
+                            <div class="screenshot-frame">
+                                <img src="assets/images/Workflow Map.png" alt="Workflow Map" loading="lazy">
+                                <div class="screenshot-hover">
+                                    <div class="hover-icon">↗</div>
+                                </div>
+                            </div>
+                            <p class="screenshot-label">Workflow Map</p>
+                        </div>
+                        <div class="screenshot-item" onclick="openScreenshotModal('assets/images/Main Screen Ideas Generator.png', 'Ideas Generator')">
+                            <div class="screenshot-frame">
+                                <img src="assets/images/Main Screen Ideas Generator.png" alt="Ideas Generator" loading="lazy">
+                                <div class="screenshot-hover">
+                                    <div class="hover-icon">↗</div>
+                                </div>
+                            </div>
+                            <p class="screenshot-label">Ideas Generator</p>
+                        </div>
+                        <div class="screenshot-item" onclick="openScreenshotModal('assets/images/Main Screen Planning.png', 'Planning')">
+                            <div class="screenshot-frame">
+                                <img src="assets/images/Main Screen Planning.png" alt="Planning" loading="lazy">
+                                <div class="screenshot-hover">
+                                    <div class="hover-icon">↗</div>
+                                </div>
+                            </div>
+                            <p class="screenshot-label">Planning</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Analyze Tab -->
+                <div class="tab-pane" id="analyze">
+                    <div class="screenshot-grid">
+                        <div class="screenshot-item" onclick="openScreenshotModal('assets/images/Main Screen Plots.png', 'Data Visualization')">
+                            <div class="screenshot-frame">
+                                <img src="assets/images/Main Screen Plots.png" alt="Data Visualization" loading="lazy">
+                                <div class="screenshot-hover">
+                                    <div class="hover-icon">↗</div>
+                                </div>
+                            </div>
+                            <p class="screenshot-label">Data Visualization</p>
+                        </div>
+                        <div class="screenshot-item" onclick="openScreenshotModal('assets/images/Main Screen Code Edit.png', 'Code Editor')">
+                            <div class="screenshot-frame">
+                                <img src="assets/images/Main Screen Code Edit.png" alt="Code Editor" loading="lazy">
+                                <div class="screenshot-hover">
+                                    <div class="hover-icon">↗</div>
+                                </div>
+                            </div>
+                            <p class="screenshot-label">Code Editor</p>
+                        </div>
+                        <div class="screenshot-item" onclick="openScreenshotModal('assets/images/Main Screen Summary.png', 'Summary View')">
+                            <div class="screenshot-frame">
+                                <img src="assets/images/Main Screen Summary.png" alt="Summary View" loading="lazy">
+                                <div class="screenshot-hover">
+                                    <div class="hover-icon">↗</div>
+                                </div>
+                            </div>
+                            <p class="screenshot-label">Summary View</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Configure Tab -->
+                <div class="tab-pane" id="configure">
+                    <div class="screenshot-grid">
+                        <div class="screenshot-item" onclick="openScreenshotModal('assets/images/Account Config Models.png', 'AI Models')">
+                            <div class="screenshot-frame">
+                                <img src="assets/images/Account Config Models.png" alt="AI Models" loading="lazy">
+                                <div class="screenshot-hover">
+                                    <div class="hover-icon">↗</div>
+                                </div>
+                            </div>
+                            <p class="screenshot-label">AI Models</p>
+                        </div>
+                        <div class="screenshot-item" onclick="openScreenshotModal('assets/images/Account Config Compute.png', 'Compute Resources')">
+                            <div class="screenshot-frame">
+                                <img src="assets/images/Account Config Compute.png" alt="Compute Resources" loading="lazy">
+                                <div class="screenshot-hover">
+                                    <div class="hover-icon">↗</div>
+                                </div>
+                            </div>
+                            <p class="screenshot-label">Compute Resources</p>
+                        </div>
+                        <div class="screenshot-item" onclick="openScreenshotModal('assets/images/Account Config Funds.png', 'Account Funds')">
+                            <div class="screenshot-frame">
+                                <img src="assets/images/Account Config Funds.png" alt="Account Funds" loading="lazy">
+                                <div class="screenshot-hover">
+                                    <div class="hover-icon">↗</div>
+                                </div>
+                            </div>
+                            <p class="screenshot-label">Account Funds</p>
+                        </div>
+                        <div class="screenshot-item" onclick="openScreenshotModal('assets/images/Usage Tracking.png', 'Usage Tracking')">
+                            <div class="screenshot-frame">
+                                <img src="assets/images/Usage Tracking.png" alt="Usage Tracking" loading="lazy">
+                                <div class="screenshot-hover">
+                                    <div class="hover-icon">↗</div>
+                                </div>
+                            </div>
+                            <p class="screenshot-label">Usage Tracking</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Optimize Tab -->
+                <div class="tab-pane" id="optimize">
+                    <div class="screenshot-grid">
+                        <div class="screenshot-item" onclick="openScreenshotModal('assets/images/Analysis Replays.png', 'Analysis Replays')">
+                            <div class="screenshot-frame">
+                                <img src="assets/images/Analysis Replays.png" alt="Analysis Replays" loading="lazy">
+                                <div class="screenshot-hover">
+                                    <div class="hover-icon">↗</div>
+                                </div>
+                            </div>
+                            <p class="screenshot-label">Analysis Replays</p>
+                        </div>
+                        <div class="screenshot-item" onclick="openScreenshotModal('assets/images/Workflow Manager.png', 'Workflow Manager')">
+                            <div class="screenshot-frame">
+                                <img src="assets/images/Workflow Manager.png" alt="Workflow Manager" loading="lazy">
+                                <div class="screenshot-hover">
+                                    <div class="hover-icon">↗</div>
+                                </div>
+                            </div>
+                            <p class="screenshot-label">Workflow Manager</p>
+                        </div>
+                        <div class="screenshot-item" onclick="openScreenshotModal('assets/images/Dataset Cache Manager.png', 'Dataset Cache')">
+                            <div class="screenshot-frame">
+                                <img src="assets/images/Dataset Cache Manager.png" alt="Dataset Cache" loading="lazy">
+                                <div class="screenshot-hover">
+                                    <div class="hover-icon">↗</div>
+                                </div>
+                            </div>
+                            <p class="screenshot-label">Dataset Cache</p>
+                        </div>
+                        <div class="screenshot-item" onclick="openScreenshotModal('assets/images/Agents Instructions view.png', 'Agent Instructions')">
+                            <div class="screenshot-frame">
+                                <img src="assets/images/Agents Instructions view.png" alt="Agent Instructions" loading="lazy">
+                                <div class="screenshot-hover">
+                                    <div class="hover-icon">↗</div>
+                                </div>
+                            </div>
+                            <p class="screenshot-label">Agent Instructions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screenshot Lightbox Modal -->
+    <div class="screenshot-modal" id="screenshotModal">
+        <button class="modal-close" onclick="closeScreenshotModal()">✕</button>
+        <div class="modal-content-wrapper">
+            <img id="modalImage" src="" alt="">
+            <p id="modalCaption"></p>
         </div>
     </div>
 
@@ -172,7 +351,6 @@
                 </svg>
             </button>
             <div class="video-container">
-                <!-- The video source points to the file in your repository -->
                 <video id="demoVideo" src="https://github.com/user-attachments/assets/7b9c9cd6-56e3-46ee-a6c6-c32324a0c5ef" controls preload="none"></video>
             </div>
         </div>
