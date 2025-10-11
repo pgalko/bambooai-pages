@@ -923,6 +923,7 @@ header {
 
 /* Laptop - 1400px */
 @media (max-width: 87.5em) {
+    /* When there are 3 or 4 items, keep 2 columns */
     .screenshot-grid:has(.screenshot-item:nth-child(3)),
     .screenshot-grid:has(.screenshot-item:nth-child(4)) {
         grid-template-columns: repeat(2, 1fr);
@@ -964,17 +965,17 @@ header {
     .app-button { display: none; }
     .header-right { gap: 0.8rem; }
 
-    /* AMENDED: bring hero higher & reduce gaps */
+    /* Bring hero higher & reduce gaps */
     .main-content {
-        padding: 6rem 2rem 0;   /* was 7rem 2rem 0 */
-        gap: 1.6rem;            /* was 2rem */
+        padding: 6rem 2rem 0;
+        gap: 1.6rem;
     }
 
     .hero-section {
         padding: 3rem 2.5rem 2rem;
         border-radius: 2.4rem;
-        margin-top: 4rem;       /* NEW: reduce large desktop margin on mobile */
-        margin-bottom: 2rem;    /* NEW: show screenshots sooner */
+        margin-top: 4rem;
+        margin-bottom: 2rem;
     }
 
     .tagline {
@@ -995,10 +996,10 @@ header {
         min-height: 4.4rem;
     }
 
-    /* AMENDED: tighter top space & 2-up grid on mobile/tablet */
+    /* Tighter top space */
     .features-showcase {
-        padding: 0.5rem 2rem 1.5rem; /* was 0.5rem 2rem 2rem */
-        margin-top: 0;               /* was 0.5rem */
+        padding: 0.5rem 2rem 1.5rem;
+        margin-top: 0;
     }
 
     .showcase-tabs {
@@ -1013,12 +1014,22 @@ header {
         margin-bottom: 1.5rem;
     }
 
-    /* AMENDED: keep screenshots/cards in pairs (2 columns) */
+    /* Keep screenshots/cards in pairs (2 columns) on tablet/phones */
     .screenshot-grid,
     .screenshot-grid:has(.screenshot-item:nth-child(3)),
     .screenshot-grid:has(.screenshot-item:nth-child(4)) {
-        grid-template-columns: repeat(2, 1fr);  /* was 1fr */
-        gap: 1.4rem;                             /* was 1.5rem */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.4rem;
+    }
+
+    /* If a grid has exactly TWO items (Configure/Optimise), force 2 columns */
+    .screenshot-grid:has(.screenshot-item:nth-child(2)):not(:has(.screenshot-item:nth-child(3))) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Keep tile height identical to Discover tiles on mobile/tablet */
+    .screenshot-frame {
+        height: 16rem;              /* matches desktop card height */
     }
 
     .screenshot-label {
@@ -1135,17 +1146,21 @@ header {
 
     .features-showcase { padding: 0.5rem 1.5rem 2rem; }
 
-    /* Force single column on very small phones */
+    /* Keep pairs even on small phones (to match Discover look) */
     .screenshot-grid,
     .screenshot-grid:has(.screenshot-item:nth-child(3)),
     .screenshot-grid:has(.screenshot-item:nth-child(4)) {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    /* Also ensure exactly-two tiles stay side-by-side */
+    .screenshot-grid:has(.screenshot-item:nth-child(2)):not(:has(.screenshot-item:nth-child(3))) {
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .tab-button { font-size: 1.4rem; padding: 0.4rem; }
     .tab-subtitle { font-size: 1.2rem; margin-bottom: 1.2rem; }
 
-    .screenshot-frame {border-radius: 0.8rem; }
+    .screenshot-frame { border-radius: 0.8rem; }
     .screenshot-label { font-size: 1.1rem; }
     .hover-icon { font-size: 2rem; }
 
@@ -1193,25 +1208,4 @@ header {
     .submit-button { margin-top: 2rem; }
 }
 
-/* Uniform tiles everywhere, regardless of image dimensions */
-.screenshot-frame {
-    aspect-ratio: 16 / 9;   /* pick 4/3 or 3/2 if you prefer */
-    height: auto;           /* kill fixed heights */
-  }
-  
-  .screenshot-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;      /* crop to fill frame uniformly */
-    object-position: center;
-  }
-  
-  /* Ensure no media query reintroduces fixed heights */
-  @media (max-width: 87.5em),
-         (max-width: 48em),
-         (max-width: 30em),
-         (max-width: 23.75em),
-         (max-height: 43.75em) {
-    .screenshot-frame { height: auto; }  /* defensive override */
-  }
   
