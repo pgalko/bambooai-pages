@@ -309,7 +309,7 @@
         </div>
     </div>
 
-    <!-- Coming Soon Modal -->
+    <!-- Invitation Beta Modal -->
     <div class="modal-overlay" id="comingSoonModal">
         <div class="modal-content">
             <button class="modal-close-x" onclick="hideComingSoon()">
@@ -320,15 +320,28 @@
             <div class="modal-scroll-content">
                 <div class="modal-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                        <circle stroke-linecap="round" stroke-linejoin="round" cx="9" cy="7" r="4" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 3.13a4 4 0 0 1 0 7.75" />
                     </svg>
                 </div>
-                <h2 class="modal-title">Coming Soon</h2>
-                <p class="modal-text" style="text-align: center; margin-bottom: 4rem;">
-                    We're putting the finishing touches on Bamboo AI Lab. 
-                    Our novel approach to data analysis will be ready soon. 
-                    Join us on the journey to discover the questions hidden in your data.
+                <h2 class="modal-title">Invitation Beta</h2>
+                <p class="modal-text" style="text-align: center; margin-bottom: 2rem;">
+                    Bamboo AI Lab is currently in beta, and we're carefully inviting users who can help shape the future of curiosity-driven data analysis.
                 </p>
+                <p class="modal-text" style="text-align: center; margin-bottom: 2rem;">
+                    Bamboo AI Lab is an open source research project, bootstrapped and built in public. We're not chasing venture capital or growth metrics—we're chasing ideas. Our limited compute resources mean we grow organically, one thoughtful contributor at a time. Every bit of support goes directly back into improving the project.
+                </p>
+                <p class="modal-text" style="text-align: center; margin-bottom: 2rem;">
+                    We're looking for curious minds who see data analysis as more than just answering questions—people who want to help us explore what's possible when we let data surprise us. Whether through code, feedback, or simply using the tool in unexpected ways, <em style="color: var(--accent-color); font-style: normal;">we're deeply grateful for the time and expertise our early users contribute.</em>
+                </p>
+                <p class="modal-text" style="text-align: center; margin-bottom: 3rem;">
+                    If you're interested in joining our beta program, we'd love to hear from you. Please share a bit about your data challenges and how you might use Bamboo AI Lab. We review applications regularly and will reach out if there's a good fit.
+                </p>
+                <button class="explore-button" onclick="hideComingSoon(); showWaitlist(event)" style="margin: 0 auto 1rem;">
+                    Register Your Interest
+                </button>
             </div>
         </div>
     </div>
