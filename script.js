@@ -1,309 +1,236 @@
-// Replace with your Google Apps Script deployment URL
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzRf20J8lqnIpSdeEZ6HEumJYiV-AFwkZZmHk3mbjSAgu6V4awVPFATajAyNRiTuuK6/exec';
+// BambooAI site: the menu, the hero's recipe, the screenshot lightbox, Launch App and its request form, the copy button.
+// No dependencies. Everything on the page works without it except the dialogs.
 
-// Create floating particles
-const particlesContainer = document.querySelector('.floating-particles');
-for (let i = 0; i < 50; i++) {
-    const particle = document.createElement('div');
-    particle.className = 'particle';
-    particle.style.left = Math.random() * 100 + '%';
-    particle.style.animationDelay = Math.random() * 20 + 's';
-    particle.style.animationDuration = (20 + Math.random() * 15) + 's';
-    particlesContainer.appendChild(particle);
-}
+// The access requests go to the same Google Apps Script as before; it answers in plain text
+// ("success", or a reason such as "duplicate email").
+const ACCESS_URL = 'https://script.google.com/macros/s/AKfycbzRf20J8lqnIpSdeEZ6HEumJYiV-AFwkZZmHk3mbjSAgu6V4awVPFATajAyNRiTuuK6/exec';
 
-// Coming Soon Modal Functions
-function showComingSoon(event) {
-    event.preventDefault();
-    const modal = document.getElementById('comingSoonModal');
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
+(function () {
+    'use strict';
 
-function hideComingSoon() {
-    const modal = document.getElementById('comingSoonModal');
-    modal.classList.remove('active');
-    document.body.style.overflow = '';
-}
+    const root = document.documentElement;
 
-// Waitlist Modal Functions
-function showWaitlist(event) {
-    event.preventDefault();
-    const modal = document.getElementById('waitlistModal');
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
+    // ---- the menu on narrow screens ----
+    const menuButton = document.querySelector('.menu-button');
+    const nav = document.getElementById('site-nav');
 
-function hideWaitlist() {
-    const modal = document.getElementById('waitlistModal');
-    modal.classList.remove('active');
-    document.body.style.overflow = '';
-}
-
-// Demo Modal Functions
-function showDemoModal(event) {
-    event.preventDefault();
-    const modal = document.getElementById('demoModal');
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-function hideDemoModal() {
-    const modal = document.getElementById('demoModal');
-    const video = document.getElementById('demoVideo');
-    modal.classList.remove('active');
-    document.body.style.overflow = '';
-    video.pause();
-    video.currentTime = 0;
-}
-
-async function submitWaitlistForm(event) {
-    event.preventDefault();
-    
-    const form = event.target;
-    const submitButton = form.querySelector('.submit-button');
-    const originalText = submitButton.textContent;
-    
-    // Get user IP
-    let userIP = 'unknown';
-    try {
-        const ipResponse = await fetch('https://api.ipify.org?format=json');
-        const ipData = await ipResponse.json();
-        userIP = ipData.ip;
-    } catch (error) {
-        console.log('Could not get IP');
+    function setMenu(open) {
+        if (!menuButton || !nav) return;
+        menuButton.setAttribute('aria-expanded', String(open));
+        nav.classList.toggle('is-open', open);
     }
-    
-    // Get form data
-    const formData = new FormData();
-    formData.append('name', form.name.value);
-    formData.append('email', form.email.value);
-    formData.append('reason', form.reason.value);
-    formData.append('userIP', userIP);
-    
-    // Update button state
-    submitButton.textContent = 'Submitting...';
-    submitButton.disabled = true;
-    
-    try {
-        const response = await fetch(GOOGLE_SCRIPT_URL, {
-            method: 'POST',
-            body: formData
+
+    if (menuButton && nav) {
+        menuButton.addEventListener('click', () => setMenu(menuButton.getAttribute('aria-expanded') !== 'true'));
+        nav.addEventListener('click', (e) => { if (e.target.closest('a')) setMenu(false); });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && nav.classList.contains('is-open')) { setMenu(false); menuButton.focus(); }
         });
-        
-        const result = await response.text();
-        
-        if (result.includes('success')) {
-            // Success - show confirmation and reset form
-            submitButton.textContent = 'Added to Waitlist! ✓';
-            submitButton.style.background = 'linear-gradient(135deg, #50fa7b 0%, #3dd688 100%)';
-            submitButton.style.color = '#0a0a0a';
-            form.reset();
-            
-            // Auto close modal after 2 seconds
-            setTimeout(() => {
-                hideWaitlist();
-                // Reset button after modal closes
-                setTimeout(() => {
-                    submitButton.textContent = originalText;
-                    submitButton.style.background = '';
-                    submitButton.style.color = '';
-                    submitButton.disabled = false;
-                }, 300);
-            }, 2000);
-        } else {
-            // Handle specific errors based on server response
-            let errorMessage = 'Please try again.';
-            
-            if (result.includes('missing fields')) {
-                errorMessage = 'Please fill in all fields.';
-            } else if (result.includes('invalid email')) {
-                errorMessage = 'Please enter a valid email address.';
-            } else if (result.includes('duplicate email')) {
-                errorMessage = 'This email is already on our waitlist!';
-            } else if (result.includes('please provide more details')) {
-                errorMessage = 'Please tell us more about why you\'re interested (at least 15 characters).';
-            } else if (result.includes('rate limit exceeded')) {
-                errorMessage = 'Too many submissions from your location. Please try again later.';
-            } else if (result.includes('server error')) {
-                errorMessage = 'Server error occurred. Please try again in a moment.';
-            }
-            
-            alert(errorMessage);
-            
-            submitButton.textContent = 'Try Again';
-            submitButton.disabled = false;
+        window.matchMedia('(min-width: 961px)').addEventListener('change', (e) => { if (e.matches) setMenu(false); });
+    }
+
+    // ---- the hero: the cited number's recipe, unfolded once, then opened and closed with its [cell 2] chip ----
+    const record = document.querySelector('.record');
+    if (record) {
+        const cite = record.querySelector('.cite');
+        const items = record.querySelectorAll('.recipe-head, .recipe-from, .trace li, .recipe-note, .record-replay');
+        items.forEach((el, i) => el.style.setProperty('--i', String(i)));
+
+        if (root.classList.contains('unfold')) {
+            window.setTimeout(() => {
+                record.classList.add('is-unfolding');
+                window.setTimeout(() => {
+                    root.classList.remove('unfold');
+                    record.classList.remove('is-unfolding');
+                }, items.length * 110 + 500);
+            }, 450);
         }
-    } catch (error) {
-        console.error('Error submitting form:', error);
-        alert('Network error. Please try again.');
-        
-        submitButton.textContent = 'Try Again';
-        submitButton.disabled = false;
+
+        if (cite) {
+            cite.addEventListener('click', () => {
+                const open = cite.getAttribute('aria-expanded') !== 'true';
+                cite.setAttribute('aria-expanded', String(open));
+                record.classList.toggle('is-collapsed', !open);
+            });
+        }
     }
-}
 
-// Close modals on background click
-document.getElementById('comingSoonModal').addEventListener('click', function(event) {
-    if (event.target === this) {
-        hideComingSoon();
+    // ---- dialogs ----
+    function openDialog(dialog) {
+        if (!dialog) return;
+        if (typeof dialog.showModal === 'function') dialog.showModal();
+        else dialog.setAttribute('open', '');
     }
-});
 
-document.getElementById('waitlistModal').addEventListener('click', function(event) {
-    if (event.target === this) {
-        hideWaitlist();
+    function closeDialog(dialog) {
+        if (!dialog) return;
+        if (typeof dialog.close === 'function') dialog.close();
+        else dialog.removeAttribute('open');
     }
-});
 
-document.getElementById('demoModal').addEventListener('click', function(event) {
-    if (event.target === this) {
-        hideDemoModal();
+    document.querySelectorAll('dialog').forEach((dialog) => {
+        dialog.addEventListener('click', (e) => {
+            if (e.target === dialog) closeDialog(dialog);            // a click on the backdrop
+            if (e.target.closest('[data-close]')) closeDialog(dialog);
+        });
+    });
+
+    // ---- the screenshot lightbox ----
+    const imageDialog = document.getElementById('image-dialog');
+    if (imageDialog) {
+        const big = imageDialog.querySelector('img');
+        const zoom = imageDialog.querySelector('.image-zoom');
+
+        function setZoom(on) {
+            imageDialog.classList.toggle('is-zoomed', on);
+            zoom.setAttribute('aria-pressed', String(on));
+            zoom.textContent = on ? 'Fit to screen' : 'Actual size';
+        }
+
+        document.querySelectorAll('.shot').forEach((shot) => {
+            shot.addEventListener('click', () => {
+                big.src = shot.dataset.full;
+                big.alt = shot.dataset.alt || '';
+                imageDialog.setAttribute('aria-label', shot.dataset.alt || 'Screenshot');
+                setZoom(false);
+                openDialog(imageDialog);
+            });
+        });
+
+        zoom.addEventListener('click', () => setZoom(!imageDialog.classList.contains('is-zoomed')));
+        big.addEventListener('click', () => setZoom(!imageDialog.classList.contains('is-zoomed')));
+        imageDialog.addEventListener('close', () => { big.removeAttribute('src'); });
     }
-});
 
-// Close modals on Escape key
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-        hideComingSoon();
-        hideWaitlist();
-        hideDemoModal();
+    // ---- Launch App: the invitation beta note, then the request form (as on the old site) ----
+    const accessDialog = document.getElementById('access-dialog');
+    const form = accessDialog ? accessDialog.querySelector('form') : null;
+    const start = accessDialog ? accessDialog.querySelector('.access-start') : null;
+    const showForm = accessDialog ? accessDialog.querySelector('[data-show-form]') : null;
+
+    function resetAccess() {
+        if (!form || !start || !showForm) return;
+        form.hidden = true;
+        start.hidden = false;
+        showForm.setAttribute('aria-expanded', 'false');
     }
-});
 
-// Add form submission listener when DOM loads
-document.addEventListener('DOMContentLoaded', function() {
-    const waitlistForm = document.querySelector('.waitlist-form');
-    if (waitlistForm) {
-        waitlistForm.addEventListener('submit', submitWaitlistForm);
-    }
-});
-
-// ============================================
-// SCREENSHOT SHOWCASE FUNCTIONALITY
-// ============================================
-
-// Tab System
-document.addEventListener('DOMContentLoaded', function() {
-    const tabButtons = document.querySelectorAll('.tab-button');
-    const tabPanes = document.querySelectorAll('.tab-pane');
-    const tabSubtitle = document.getElementById('tabSubtitle');
-    
-    // Tab subtitles
-    const subtitles = {
-        'discover': 'The journey begins',
-        'analyze': 'Deep dive into data',
-        'configure': 'Your control center',
-        'optimize': 'Refine your workflow'
-    };
-    
-    // Tab switching
-    tabButtons.forEach(button => {
+    document.querySelectorAll('[data-open-access]').forEach((button) => {
         button.addEventListener('click', () => {
-            const targetTab = button.dataset.tab;
-            
-            // Update active states
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            
-            // Fade out current content
-            tabSubtitle.style.opacity = '0';
-            
-            setTimeout(() => {
-                // Update subtitle
-                tabSubtitle.textContent = subtitles[targetTab];
-                tabSubtitle.style.opacity = '1';
-                
-                // Switch tab panes
-                tabPanes.forEach(pane => {
-                    pane.classList.remove('active');
-                    // Reset animations
-                    const items = pane.querySelectorAll('.screenshot-item');
-                    items.forEach(item => {
-                        item.style.animation = 'none';
-                    });
-                });
-                
-                // Activate new pane
-                const newPane = document.getElementById(targetTab);
-                newPane.classList.add('active');
-                
-                // Trigger animations for new content
-                setTimeout(() => {
-                    const items = newPane.querySelectorAll('.screenshot-item');
-                    items.forEach((item, index) => {
-                        item.style.animation = `fadeInUp 0.5s ease ${0.1 * (index + 1)}s forwards`;
-                    });
-                }, 10);
-            }, 200);
+            setMenu(false);
+            resetAccess();
+            openDialog(accessDialog);
+            if (showForm) showForm.focus();
         });
     });
-});
 
-// Lightbox Modal
-function openScreenshotModal(imageSrc, caption) {
-    const modal = document.getElementById('screenshotModal');
-    const modalImage = document.getElementById('modalImage');
-    const modalCaption = document.getElementById('modalCaption');
-    
-    modalImage.src = imageSrc;
-    modalImage.alt = caption;
-    modalCaption.textContent = caption;
-    
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-function closeScreenshotModal() {
-    const modal = document.getElementById('screenshotModal');
-    modal.classList.remove('active');
-    document.body.style.overflow = '';
-}
-
-// Close modal on background click
-document.getElementById('screenshotModal').addEventListener('click', function(e) {
-    if (e.target === this) {
-        closeScreenshotModal();
+    if (showForm && form && start) {
+        showForm.addEventListener('click', () => {
+            form.hidden = false;
+            start.hidden = true;
+            showForm.setAttribute('aria-expanded', 'true');
+            const first = form.querySelector('input');
+            if (first) first.focus();
+        });
     }
-});
 
-// Keyboard navigation
-document.addEventListener('keydown', function(e) {
-    const modal = document.getElementById('screenshotModal');
-    
-    // Close on ESC
-    if (e.key === 'Escape' && modal.classList.contains('active')) {
-        closeScreenshotModal();
-    }
-    
-    // Arrow key navigation in modal
-    if (modal.classList.contains('active')) {
-        const activeTab = document.querySelector('.tab-pane.active');
-        const items = Array.from(activeTab.querySelectorAll('.screenshot-item'));
-        const currentSrc = document.getElementById('modalImage').src;
-        const currentIndex = items.findIndex(item => 
-            item.querySelector('img').src === currentSrc
-        );
-        
-        if (e.key === 'ArrowRight' && currentIndex < items.length - 1) {
-            const nextItem = items[currentIndex + 1];
-            const nextImg = nextItem.querySelector('img');
-            const nextLabel = nextItem.querySelector('.screenshot-label').textContent;
-            openScreenshotModal(nextImg.src, nextLabel);
-        } else if (e.key === 'ArrowLeft' && currentIndex > 0) {
-            const prevItem = items[currentIndex - 1];
-            const prevImg = prevItem.querySelector('img');
-            const prevLabel = prevItem.querySelector('.screenshot-label').textContent;
-            openScreenshotModal(prevImg.src, prevLabel);
+    if (form) {
+        const status = form.querySelector('.form-status');
+        const submit = form.querySelector('[type="submit"]');
+
+        function say(text, kind) {
+            status.textContent = text;
+            status.classList.toggle('is-error', kind === 'error');
+            status.classList.toggle('is-done', kind === 'done');
         }
-    }
-});
 
-// Preload images for smooth transitions
-window.addEventListener('load', function() {
-    const images = document.querySelectorAll('.screenshot-frame img');
-    images.forEach(img => {
-        const tempImg = new Image();
-        tempImg.src = img.src;
+        function mark(field, bad) {
+            field.setAttribute('aria-invalid', String(bad));
+        }
+
+        // the server's plain-text answer, said in the page's words
+        const REASONS = [
+            ['missing fields', 'Please fill in all three fields.'],
+            ['invalid email', 'That email address doesn’t look right.'],
+            ['duplicate email', 'That email address is already on the list.'],
+            ['please provide more details', 'Please tell us a bit more about your data (at least 15 characters).'],
+            ['rate limit exceeded', 'Too many requests from your network. Please try again later.'],
+            ['server error', 'Something went wrong on our side. Please try again in a moment.'],
+        ];
+
+        form.addEventListener('input', (e) => {
+            if (e.target.matches('input, textarea')) mark(e.target, false);
+        });
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = form.elements.name;
+            const email = form.elements.email;
+            const reason = form.elements.reason;
+
+            const problems = [];
+            if (!name.value.trim()) { mark(name, true); problems.push('your name'); }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) { mark(email, true); problems.push('a valid email address'); }
+            if (reason.value.trim().length < 15) { mark(reason, true); problems.push('a sentence or two about your data'); }
+            if (problems.length) {
+                say('Please add ' + problems.join(', ').replace(/, ([^,]*)$/, ' and $1') + '.', 'error');
+                form.querySelector('[aria-invalid="true"]').focus();
+                return;
+            }
+
+            submit.disabled = true;
+            say('Sending…');
+
+            // the server limits requests per address, as it always has
+            let ip = 'unknown';
+            try {
+                const r = await fetch('https://api.ipify.org?format=json');
+                ip = (await r.json()).ip || 'unknown';
+            } catch (err) { /* the request goes without it */ }
+
+            const data = new FormData();
+            data.append('name', name.value.trim());
+            data.append('email', email.value.trim());
+            data.append('reason', reason.value.trim());
+            data.append('userIP', ip);
+
+            try {
+                const response = await fetch(ACCESS_URL, { method: 'POST', body: data });
+                const text = (await response.text()).toLowerCase();
+                if (text.includes('success')) {
+                    say('Thanks, your request is in.', 'done');
+                    form.reset();
+                    window.setTimeout(() => { submit.disabled = false; }, 1500);
+                    return;
+                }
+                const known = REASONS.find(([key]) => text.includes(key));
+                say(known ? known[1] : 'Something went wrong. Please try again.', 'error');
+            } catch (err) {
+                say('The request didn’t go through. Check your connection and try again.', 'error');
+            }
+            submit.disabled = false;
+        });
+
+        accessDialog.addEventListener('close', () => { say(''); resetAccess(); });
+    }
+
+    // ---- copying the install commands ----
+    document.querySelectorAll('[data-copy]').forEach((button) => {
+        button.addEventListener('click', async () => {
+            const text = button.dataset.copy;
+            try {
+                await navigator.clipboard.writeText(text);
+                button.textContent = 'Copied';
+            } catch (err) {
+                const code = button.parentElement.querySelector('code');
+                const range = document.createRange();
+                range.selectNodeContents(code);
+                const sel = window.getSelection();
+                sel.removeAllRanges();
+                sel.addRange(range);
+                button.textContent = 'Selected';
+            }
+            window.setTimeout(() => { button.textContent = 'Copy'; }, 1600);
+        });
     });
-});
+})();

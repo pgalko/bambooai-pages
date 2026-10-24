@@ -1,429 +1,415 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bamboo AI Lab - Discover the Questions Hidden in Your Data</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BambooAI: an AI data analyst that shows its working</title>
+    <meta name="description" content="BambooAI is an AI data analyst that shows its working. It analyses your data step by step in Python, lets you watch every step, and lets you trace its numbers back to the data. Hosted, or open source.">
+    <link rel="canonical" href="https://bambooai.io/">
+    <meta name="theme-color" content="#181818">
+    <meta name="color-scheme" content="dark">
+    <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="assets/images/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BambooAI">
+    <meta property="og:url" content="https://bambooai.io/">
+    <meta property="og:title" content="BambooAI: an AI data analyst that shows its working">
+    <meta property="og:description" content="Watch every step of the analysis, check where its numbers came from, and run it hosted or on your own machine.">
+    <meta property="og:image" content="https://bambooai.io/assets/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="assets/images/favicon.svg" type="image/x-icon">
+    <script>document.documentElement.classList.add("js");if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("unfold");setTimeout(function(){document.documentElement.classList.remove("unfold")},4000)}</script>
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <div class="background-animation">
-        <div class="floating-particles"></div>
-    </div>
+    <svg width="0" height="0" class="sprite" aria-hidden="true" focusable="false"><symbol id="leaves" viewBox="1286.4 -43.7 606.6 1155.6"><path vector-effect="non-scaling-stroke" transform="matrix(0.9976 -0.0698 0.0698 0.9976 1848.1822 -35.2901)" d="M 0 0 C -95.6 18.9 -179 76.7 -230.1 159.6 C -281.3 242.4 -295.6 342.9 -269.7 436.8"/><path vector-effect="non-scaling-stroke" transform="matrix(0.9976 -0.0698 0.0698 0.9976 1848.1822 -35.2901)" d="M 0 0 C 35.4 193.2 -81.1 381.9 -269.7 436.8"/><path vector-effect="non-scaling-stroke" transform="matrix(0.6157 -0.788 0.788 0.6157 1421.1638 174.4404)" d="M 0 0 C -70.6 14.4 -131.9 57.6 -169 119.3 C -206.2 181 -215.8 255.4 -195.5 324.5"/><path vector-effect="non-scaling-stroke" transform="matrix(0.6157 -0.788 0.788 0.6157 1421.1638 174.4404)" d="M 0 0 C 28.4 142.4 -56.4 283.1 -195.5 324.5"/><path vector-effect="non-scaling-stroke" transform="matrix(0.3746 -0.9272 0.9272 0.3746 1350.6571 472.1824)" d="M 0 0 C -52.1 15.8 -94.3 54.1 -115.1 104.4 C -135.9 154.7 -133 211.6 -107.2 259.5"/><path vector-effect="non-scaling-stroke" transform="matrix(0.3746 -0.9272 0.9272 0.3746 1350.6571 472.1824)" d="M 0 0 C 20.5 48.6 20.8 103.4 0.6 152.2 C -19.5 200.9 -58.4 239.6 -107.2 259.5"/><path vector-effect="non-scaling-stroke" transform="matrix(0.3746 -0.9272 0.9272 0.3746 1569.5399 571.2058)" d="M 0 0 C -52.1 15.8 -94.3 54.1 -115.1 104.4 C -135.9 154.7 -133 211.6 -107.2 259.5"/><path vector-effect="non-scaling-stroke" transform="matrix(0.3746 -0.9272 0.9272 0.3746 1569.5399 571.2058)" d="M 0 0 C 20.5 48.6 20.8 103.4 0.6 152.2 C -19.5 200.9 -58.4 239.6 -107.2 259.5"/><path vector-effect="non-scaling-stroke" transform="matrix(0.454 -0.891 0.891 0.454 1653.3683 776.0265)" d="M 0 0 C -40 12.4 -72.3 42.2 -87.9 81.1 C -103.4 120 -100.7 163.9 -80.3 200.5"/><path vector-effect="non-scaling-stroke" transform="matrix(0.454 -0.891 0.891 0.454 1653.3683 776.0265)" d="M 0 0 C 16.3 37.2 17 79.4 1.9 117.1 C -13.2 154.8 -42.8 184.8 -80.3 200.5"/><path vector-effect="non-scaling-stroke" transform="matrix(0.9703 0.2419 -0.2419 0.9703 1729.4618 947.4475)" d="M 0 0 C -31.3 10.2 -56.2 34.1 -67.9 64.9 C -79.5 95.6 -76.5 130 -59.7 158.4"/><path vector-effect="non-scaling-stroke" transform="matrix(0.9703 0.2419 -0.2419 0.9703 1729.4618 947.4475)" d="M 0 0 C 13.6 28.9 14.9 62 3.6 91.8 C -7.6 121.7 -30.5 145.7 -59.7 158.4"/></symbol></svg>
 
-    <header>
-        <div class="header-content">
-            <div class="logo">
-                <img src="assets/images/logo_dark.svg" alt="Bamboo AI Logo">
-                <span>Bamboo AI Lab</span>
-            </div>
-            <div class="header-right">
-                <a href="https://github.com/pgalko/BambooAI" target="_blank" class="header-link">
-                    <svg viewBox="0 0 16 16" fill="currentColor">
-                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
-                    </svg>
-                    <span class="link-text">GitHub</span>
-                </a>
-                <a href="https://medium.com/@palogalko" target="_blank" class="header-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 20h9"></path>
-                        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
-                    </svg>
-                    <span class="link-text">Blog</span>
-                </a>
-                <a href="mailto:palo@bambooai.io" class="header-link">
-                    <svg viewBox="0 0 20 16" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M2 2l8 6 8-6M2 2v12h16V2M2 2h16"/>
-                    </svg>
-                    <span class="link-text">Contact</span>
-                </a>
-                <a href="#" class="header-link" onclick="showDemoModal(event)">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                    </svg>
-                    <span class="link-text">Demo</span>
-                </a>
-                <a href="#" class="app-button" onclick="showComingSoon(event)">Launch App</a>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+        <div class="wrap header-row">
+            <a class="brand" href="#top" aria-label="BambooAI, back to top">
+                <svg class="mark" aria-hidden="true" focusable="false"><use href="#leaves"></use></svg>
+                <span class="brand-name">BambooAI</span>
+            </a>
+            <nav class="site-nav" id="site-nav" aria-label="Main">
+                <ul>
+                    <li><a href="#how">How it works</a></li>
+                    <li><a href="#context">Notes and documents</a></li>
+                    <li><a href="#code-map">Code map</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#get">Hosted or open source</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="btn btn-primary btn-small" type="button" data-open-access>Launch App</button>
+                <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">
+                    <span class="menu-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Menu</span>
+                </button>
             </div>
         </div>
     </header>
 
-    <div class="main-content">
-        <div class="hero-section">
-            <div class="tagline">A New Philosophy of Data Analysis</div>
-            
-            <h1 class="main-title">
-                Discover the Questions<br>
-                Hidden in Your Data
-            </h1>
-            
-            <p class="philosophy-text">
-                Most data tools help you answer questions you already have in mind. 
-                That's handy, but it keeps you focused on what you expect to find, 
-                overlooking the exciting possibilities waiting in your data.
-                <br><br> 
-                The best insights come from <em>questions you haven't thought of yet</em>. 
-                Real data analysis is about sparking curiosity and wonder, diving into the unknown, 
-                and discovering ideas that offer a new perspective on how you think and see the world.
-            </p>
-            
-            <div class="cta-section">
-                <button class="explore-button" onclick="showWaitlist(event)">Begin Your Journey</button>
-            </div>
-        </div>
-    </div>
+    <main id="main">
 
-    <!-- Screenshot Gallery Section -->
-    <div class="features-showcase">
-        <div class="showcase-container">
-            <!-- Tab Navigation -->
-            <nav class="showcase-tabs">
-                <button class="tab-button active" data-tab="discover">Discover</button>
-                <span class="tab-separator">·</span>
-                <button class="tab-button" data-tab="analyze">Analyze</button>
-                <span class="tab-separator">·</span>
-                <button class="tab-button" data-tab="configure">Configure</button>
-                <span class="tab-separator">·</span>
-                <button class="tab-button" data-tab="optimize">Optimize</button>
-                <span class="tab-separator">·</span>
-                <button class="tab-button" data-tab="observe">Observe</button>
+        <section class="hero" id="top" aria-labelledby="hero-title">
+            <div class="wrap hero-grid">
+                <div class="hero-text">
+                    <h1 id="hero-title">An AI data analyst that shows its working.</h1>
+                    <p class="lede">Ask BambooAI a question about your data and it works through it step by step, writing and running Python, and reading any notes and documents you’ve given it. You can watch every step. The report points to the code behind its numbers and the sources of its quotes, and before it finishes, BambooAI runs the analysis again from scratch to check the numbers still hold.</p>
+                    <div class="actions">
+                        <button class="btn btn-primary" type="button" data-open-access>Launch App</button>
+                        <a class="btn btn-secondary" href="#open-source">Run it yourself</a>
+                    </div>
+                    <p class="hero-note">The hosted app is in invitation beta. The open-source version is free, under the MIT licence.</p>
+                </div>
+
+                <figure class="record" aria-labelledby="record-caption">
+                    <figcaption class="record-source" id="record-caption">From a real run on a year of a cyclist’s training data</figcaption>
+                    <div class="record-report">
+                        <p class="record-title">No fatigue-resistance decline in long rides; no trend or season proven</p>
+                        <p class="record-result">
+                            <span class="result-label">fatigue resistance, best 20-min power 2nd vs 1st half of ride, rides &gt;80&nbsp;km, all months (170 rides)</span>
+                            <span class="result-line">
+                                <span class="result-number">+1.01</span>
+                                <span class="result-ci">95% CI 0.99 to 1.03</span>
+                                <button class="cite" type="button" aria-expanded="true" aria-controls="recipe" aria-label="[cell 2], how this number was made">[cell 2]</button>
+                            </span>
+                        </p>
+                    </div>
+
+                    <div class="recipe" id="recipe">
+                        <div class="recipe-top">
+                            <p class="recipe-head">How this number was made</p>
+                            <p class="recipe-from">Made from <span class="chip chip-in">intervals</span> <span class="chip chip-in">Activity Summary</span></p>
+                        </div>
+                        <ol class="trace">
+                            <li><span class="t-name">intervals</span> <span class="t-meta">df&nbsp;· cell&nbsp;2</span><span class="t-step">primary dataset (DS.load)</span></li>
+                            <li><span class="t-name">Activity Summary</span> <span class="t-meta">summ&nbsp;· cell&nbsp;2&nbsp;· 448&nbsp;rows&nbsp;×&nbsp;83&nbsp;cols</span><span class="t-step">read activity_summary.csv, drop duplicate rows</span></li>
+                            <li><span class="t-name">intervals</span> <span class="t-meta">g&nbsp;→&nbsp;ids&nbsp;· cell&nbsp;2&nbsp;· list&nbsp;of&nbsp;171</span><span class="t-step">group by activity_id, keep rows where dmax &gt; 80000.0 and atype is Ride</span></li>
+                            <li><span class="t-name">intervals, by activity_id</span> <span class="t-meta">sub&nbsp;→&nbsp;a1,&nbsp;a2,&nbsp;…&nbsp;· cell&nbsp;2</span><span class="t-step">group by activity_id, resample by period, … difference</span></li>
+                            <li><span class="t-name">intervals + Activity Summary</span> <span class="t-meta">rides&nbsp;→&nbsp;v&nbsp;· cell&nbsp;2&nbsp;· 170&nbsp;values</span><span class="t-step">make a table from recs, join summ (left)</span></li>
+                            <li><span class="t-name">lo, hi, a number</span> <span class="t-meta">made&nbsp;in&nbsp;the&nbsp;code&nbsp;· cell&nbsp;2</span><span class="t-step">mean, standard deviation</span></li>
+                            <li class="t-result"><span class="t-name">+1.01 (0.99 to 1.03)</span> <span class="t-meta">RESULT&nbsp;· cell&nbsp;2</span><span class="status">recorded</span></li>
+                        </ol>
+                        <p class="recipe-note">The map shows how this number was made, not whether it is right.</p>
+                    </div>
+
+                    <p class="record-replay"><span class="tick" aria-hidden="true">✓</span> Replay reproduced the cited results in a fresh run (9 cells, 304 numbers).</p>
+                </figure>
+            </div>
+        </section>
+
+        <section class="section" id="how" aria-labelledby="how-title">
+            <div class="wrap">
+                <header class="section-head">
+                    <h2 id="how-title">See how it got there</h2>
+                    <p>Here’s the run behind the number above, as it looks in the app. You can see the code BambooAI wrote, what each piece printed, the attempt that failed, and the checks at the end.</p>
+                </header>
+
+                <figure class="shot-figure">
+                    <button class="shot" type="button" data-full="assets/images/run-data-3200.webp" data-alt="BambooAI with a finished run: the analyst’s turns and code on the left, and on the right the Data tab showing 3,110,649 rows by 17 columns of ride data.">
+                        <picture>
+                            <source type="image/webp" srcset="assets/images/run-data-1000.webp 1000w, assets/images/run-data-1600.webp 1600w, assets/images/run-data-2400.webp 2400w" sizes="(min-width: 1248px) 1200px, 100vw">
+                            <img src="assets/images/run-data-1600.jpg" width="1600" height="851" alt="BambooAI with a finished run: the analyst’s turns and code on the left, and on the right the Data tab showing 3,110,649 rows by 17 columns of ride data." loading="lazy" decoding="async">
+                        </picture>
+                        <span class="zoom-hint" aria-hidden="true">Enlarge</span>
+                    </button>
+                    <figcaption>On the left, each turn and the code it ran, ending with the summary card. On the right, the 3.1 million rows the analysis worked through.</figcaption>
+                </figure>
+
+                <figure class="flow" aria-labelledby="flow-title">
+                    <figcaption class="flow-title" id="flow-title">How a run works</figcaption>
+                    <div class="flow-grid">
+                        <div class="flow-col">
+                            <p class="flow-label">What you give it</p>
+                            <ul class="flow-nodes">
+                                <li class="node node-in"><b>Your question</b></li>
+                                <li class="node node-in"><b>Your data</b><span>files, or a load from Intervals.icu, Endura or SweatStack</span></li>
+                                <li class="node node-in"><b>Notes and documents</b><span>what was written around the training, the papers you attach, and the web</span></li>
+                            </ul>
+                        </div>
+                        <div class="flow-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M3 12h17M14 6l6 6-6 6"/></svg></div>
+                        <div class="flow-col">
+                            <p class="flow-label">What it does, one step at a time</p>
+                            <div class="flow-work">
+                                <div class="flow-pair">
+                                    <div class="node node-cell"><b>Writes and runs Python</b><span>in a session that stays open between steps, and reads the output before deciding what to do next</span></div>
+                                    <p class="flow-or">or</p>
+                                    <div class="node node-look"><b>Looks something up</b><span>an earlier result, the notes and documents, the web, or a question for you</span></div>
+                                </div>
+                                <ul class="flow-notes">
+                                    <li><span class="fn-mark fn-fail" aria-hidden="true">✗</span>When code fails, the session is put back the way it was, and the attempt stays visible.</li>
+                                    <li><span class="fn-mark" aria-hidden="true">◦</span>In Adaptive mode, a reviewer looks over the evidence every eight turns.</li>
+                                    <li><span class="fn-mark fn-loop" aria-hidden="true">↻</span>It keeps going until it writes the report, or needs to ask you something.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="flow-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M3 12h17M14 6l6 6-6 6"/></svg></div>
+                        <div class="flow-col">
+                            <p class="flow-label">What you get back</p>
+                            <ul class="flow-nodes">
+                                <li class="node node-out"><b>A report</b><span>pointing to the code behind its numbers and the sources of its quotes, with figures and a plain-language version</span></li>
+                                <li class="node node-out"><b>Checks</b><span>every number in the report is matched against what the code printed, and the code behind it is run again from scratch</span></li>
+                                <li class="node node-out"><b>A code map</b><span><a href="#code-map">showing how each number was made</a></span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </figure>
+
+                <figure class="shot-figure">
+                    <button class="shot" type="button" data-full="assets/images/run-plots-3200.webp" data-alt="The same run with the Plots tab open: the fatigue-resistance ratio over time with a fitted trend and annual cycle, the monthly means, and the trend across ten specifications.">
+                        <picture>
+                            <source type="image/webp" srcset="assets/images/run-plots-1000.webp 1000w, assets/images/run-plots-1600.webp 1600w, assets/images/run-plots-2400.webp 2400w" sizes="(min-width: 1248px) 1200px, 100vw">
+                            <img src="assets/images/run-plots-1600.jpg" width="1600" height="851" alt="The same run with the Plots tab open: the fatigue-resistance ratio over time with a fitted trend and annual cycle, the monthly means, and the trend across ten specifications." loading="lazy" decoding="async">
+                        </picture>
+                        <span class="zoom-hint" aria-hidden="true">Enlarge</span>
+                    </button>
+                    <figcaption>The same run with the Plots tab open. The figures are drawn after the report, from what the code left in the session.</figcaption>
+                </figure>
+
+                <p class="aside">The summary card shows what each run took: this one was 11 turns, 9 cells, 3 minutes 23 seconds and 9 cents. Every model call is logged with its prompt, tokens, time and cost, and you can open the exact prompt behind any turn in the current thread.</p>
+            </div>
+        </section>
+
+        <section class="section" id="context" aria-labelledby="context-title">
+            <div class="wrap">
+                <header class="section-head">
+                    <h2 id="context-title">The numbers and the words around them</h2>
+                    <p>Numbers tell you what happened. The notes people write around them often tell you why. BambooAI reads both, and every passage it reads keeps its place in the source, so you can check a quote against the original.</p>
+                </header>
+                <div class="bridge">
+                    <div class="bridge-in">
+                        <div class="bridge-side bridge-hard">
+                            <h3>Hard data</h3>
+                            <p>Your measurements: power, heart rate, pace, load, sleep. Upload files (CSV, Parquet, JSON or .xlsx) or load them from Intervals.icu, Endura or SweatStack.</p>
+                        </div>
+                        <div class="bridge-side bridge-soft">
+                            <h3>Soft data</h3>
+                            <dl class="bridge-list">
+                                <div>
+                                    <dt>Notes around the training</dt>
+                                    <dd>Load from Intervals.icu and BambooAI can bring in what was written around each session: the athlete’s comments, the coach’s replies, day notes, illness entries and the plan. Each keeps its date and author.</dd>
+                                </div>
+                                <div>
+                                    <dt>Your documents</dt>
+                                    <dd>Attach up to four papers, notes or interview transcripts to a thread. They’re split into numbered passages, and tables in them become data you can analyse.</dd>
+                                </div>
+                                <div>
+                                    <dt>The web</dt>
+                                    <dd>BambooAI can look up published figures during the analysis, with links to where they came from.</dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="bridge-join">
+                        <h3>In one analysis</h3>
+                        <dl class="bridge-list">
+                            <div>
+                                <dt>Your codebook</dt>
+                                <dd>Each Intervals.icu note is read once, translated into English if needed, and tagged from a codebook you control, with codes like fatigue, recovery or deviation. If nothing fits, BambooAI suggests a new code and you decide whether to keep it.</dd>
+                            </div>
+                            <div>
+                                <dt>Next to the numbers</dt>
+                                <dd>The notes and their codes sit in the Python session as tables, so the analysis can line them up with your data. For example, the notes from the days around a drop in power.</dd>
+                            </div>
+                            <div>
+                                <dt>Easy to check</dt>
+                                <dd>A look-up brings passages back checked word for word against the source. The report cites them by place, like <span class="ref ref-src">[C.417]</span> for a note or <span class="ref ref-src">[D1.17]</span> for a document, next to the <span class="ref ref-cell">[cell 6]</span> behind a number, and warns you when a citation doesn’t match anything. When it counts codes, it calls that the model’s reading of the notes.</dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="code-map" aria-labelledby="map-title">
+            <div class="wrap">
+                <header class="section-head">
+                    <h2 id="map-title">Trace any number back to the data</h2>
+                    <p>When an analysis finishes, BambooAI reads its code and the session’s record and draws a map from your data to each number. The map is built by fixed rules, with no AI involved, so the same analysis always gives the same map, and it never shows anything the code didn’t do.</p>
+                </header>
+
+                <figure class="shot-figure">
+                    <button class="shot" type="button" data-full="assets/images/codemap-steps-3200.webp" data-alt="The code map’s Steps view: one row per cell with the inputs as columns, the results each cell recorded, a rolled-back attempt, and a side panel listing what is worth checking.">
+                        <picture>
+                            <source type="image/webp" srcset="assets/images/codemap-steps-1000.webp 1000w, assets/images/codemap-steps-1600.webp 1600w, assets/images/codemap-steps-2400.webp 2400w" sizes="(min-width: 1248px) 1200px, 100vw">
+                            <img src="assets/images/codemap-steps-1600.jpg" width="1600" height="851" alt="The code map’s Steps view: one row per cell with the inputs as columns, the results each cell recorded, a rolled-back attempt, and a side panel listing what is worth checking." loading="lazy" decoding="async">
+                        </picture>
+                        <span class="zoom-hint" aria-hidden="true">Enlarge</span>
+                    </button>
+                    <figcaption><b>Steps.</b> One row per cell, in the order they ran. The columns on the left are the inputs, so you can see which file each step read, what it made, the results it recorded, and the attempt that failed.</figcaption>
+                </figure>
+
+                <figure class="shot-figure">
+                    <button class="shot" type="button" data-full="assets/images/codemap-recipe-3200.webp" data-alt="The code map’s recipe diagram for one result: two inputs at the top, the tables and values the code made in the middle, and the result +1.01 (0.99 to 1.03) at the bottom, with its recipe listed in the side panel.">
+                        <picture>
+                            <source type="image/webp" srcset="assets/images/codemap-recipe-1000.webp 1000w, assets/images/codemap-recipe-1600.webp 1600w, assets/images/codemap-recipe-2400.webp 2400w" sizes="(min-width: 1248px) 1200px, 100vw">
+                            <img src="assets/images/codemap-recipe-1600.jpg" width="1600" height="850" alt="The code map’s recipe diagram for one result: two inputs at the top, the tables and values the code made in the middle, and the result +1.01 (0.99 to 1.03) at the bottom, with its recipe listed in the side panel." loading="lazy" decoding="async">
+                        </picture>
+                        <span class="zoom-hint" aria-hidden="true">Enlarge</span>
+                    </button>
+                    <figcaption><b>Recipe diagram.</b> One number, read from top to bottom: the data it came from, the tables and values made along the way, and the result. Every recorded result, cited printout and figure has one.</figcaption>
+                </figure>
+
+                <div class="map-after">
+                    <div class="map-check">
+                        <h3>Worth checking</h3>
+                        <p>The map also points out what deserves a second look: inputs that were offered but never used, values typed straight into the code that results depend on, and results that came out empty or were replaced.</p>
+                        <p class="check-quote">CUT = 80000.0 is typed into cell 2, not read from the data; all 12 results rest on it</p>
+                    </div>
+                    <div class="map-notes">
+                        <p class="map-note">The map shows how a number was made, not whether it’s right. That call is still yours, and the reviewer’s.</p>
+                        <p class="map-note">You can open it from the summary card at the end of a run, from a <span class="ref ref-cell">[cell n]</span> citation in the report, or from the eye icon on any cell in the notebook.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="features" aria-labelledby="features-title">
+            <div class="wrap">
+                <header class="section-head">
+                    <h2 id="features-title">What else it does</h2>
+                    <p>BambooAI started in sports science, where you measure the same people again and again and need to know where every number came from. It works on any tabular data.</p>
+                </header>
+                <dl class="features">
+                    <div>
+                        <dt>Quick, Deep or Adaptive</dt>
+                        <dd>Pick how much effort a question deserves: a quick lookup, a full analysis, or a longer investigation with a reviewer. Each mode has a budget of turns and cost, and the analyst knows it.</dd>
+                    </div>
+                    <div>
+                        <dt>Follow-ups and branches</dt>
+                        <dd>A follow-up carries on where the last run ended, with its variables still there. Branch off any earlier analysis, see them all on the thread map, or ask for five ideas on what to look at next.</dd>
+                    </div>
+                    <div>
+                        <dt>A plain-language version</dt>
+                        <dd>Every report also comes in plain English for readers who don’t code. You can save either one as a PDF.</dd>
+                    </div>
+                    <div>
+                        <dt>Routines</dt>
+                        <dd>Save a finished analysis as a routine and run it on new data without a model. Each run is checked and compared with the one before.</dd>
+                    </div>
+                    <div>
+                        <dt>Memory</dt>
+                        <dd>Save a run, and what BambooAI learned about the dataset, like column quirks and approaches that worked, is there next time.</dd>
+                    </div>
+                    <div>
+                        <dt>Ask about a figure</dt>
+                        <dd>Every figure has a chat button. Your question starts a follow-up run, with the picture included when the model is set up to read images.</dd>
+                    </div>
+                </dl>
+            </div>
+        </section>
+
+        <section class="section" id="get" aria-labelledby="get-title">
+            <div class="wrap">
+                <header class="section-head">
+                    <h2 id="get-title">Try it hosted, or run it yourself</h2>
+                    <p>It’s the same analyst either way. The difference is where it runs and which models it uses.</p>
+                </header>
+                <div class="editions">
+                    <article class="edition" id="hosted" aria-labelledby="hosted-title">
+                        <h3 id="hosted-title">Hosted</h3>
+                        <p class="edition-sub">Invitation beta</p>
+                        <ul>
+                            <li>Nothing to install. It runs in your browser, on your own data.</li>
+                            <li>Your code runs in a private sandbox, one per account.</li>
+                            <li>Free to try on open models, with 20 queries a month. Stronger models and more computing power are pay as you go.</li>
+                            <li>We’re letting people in gradually while we add capacity.</li>
+                        </ul>
+                        <div class="actions">
+                            <button class="btn btn-primary" type="button" data-open-access>Launch App</button>
+                        </div>
+                    </article>
+                    <article class="edition" id="open-source" aria-labelledby="oss-title">
+                        <h3 id="oss-title">Open source</h3>
+                        <p class="edition-sub">MIT licence, on <a href="https://github.com/pgalko/BambooAI">GitHub</a> and <a href="https://pypi.org/project/bambooai/">PyPI</a></p>
+                        <ul>
+                            <li>The whole app runs on your computer. The code runs in a Docker container there, and your files stay with you.</li>
+                            <li>Pick the model for each role: OpenRouter, OpenAI, Anthropic, Google, Groq, Mistral, xAI or DeepSeek, or your own models through Ollama or vLLM.</li>
+                            <li>Prompts go to whichever providers you choose. Run every role on your own models and they stay on your network too.</li>
+                        </ul>
+                        <div class="install">
+                            <pre><code><span class="prompt" aria-hidden="true">$ </span>pip install bambooai
+<span class="prompt" aria-hidden="true">$ </span>bambooai serve</code></pre>
+                            <button class="copy" type="button" data-copy="pip install bambooai&#10;bambooai serve">Copy</button>
+                        </div>
+                        <p class="install-note">You’ll need Python 3.11 or newer and Docker. The <a href="https://github.com/pgalko/BambooAI#readme">README</a> covers models, local hosting and everything else.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap footer-grid">
+            <div class="footer-brand">
+                <a class="brand" href="#top" aria-label="BambooAI, back to top">
+                    <svg class="mark" aria-hidden="true" focusable="false"><use href="#leaves"></use></svg>
+                    <span class="brand-name">BambooAI</span>
+                </a>
+                <p>An AI data analyst that shows its working. Built in public by Palo Galko.</p>
+            </div>
+            <nav class="footer-links" aria-label="Elsewhere">
+                <ul>
+                    <li><a href="https://github.com/pgalko/BambooAI">GitHub</a></li>
+                    <li><a href="https://pypi.org/project/bambooai/">PyPI</a></li>
+                    <li><a href="https://github.com/pgalko/BambooAI/discussions">Discussions</a></li>
+                    <li><a href="https://blog.bambooai.io">Blog</a></li>
+                    <li><a href="mailto:palo@bambooai.io">palo@bambooai.io</a></li>
+                </ul>
             </nav>
-            
-            <div class="tab-subtitle" id="tabSubtitle">The journey begins</div>
-            
-            <!-- Tab Content -->
-            <div class="tab-content">
-                <!-- Discover Tab -->
-                <div class="tab-pane active" id="discover">
-                    <div class="screenshot-grid">
-                        <div class="screenshot-item" onclick="openScreenshotModal('assets/images/Workflow Map.png', 'Workflow Map')">
-                            <div class="screenshot-frame">
-                                <img src="assets/images/Workflow Map.png" alt="Workflow Map" loading="lazy">
-                                <div class="screenshot-hover">
-                                    <div class="hover-icon">↗</div>
-                                </div>
-                            </div>
-                            <p class="screenshot-label">Workflow Map</p>
-                        </div>
-                        <div class="screenshot-item" onclick="openScreenshotModal('assets/images/Main Screen Ideas Generator.png', 'Ideas Generator')">
-                            <div class="screenshot-frame">
-                                <img src="assets/images/Main Screen Ideas Generator.png" alt="Ideas Generator" loading="lazy">
-                                <div class="screenshot-hover">
-                                    <div class="hover-icon">↗</div>
-                                </div>
-                            </div>
-                            <p class="screenshot-label">Ideas Generator</p>
-                        </div>
-                        <div class="screenshot-item" onclick="openScreenshotModal('assets/images/Main Screen Planning.png', 'Planning')">
-                            <div class="screenshot-frame">
-                                <img src="assets/images/Main Screen Planning.png" alt="Planning" loading="lazy">
-                                <div class="screenshot-hover">
-                                    <div class="hover-icon">↗</div>
-                                </div>
-                            </div>
-                            <p class="screenshot-label">Planning</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Analyze Tab -->
-                <div class="tab-pane" id="analyze">
-                    <div class="screenshot-grid">
-                        <div class="screenshot-item" onclick="openScreenshotModal('assets/images/Main Screen Plots.png', 'Data Visualization')">
-                            <div class="screenshot-frame">
-                                <img src="assets/images/Main Screen Plots.png" alt="Data Visualization" loading="lazy">
-                                <div class="screenshot-hover">
-                                    <div class="hover-icon">↗</div>
-                                </div>
-                            </div>
-                            <p class="screenshot-label">Data Visualization</p>
-                        </div>
-                        <div class="screenshot-item" onclick="openScreenshotModal('assets/images/Main Screen Code Edit.png', 'Code Editor')">
-                            <div class="screenshot-frame">
-                                <img src="assets/images/Main Screen Code Edit.png" alt="Code Editor" loading="lazy">
-                                <div class="screenshot-hover">
-                                    <div class="hover-icon">↗</div>
-                                </div>
-                            </div>
-                            <p class="screenshot-label">Code Editor</p>
-                        </div>
-                        <div class="screenshot-item" onclick="openScreenshotModal('assets/images/Main Screen Summary.png', 'Summary View')">
-                            <div class="screenshot-frame">
-                                <img src="assets/images/Main Screen Summary.png" alt="Summary View" loading="lazy">
-                                <div class="screenshot-hover">
-                                    <div class="hover-icon">↗</div>
-                                </div>
-                            </div>
-                            <p class="screenshot-label">Summary View</p>
-                        </div>
-                        <div class="screenshot-item" onclick="openScreenshotModal('assets/images/Plot Enquiry.png', 'Plot Enquiry')">
-                            <div class="screenshot-frame">
-                                <img src="assets/images/Plot Enquiry.png" alt="Plot Enquiry" loading="lazy">
-                                <div class="screenshot-hover">
-                                    <div class="hover-icon">↗</div>
-                                </div>
-                            </div>
-                            <p class="screenshot-label">Plot Enquiry</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Configure Tab -->
-                <div class="tab-pane" id="configure">
-                    <div class="screenshot-grid">
-                        <div class="screenshot-item" onclick="openScreenshotModal('assets/images/Account Config Models.png', 'AI Models')">
-                            <div class="screenshot-frame">
-                                <img src="assets/images/Account Config Models.png" alt="AI Models" loading="lazy">
-                                <div class="screenshot-hover">
-                                    <div class="hover-icon">↗</div>
-                                </div>
-                            </div>
-                            <p class="screenshot-label">AI Models</p>
-                        </div>
-                        <div class="screenshot-item" onclick="openScreenshotModal('assets/images/Account Config Compute.png', 'Compute Resources')">
-                            <div class="screenshot-frame">
-                                <img src="assets/images/Account Config Compute.png" alt="Compute Resources" loading="lazy">
-                                <div class="screenshot-hover">
-                                    <div class="hover-icon">↗</div>
-                                </div>
-                            </div>
-                            <p class="screenshot-label">Compute Resources</p>
-                        </div>
-                        <div class="screenshot-item" onclick="openScreenshotModal('assets/images/Account Config Funds.png', 'Account Funds')">
-                            <div class="screenshot-frame">
-                                <img src="assets/images/Account Config Funds.png" alt="Account Funds" loading="lazy">
-                                <div class="screenshot-hover">
-                                    <div class="hover-icon">↗</div>
-                                </div>
-                            </div>
-                            <p class="screenshot-label">Account Funds</p>
-                        </div>
-                        <div class="screenshot-item" onclick="openScreenshotModal('assets/images/Usage Tracking.png', 'Usage Tracking')">
-                            <div class="screenshot-frame">
-                                <img src="assets/images/Usage Tracking.png" alt="Usage Tracking" loading="lazy">
-                                <div class="screenshot-hover">
-                                    <div class="hover-icon">↗</div>
-                                </div>
-                            </div>
-                            <p class="screenshot-label">Usage Tracking</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Optimize Tab -->
-                <div class="tab-pane" id="optimize">
-                    <div class="screenshot-grid">
-                        <div class="screenshot-item" onclick="openScreenshotModal('assets/images/Analysis Replays.png', 'Analysis Replays')">
-                            <div class="screenshot-frame">
-                                <img src="assets/images/Analysis Replays.png" alt="Analysis Replays" loading="lazy">
-                                <div class="screenshot-hover">
-                                    <div class="hover-icon">↗</div>
-                                </div>
-                            </div>
-                            <p class="screenshot-label">Analysis Replays</p>
-                        </div>
-                        <div class="screenshot-item" onclick="openScreenshotModal('assets/images/Workflow Manager.png', 'Workflow Manager')">
-                            <div class="screenshot-frame">
-                                <img src="assets/images/Workflow Manager.png" alt="Workflow Manager" loading="lazy">
-                                <div class="screenshot-hover">
-                                    <div class="hover-icon">↗</div>
-                                </div>
-                            </div>
-                            <p class="screenshot-label">Workflow Manager</p>
-                        </div>
-                        <div class="screenshot-item" onclick="openScreenshotModal('assets/images/Dataset Cache Manager.png', 'Dataset Cache')">
-                            <div class="screenshot-frame">
-                                <img src="assets/images/Dataset Cache Manager.png" alt="Dataset Cache" loading="lazy">
-                                <div class="screenshot-hover">
-                                    <div class="hover-icon">↗</div>
-                                </div>
-                            </div>
-                            <p class="screenshot-label">Dataset Cache</p>
-                        </div>
-                        <div class="screenshot-item" onclick="openScreenshotModal('assets/images/User Feedback.png', 'User Feedback')">
-                            <div class="screenshot-frame">
-                                <img src="assets/images/User Feedback.png" alt="User Feedback" loading="lazy">
-                                <div class="screenshot-hover">
-                                    <div class="hover-icon">↗</div>
-                                </div>
-                            </div>
-                            <p class="screenshot-label">User Feedback</p>
-                        </div>
-                    </div>
-                </div>
+            <p class="footer-small">© 2023–2026 Palo Galko. MIT licence.</p>
+        </div>
+    </footer>
 
-                <!-- Observe Tab -->
-                <div class="tab-pane" id="observe">
-                    <div class="screenshot-grid">
-                        <div class="screenshot-item" onclick="openScreenshotModal('assets/images/Agents Instructions view.png', 'Agent Instructions')">
-                            <div class="screenshot-frame">
-                                <img src="assets/images/Agents Instructions view.png" alt="Agent Instructions" loading="lazy">
-                                <div class="screenshot-hover">
-                                    <div class="hover-icon">↗</div>
-                                </div>
-                            </div>
-                            <p class="screenshot-label">Agent Instructions</p>
-                        </div>
-                        <div class="screenshot-item" onclick="openScreenshotModal('assets/images/BambooAI_Agent_Flow.png', 'Agent Workflow')">
-                            <div class="screenshot-frame">
-                                <img src="assets/images/BambooAI_Agent_Flow.png" alt="Agent Workflow" loading="lazy">
-                                <div class="screenshot-hover">
-                                    <div class="hover-icon">↗</div>
-                                </div>
-                            </div>
-                            <p class="screenshot-label">Agent Workflow</p>
-                        </div>
-                        <div class="screenshot-item" onclick="openScreenshotModal('assets/images/Memory.png', 'Memory View')">
-                            <div class="screenshot-frame">
-                                <img src="assets/images/Memory.png" alt="Memory View" loading="lazy">
-                                <div class="screenshot-hover">
-                                    <div class="hover-icon">↗</div>
-                                </div>
-                            </div>
-                            <p class="screenshot-label">Memory View</p>
-                        </div>
-                        <div class="screenshot-item" onclick="openScreenshotModal('assets/images/Query View.png', 'Detailed Query View')">
-                            <div class="screenshot-frame">
-                                <img src="assets/images/Query View.png" alt="Query View" loading="lazy">
-                                <div class="screenshot-hover">
-                                    <div class="hover-icon">↗</div>
-                                </div>
-                            </div>
-                            <p class="screenshot-label">Query View</p>
-                        </div>
-                    </div>
-                </div>
-
-
+    <dialog class="dialog access-dialog" id="access-dialog" aria-labelledby="access-title">
+        <div class="access-body">
+            <div class="dialog-head">
+                <h2 id="access-title">Invitation beta</h2>
+                <button class="dialog-close" type="button" data-close aria-label="Close">×</button>
             </div>
-        </div>
-    </div>
-
-    <!-- Screenshot Lightbox Modal -->
-    <div class="screenshot-modal" id="screenshotModal">
-        <button class="modal-close" onclick="closeScreenshotModal()">✕</button>
-        <div class="modal-content-wrapper">
-            <img id="modalImage" src="" alt="">
-            <p id="modalCaption"></p>
-        </div>
-    </div>
-
-    <!-- Invitation Beta Modal -->
-    <div class="modal-overlay" id="comingSoonModal">
-        <div class="modal-content">
-            <button class="modal-close-x" onclick="hideComingSoon()">
-                <svg viewBox="0 0 24 24" fill="none">
-                    <path d="M18 6L6 18M6 6l12 12" stroke="currentColor"/>
-                </svg>
-            </button>
-            <div class="modal-scroll-content">
-                <div class="modal-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                        <circle stroke-linecap="round" stroke-linejoin="round" cx="9" cy="7" r="4" />
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 3.13a4 4 0 0 1 0 7.75" />
-                    </svg>
+            <p class="dialog-text">The hosted version of BambooAI is in beta, and we’re inviting people in gradually. BambooAI is open source, bootstrapped and built in public, and the hosted app runs on limited compute, so we add people a few at a time.</p>
+            <p class="dialog-text">If you’d like to try it, register your interest and tell us a little about your data. We review requests regularly and will get in touch if there’s a good fit.</p>
+            <div class="dialog-actions access-start">
+                <button class="btn btn-primary" type="button" data-show-form aria-controls="access-form" aria-expanded="false">Register your interest</button>
+                <p class="dialog-alt">Rather not wait? The <a href="#open-source" data-close>open-source version</a> needs no invitation.</p>
+            </div>
+            <form class="access-form" id="access-form" method="dialog" novalidate hidden>
+                <div class="field">
+                    <label for="access-name">Name</label>
+                    <input id="access-name" name="name" type="text" autocomplete="name" required>
                 </div>
-                <h2 class="modal-title">Invitation Beta</h2>
-                <p class="modal-text" style="text-align: center; margin-bottom: 2rem;">
-                    Bamboo AI Lab is currently in beta, and we're carefully inviting users who can help shape the future of curiosity-driven data analysis.
-                </p>
-                <p class="modal-text" style="text-align: center; margin-bottom: 2rem;">
-                    Bamboo AI Lab is an open source research project, bootstrapped and built in public. We're not chasing venture capital or growth metrics—we're chasing ideas. Our limited compute resources mean we grow organically, one thoughtful contributor at a time. Every bit of support goes directly back into improving the project.
-                </p>
-                <p class="modal-text" style="text-align: center; margin-bottom: 2rem;">
-                    We're looking for curious minds who see data analysis as more than just answering questions—people who want to help us explore what's possible when we let data surprise us. Whether through code, feedback, or simply using the tool in unexpected ways, <em style="color: var(--accent-color); font-style: normal;">we're deeply grateful for the time and expertise our early users contribute.</em>
-                </p>
-                <p class="modal-text" style="text-align: center; margin-bottom: 3rem;">
-                    If you're interested in joining our beta program, we'd love to hear from you. Please share a bit about your data challenges and how you might use Bamboo AI Lab. We review applications regularly and will reach out if there's a good fit.
-                </p>
-                <button class="explore-button" onclick="hideComingSoon(); showWaitlist(event)" style="margin: 0 auto 1rem;">
-                    Register Your Interest
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Waitlist Modal -->
-    <div class="modal-overlay" id="waitlistModal">
-        <div class="modal-content">
-            <button class="modal-close-x" onclick="hideWaitlist()">
-                <svg viewBox="0 0 24 24" fill="none">
-                    <path d="M18 6L6 18M6 6l12 12" stroke="currentColor"/>
-                </svg>
-            </button>
-            <div class="modal-scroll-content">
-                <h2 class="modal-title">Join the Waitlist</h2>
-                <p class="modal-text" style="text-align: center; margin-bottom: 2rem;">
-                    BambooAI is an experimental tool that makes data analysis more accessible by allowing users to interact with their data through natural language conversations. It's designed to process natural language queries, generate and execute Python code for analysis and visualization, and help users derive insights without extensive coding knowledge.
-                </p>
-                <br>
-                <p class="modal-text" style="text-align: center; margin-bottom: 1.5rem;">
-                    <em style="color: var(--accent-color); font-style: normal;">Choose the experience that fits your needs:</em>
-                </p>
-                <div class="tier-container">
-                    <div class="tier-box">
-                        <h3 class="tier-heading">Code Execution Tiers</h3>
-                        <div class="tier-list">
-                            <div class="tier-item"><strong>Free:</strong> 4GB RAM • 2 vCPUs</div>
-                            <div class="tier-item"><strong>Plus:</strong> 8GB RAM • 3 vCPUs</div>
-                            <div class="tier-item"><strong>Pro:</strong> 16GB RAM • 4 vCPUs</div>
-                        </div>
-                    </div>
-                    <div class="tier-box">
-                        <h3 class="tier-heading">AI Model Tiers</h3>
-                        <div class="tier-list">
-                            <div class="tier-item"><strong>Free:</strong> Explore capabilities</div>
-                            <div class="tier-item"><strong>Plus:</strong> Fast OSS models + Web search</div>
-                            <div class="tier-item"><strong>Pro:</strong> SOTA AI models + Web search</div>
-                        </div>
-                    </div>
+                <div class="field">
+                    <label for="access-email">Email</label>
+                    <input id="access-email" name="email" type="email" autocomplete="email" required>
                 </div>
-                <br>
-                <br>
-                <p class="modal-text" style="text-align: center; opacity: 0.8; margin-bottom: 2rem;">
-                    All environments are <em style="color: var(--accent-color); font-style: normal;">fully private and sandboxed</em> for your data security. 
-                    <em style="color: var(--accent-color); font-style: normal;">No subscription or API keys needed</em> - simply fund your account wallet and pay as you go. 
-                    AI model costs are passed through at cost with no markup. 
-                    <em style="color: var(--accent-color); font-style: normal;">Switch between tiers anytime</em> to match your current needs - upgrade for complex tasks or downgrade to save costs.
-                    Due to our limited processing capacity, we are introducing a waitlist.
-                </p>
-                <br>
-                <form class="waitlist-form">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="reason">Why do you want access?</label>
-                        <textarea id="reason" name="reason" placeholder="Tell us about your data analysis needs and how BambooAI could help..." required></textarea>
-                    </div>
-                    <button type="submit" class="submit-button">Submit</button>
-                </form>
-            </div>
+                <div class="field">
+                    <label for="access-reason">What would you like to analyse?</label>
+                    <textarea id="access-reason" name="reason" rows="4" minlength="15" required aria-describedby="access-reason-hint"></textarea>
+                    <p class="field-hint" id="access-reason-hint">A sentence or two about your data and the questions you have.</p>
+                </div>
+                <p class="form-status" role="status" aria-live="polite"></p>
+                <div class="dialog-actions">
+                    <button class="btn btn-primary" type="submit">Send request</button>
+                </div>
+            </form>
         </div>
-    </div>
+    </dialog>
 
-    <!-- Demo Video Modal -->
-    <div class="modal-overlay" id="demoModal">
-        <div class="modal-content modal-video">
-            <button class="modal-close-x" onclick="hideDemoModal()">
-                <svg viewBox="0 0 24 24" fill="none">
-                    <path d="M18 6L6 18M6 6l12 12" stroke="currentColor"/>
-                </svg>
-            </button>
-            <div class="video-container">
-                <video id="demoVideo" src="https://github.com/user-attachments/assets/7b9c9cd6-56e3-46ee-a6c6-c32324a0c5ef" controls preload="none"></video>
-            </div>
+    <dialog class="dialog image-dialog" id="image-dialog" aria-label="Screenshot">
+        <div class="image-bar">
+            <button class="image-zoom" type="button" aria-pressed="false">Actual size</button>
+            <button class="dialog-close" type="button" data-close aria-label="Close">×</button>
         </div>
-    </div>
-
-    <script src="script.js"></script>
+        <div class="image-scroll">
+            <img alt="" decoding="async">
+        </div>
+    </dialog>
 </body>
 </html>
