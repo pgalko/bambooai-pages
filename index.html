@@ -105,8 +105,8 @@
         <section class="section" id="how" aria-labelledby="how-title">
             <div class="wrap">
                 <header class="section-head">
-                    <h2 id="how-title">See how it got there</h2>
-                    <p>Here’s the run behind the number above, as it looks in the app. You can see the code BambooAI wrote, what each piece printed, the attempt that failed, and the checks at the end.</p>
+                    <h2 id="how-title">See every step</h2>
+                    <p>As BambooAI works, each step appears in the app: the code it wrote, what that code printed, any attempt that failed, and the checks at the end. You can open any step to see exactly what it did.</p>
                 </header>
 
                 <figure class="shot-figure">
@@ -117,7 +117,7 @@
                         </picture>
                         <span class="zoom-hint" aria-hidden="true">Enlarge</span>
                     </button>
-                    <figcaption>On the left, each turn and the code it ran, ending with the summary card. On the right, the 3.1 million rows the analysis worked through.</figcaption>
+                    <figcaption>The app after an analysis. On the left, each step and what it printed, ending with a summary. On the right, the data it worked on.</figcaption>
                 </figure>
 
                 <figure class="flow" aria-labelledby="flow-title">
@@ -160,17 +160,17 @@
                 </figure>
 
                 <figure class="shot-figure">
-                    <button class="shot" type="button" data-full="assets/images/run-plots-3200.webp" data-alt="The same run with the Plots tab open: the fatigue-resistance ratio over time with a fitted trend and annual cycle, the monthly means, and the trend across ten specifications.">
+                    <button class="shot" type="button" data-full="assets/images/run-plots-3200.webp" data-alt="The app with the Plots tab open: charts of a ratio over time with a fitted trend and annual cycle, its monthly means, and the trend across ten specifications.">
                         <picture>
                             <source type="image/webp" srcset="assets/images/run-plots-1000.webp 1000w, assets/images/run-plots-1600.webp 1600w, assets/images/run-plots-2400.webp 2400w" sizes="(min-width: 1248px) 1200px, 100vw">
-                            <img src="assets/images/run-plots-1600.jpg" width="1600" height="851" alt="The same run with the Plots tab open: the fatigue-resistance ratio over time with a fitted trend and annual cycle, the monthly means, and the trend across ten specifications." loading="lazy" decoding="async">
+                            <img src="assets/images/run-plots-1600.jpg" width="1600" height="851" alt="The app with the Plots tab open: charts of a ratio over time with a fitted trend and annual cycle, its monthly means, and the trend across ten specifications." loading="lazy" decoding="async">
                         </picture>
                         <span class="zoom-hint" aria-hidden="true">Enlarge</span>
                     </button>
-                    <figcaption>The same run with the Plots tab open. The figures are drawn after the report, from what the code left in the session.</figcaption>
+                    <figcaption>The Plots tab, with the report’s charts. They’re drawn after the report, from what the code left in the session.</figcaption>
                 </figure>
 
-                <p class="aside">The summary card shows what each run took: this one was 11 turns, 9 cells, 3 minutes 23 seconds and 9 cents. Every model call is logged with its prompt, tokens, time and cost, and you can open the exact prompt behind any turn in the current thread.</p>
+                <p class="aside">Each analysis ends with a summary of its steps, time and cost. Every model call is logged with its prompt, tokens, time and cost, and you can open the exact prompt behind any step in the current thread.</p>
             </div>
         </section>
 
@@ -240,7 +240,7 @@
                         </picture>
                         <span class="zoom-hint" aria-hidden="true">Enlarge</span>
                     </button>
-                    <figcaption><b>Steps.</b> One row per cell, in the order they ran. The columns on the left are the inputs, so you can see which file each step read, what it made, the results it recorded, and the attempt that failed.</figcaption>
+                    <figcaption><b>Steps.</b> One row per cell, in the order they ran. The columns on the left are the inputs, so you can see which file each step read, what it made, the results it recorded, and any attempts that failed.</figcaption>
                 </figure>
 
                 <figure class="shot-figure">
@@ -258,11 +258,12 @@
                     <div class="map-check">
                         <h3>Worth checking</h3>
                         <p>The map also points out what deserves a second look: inputs that were offered but never used, values typed straight into the code that results depend on, and results that came out empty or were replaced.</p>
+                        <p class="check-example">For example, the map might say:</p>
                         <p class="check-quote">CUT = 80000.0 is typed into cell 2, not read from the data; all 12 results rest on it</p>
                     </div>
                     <div class="map-notes">
                         <p class="map-note">The map shows how a number was made, not whether it’s right. That call is still yours, and the reviewer’s.</p>
-                        <p class="map-note">You can open it from the summary card at the end of a run, from a <span class="ref ref-cell">[cell n]</span> citation in the report, or from the eye icon on any cell in the notebook.</p>
+                        <p class="map-note">You can open it from the summary at the end of an analysis, from a <span class="ref ref-cell">[cell n]</span> citation in the report, or from the eye icon on any cell in the notebook.</p>
                     </div>
                 </div>
             </div>

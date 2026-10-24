@@ -918,8 +918,14 @@ main > .section:last-child {
     margin: 0;
 }
 
-.map-check > .check-quote {
+.map-check > .check-example {
     margin-top: 14px;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+}
+
+.map-check > .check-quote {
+    margin-top: 8px;
 }
 
 .check-quote {
