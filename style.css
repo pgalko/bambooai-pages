@@ -332,22 +332,23 @@ img {
 
 .hero h1 {
     margin: 0 0 24px;
-    font-size: clamp(2.5rem, 1.6rem + 3.4vw, 4.25rem);
-    line-height: 1.03;
-    letter-spacing: -0.03em;
+    font-size: clamp(2.25rem, 1.5rem + 2.6vw, 3.5rem);
+    line-height: 1.06;
+    letter-spacing: -0.028em;
 }
 
 .lede {
-    margin: 0 0 32px;
     max-width: 34rem;
     font-size: clamp(1.1rem, 1rem + 0.35vw, 1.25rem);
     line-height: 1.55;
 }
 
-.hero-note {
-    margin: 18px 0 0;
-    color: var(--text-muted);
-    font-size: 0.92rem;
+.lede p {
+    margin: 0 0 16px;
+}
+
+.lede p:last-child {
+    margin-bottom: 0;
 }
 
 /* the record: one number from the report, its recipe, the replay's verdict */
