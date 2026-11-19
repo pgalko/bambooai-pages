@@ -1,5 +1,5 @@
-// BambooAI site: the menu, the sections fading in, the screenshot lightbox, Launch App and its request form, the copy
-// button. No dependencies. Everything on the page works without it except the dialogs.
+// BambooAI site: the menu, the sections fading in, the record diagram playing, the screenshot lightbox, Launch App and
+// its request form, the copy button. No dependencies. Everything on the page works without it except the dialogs.
 
 // The access requests go to the same Google Apps Script as before; it answers in plain text
 // ("success", or a reason such as "duplicate email").
@@ -41,6 +41,62 @@ const ACCESS_URL = 'https://script.google.com/macros/s/AKfycbzRf20J8lqnIpSdeEZ6H
             });
         }, { rootMargin: '0px 0px -8% 0px' });
         below.forEach((el) => { el.classList.add('reveal'); watch.observe(el); });
+    }
+
+    // ---- the record diagram: each part names the moments it takes a class (data-t: "on:1.2 act:1.2-3.8"). It plays
+    // once as it comes into view, with one button to pause, play and replay. It is armed only when motion is welcome;
+    // otherwise, as without this script, it stays the finished drawing ----
+    const dg = document.querySelector('.dg');
+    if (dg && !still && 'IntersectionObserver' in window) {
+        const end = Number(dg.dataset.end) || 15;
+        const parts = [...dg.querySelectorAll('[data-t]')].map((el) => ({
+            el,
+            cues: el.dataset.t.trim().split(/\s+/).map((cue) => {
+                const [cls, span] = cue.split(':');
+                const [from, to] = span.split('-').map(Number);
+                return { cls, from, to: Number.isNaN(to) || to === undefined ? Infinity : to };
+            }),
+        }));
+        const button = dg.querySelector('.dg-ctl');
+        let t = 0, playing = false, last = 0, frame = 0;
+
+        const show = () => {
+            parts.forEach(({ el, cues }) => {
+                const want = {};                     // a class may have more than one moment: it holds in any of them
+                cues.forEach(({ cls, from, to }) => { want[cls] = want[cls] || (t >= from && t < to); });
+                Object.keys(want).forEach((cls) => el.classList.toggle(cls, want[cls]));
+            });
+            button.textContent = playing ? 'Pause' : (t >= end ? 'Replay' : 'Play');
+        };
+        const tick = (now) => {
+            if (!playing) return;
+            t = Math.min(end, t + (now - last) / 1000);
+            last = now;
+            if (t >= end) playing = false;
+            show();
+            if (playing) frame = requestAnimationFrame(tick);
+        };
+        const play = () => {
+            if (t >= end) t = 0;
+            playing = true;
+            last = performance.now();
+            cancelAnimationFrame(frame);
+            frame = requestAnimationFrame(tick);
+            show();
+        };
+
+        dg.classList.add('is-armed');
+        button.hidden = false;
+        button.addEventListener('click', () => {
+            if (playing) { playing = false; cancelAnimationFrame(frame); show(); } else { play(); }
+        });
+        show();
+        const watch = new IntersectionObserver((entries) => {
+            if (!entries.some((e) => e.isIntersecting)) return;
+            watch.disconnect();
+            play();
+        }, { threshold: 0.25 });
+        watch.observe(dg);
     }
 
     // ---- dialogs ----

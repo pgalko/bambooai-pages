@@ -937,6 +937,648 @@ main > .section:last-child {
     font-size: 0.98rem;
 }
 
+/* ---- the record: the three stages and the one record they share. Each part carries the moments it lights up
+   (data-t); the script plays them once as the diagram comes into view. Until it arms the diagram, every part shows,
+   so without the script, or for a reader who asked for less motion, it is the finished drawing ---- */
+
+.dg {
+    container-type: inline-size;
+    margin: 0;
+}
+
+.dg-q {
+    --c: var(--blue);
+    --c-text: var(--blue-text);
+    --glow: rgba(30, 144, 255, 0.5);
+}
+
+.dg-a {
+    --c: var(--sand);
+    --c-text: var(--sand);
+    --glow: rgba(209, 189, 152, 0.45);
+}
+
+.dg-c {
+    --c: var(--green);
+    --c-text: var(--green);
+    --glow: rgba(80, 250, 123, 0.4);
+}
+
+/* your data belongs to no one stage: the framing looks it up, the analysis works on it */
+.dg-n {
+    --c: rgba(255, 255, 255, 0.4);
+    --c-text: rgba(255, 255, 255, 0.85);
+    --glow: rgba(255, 255, 255, 0.2);
+}
+
+/* narrow: one column, read from the question down to the answer */
+.dg-canvas {
+    display: flex;
+    flex-direction: column;
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+.dg-canvas p,
+.dg-canvas ul {
+    margin: 0;
+}
+
+.dg-d {
+    display: none;
+}
+
+.dg-chip {
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+    padding: 0 18px;
+    border: 1px solid var(--c);
+    border-radius: 18px;
+    color: var(--c-text);
+    font-size: 0.85rem;
+}
+
+.dg-chip.dg-q {
+    border-color: rgba(30, 144, 255, 0.6);
+}
+
+.dg-chip.dg-c {
+    border-color: var(--green-line);
+}
+
+/* in one column, two things that come in together stand side by side: your question and your data into the
+   framing, then the brief and your data into the analysis */
+.dg-pair {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.dg-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dg-col > .dg-conn {
+    align-self: stretch;
+}
+
+.dg-tall {
+    flex: 1 1 auto;
+}
+
+.dg-pair.dg-m .dg-chip {
+    margin-top: 12px;
+}
+
+.dg-stage {
+    position: relative;
+    padding: 18px 22px 20px;
+    border: 1px solid var(--line);
+    border-top: 2px solid var(--c);
+    border-radius: 14px;
+    background: var(--panel);
+}
+
+.dg-of {
+    color: var(--c-text);
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.dg-name {
+    margin: 2px 0 8px !important;
+    color: var(--text-strong);
+    font-size: 1.25rem;
+    font-weight: 650;
+    line-height: 1.35;
+}
+
+.dg-parts {
+    padding: 0;
+    list-style: none;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 0.875rem;
+    line-height: 1.7;
+}
+
+/* the brief: the person's view, under the app's own headings. What it rests on is marked by the look-ups */
+.dg-brief {
+    margin-top: 6px;
+    padding: 8px 12px;
+    border: 1px solid rgba(76, 166, 255, 0.28);
+    border-radius: 10px;
+    background: rgba(30, 144, 255, 0.045);
+}
+
+.dg-brief .dg-bh {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 2px;
+    color: var(--blue-text);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    line-height: 1.6;
+    text-transform: uppercase;
+}
+
+.dg-vn {
+    color: rgba(255, 255, 255, 0.56);
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+.dg-bl {
+    padding: 0;
+    list-style: none;
+    color: rgba(255, 255, 255, 0.74);
+    font-size: 0.8125rem;
+    line-height: 1.7;
+}
+
+.dg-bl li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.dg-mks {
+    display: inline-flex;
+    gap: 4px;
+}
+
+.dg-mk {
+    display: inline-grid;
+    place-items: center;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    font-size: 10.5px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.dg-mk.ok {
+    background: rgba(80, 250, 123, 0.12);
+    color: var(--green);
+}
+
+.dg-mk.no {
+    background: rgba(255, 107, 107, 0.14);
+    color: var(--red);
+}
+
+.dg-mk.un {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.dg-record {
+    padding: 22px 24px 24px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: #1c1c1c;
+}
+
+.dg-rt {
+    color: var(--text-strong);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.dg-rs {
+    margin-top: 4px !important;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 0.82rem;
+    line-height: 1.4;
+}
+
+.dg-entries {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 18px !important;
+    padding: 0;
+    list-style: none;
+}
+
+.dg-en {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 7px 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #242424;
+    color: rgba(255, 255, 255, 0.8);
+    font: 0.78rem/1.35 var(--mono);
+}
+
+.dg-en.read {
+    border-color: rgba(80, 250, 123, 0.65);
+    box-shadow: 0 0 0 1px rgba(80, 250, 123, 0.25), 0 0 18px -4px rgba(80, 250, 123, 0.35);
+}
+
+/* an arrow between blocks, and what it carries */
+.dg-conn {
+    position: relative;
+    height: 40px;
+    color: var(--c-text);
+    font-size: 0.82rem;
+}
+
+.dg-conn::before {
+    content: "";
+    position: absolute;
+    left: calc(50% - 1px);
+    top: 4px;
+    bottom: 10px;
+    width: 2px;
+    background: var(--c-text);
+    transform-origin: top;
+}
+
+.dg-conn::after {
+    content: "";
+    position: absolute;
+    left: calc(50% - 5px);
+    bottom: 3px;
+    border-top: 7px solid var(--c-text);
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+}
+
+.dg-conn span {
+    position: absolute;
+    left: calc(50% + 14px);
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+}
+
+.dg-loop {
+    align-self: center;
+    margin-top: 14px !important;
+    color: var(--c-text);
+    font-size: 0.85rem;
+    text-align: center;
+    text-wrap: balance;
+}
+
+/* reframing: a light runs round the framing stage, once for each pass, and the brief's version counts up. The
+   version shown without the script is the last one */
+@property --dg-turn {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+}
+
+.dg-stage.dg-q::after {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    padding: 3px;
+    border-radius: 16px;
+    background: conic-gradient(from var(--dg-turn), transparent 0turn 0.55turn, rgba(76, 166, 255, 0.3) 0.78turn, #7cc0ff 0.95turn, #ffffff 0.985turn, transparent 1turn);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    filter: drop-shadow(0 0 8px rgba(76, 166, 255, 0.9));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.dg-stage.loop::after {
+    opacity: 1;
+    animation: dg-orbit 0.9s linear infinite;
+}
+
+/* while the light runs round, the box keeps its glow but not its steady outline, so the light is what moves */
+.dg-stage.dg-q.loop {
+    box-shadow: 0 22px 56px -22px var(--glow);
+}
+
+@keyframes dg-orbit {
+    to { --dg-turn: 360deg; }
+}
+
+.dg-ver {
+    display: none;
+}
+
+.dg-ver.last {
+    display: inline;
+}
+
+.is-armed .dg-ver.last {
+    display: none;
+}
+
+.is-armed .dg-ver.on {
+    display: inline;
+    animation: dg-ver 0.45s ease;
+}
+
+@keyframes dg-ver {
+    from { opacity: 0.2; }
+}
+
+/* the moments: a part not reached yet is faint, a stage at work glows in its colour */
+.dg-stage.act {
+    box-shadow: 0 0 0 1px var(--glow), 0 22px 56px -22px var(--glow);
+}
+
+.dg-stage.pulse {
+    animation: dg-pulse 1.6s ease-out 1;
+}
+
+@keyframes dg-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(209, 189, 152, 0.6); }
+    100% { box-shadow: 0 0 0 18px rgba(209, 189, 152, 0); }
+}
+
+.is-armed .dg-g {
+    opacity: 0.14;
+    transition: opacity 0.6s ease, box-shadow 0.6s ease;
+}
+
+.is-armed .dg-g.on {
+    opacity: 1;
+}
+
+.is-armed .dg-ln,
+.is-armed .dg-loop {
+    opacity: 0;
+    transition: opacity 0.45s ease;
+}
+
+.is-armed .dg-ln.on,
+.is-armed .dg-loop.on {
+    opacity: 1;
+}
+
+.is-armed .dg-mk {
+    opacity: 0;
+    transform: scale(0.6);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.is-armed .dg-mk.on {
+    opacity: 1;
+    transform: none;
+}
+
+.is-armed .dg-en {
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.45s ease, transform 0.45s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.is-armed .dg-en.on {
+    opacity: 1;
+    transform: none;
+}
+
+.is-armed .dg-lb,
+.is-armed .dg-conn span {
+    opacity: 0;
+    transition: opacity 0.5s ease 0.35s;
+}
+
+.is-armed .dg-lb.on,
+.is-armed .dg-conn.on span {
+    opacity: 1;
+}
+
+.is-armed .dg-conn::before {
+    transform: scaleY(0);
+    transition: transform 0.5s ease;
+}
+
+.is-armed .dg-conn::after {
+    opacity: 0;
+    transition: opacity 0.15s ease 0.4s;
+}
+
+.is-armed .dg-conn.on::before {
+    transform: none;
+}
+
+.is-armed .dg-conn.on::after {
+    opacity: 1;
+}
+
+.dg-ar {
+    overflow: visible;
+}
+
+.dg-line {
+    fill: none;
+    stroke: var(--c-text);
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+
+.dg-head {
+    fill: var(--c-text);
+}
+
+.is-armed .dg-line {
+    stroke-dasharray: var(--n);
+    stroke-dashoffset: var(--n);
+    transition: stroke-dashoffset 0.7s ease;
+}
+
+.is-armed .dg-ar.on .dg-line {
+    stroke-dashoffset: 0;
+}
+
+.is-armed .dg-head {
+    opacity: 0;
+    transition: opacity 0.15s ease 0.55s;
+}
+
+.is-armed .dg-ar.on .dg-head {
+    opacity: 1;
+}
+
+/* small marks running down into the record while the analysis writes to it */
+.dg-drop {
+    border-radius: 50%;
+    background: var(--c);
+    opacity: 0;
+}
+
+.dg-drop.on {
+    animation: dg-drop 0.44s ease-in 5;
+}
+
+@keyframes dg-drop {
+    0% { transform: translateY(0); opacity: 0; }
+    15% { opacity: 1; }
+    85% { opacity: 1; }
+    100% { transform: translateY(96px); opacity: 0; }
+}
+
+/* and one running up, when how it turned out goes back to the framing */
+.dg-drop.dg-rise.on {
+    animation: dg-rise 0.7s ease-out 1 both;
+}
+
+@keyframes dg-rise {
+    0% { transform: translateY(0); opacity: 0; }
+    15% { opacity: 1; }
+    85% { opacity: 1; }
+    100% { transform: translateY(-92px); opacity: 0; }
+}
+
+.dg-foot {
+    display: flex;
+    justify-content: flex-end;
+    max-width: 520px;
+    margin: 16px auto 0;
+}
+
+.dg-ctl {
+    min-width: 96px;
+    min-height: 40px;
+    padding: 0 16px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-small);
+    background: transparent;
+    color: var(--text-strong);
+    font: 500 0.9rem/1 var(--ui);
+    cursor: pointer;
+}
+
+.dg-ctl:hover {
+    border-color: rgba(255, 255, 255, 0.45);
+}
+
+/* the narrowest: the record's entries one to a line */
+@container (max-width: 439px) {
+    .dg-entries {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* wide: the drawing itself, each part where its coordinates put it, scaled in steps to the width there is */
+@container (min-width: 900px) {
+    .dg-canvas {
+        position: relative;
+        display: block;
+        width: 1152px;
+        height: 654px;
+        max-width: none;
+        zoom: 0.78;
+    }
+
+    .dg-pair:not(.dg-m),
+    .dg-col {
+        display: contents;
+    }
+
+    .dg-canvas > *,
+    .dg-col > * {
+        position: absolute;
+        left: var(--x);
+        top: var(--y);
+        width: var(--w);
+        height: var(--h);
+        margin: 0 !important;
+    }
+
+    .dg-d {
+        display: block;
+    }
+
+    .dg-m {
+        display: none;
+    }
+
+    .dg-chip {
+        min-height: 0;
+        padding: 0;
+    }
+
+    .dg-entries {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px 24px;
+        margin-top: 22px !important;
+    }
+
+    .dg-en {
+        min-height: 0;
+        height: 44px;
+        padding: 0 14px;
+        font-size: 13px;
+    }
+
+    .dg-lb {
+        height: auto !important;
+        color: var(--c-text);
+        font-size: 13px;
+        line-height: 16px;
+    }
+
+    .dg-foot {
+        max-width: none;
+    }
+}
+
+@container (min-width: 980px) {
+    .dg-canvas {
+        zoom: 0.85;
+    }
+}
+
+@container (min-width: 1060px) {
+    .dg-canvas {
+        zoom: 0.92;
+    }
+}
+
+@container (min-width: 1152px) {
+    .dg-canvas {
+        zoom: 1;
+    }
+}
+
+@media print {
+    .is-armed .dg-g,
+    .is-armed .dg-ln,
+    .is-armed .dg-mk,
+    .is-armed .dg-loop,
+    .is-armed .dg-en,
+    .is-armed .dg-lb,
+    .is-armed .dg-head,
+    .is-armed .dg-conn span,
+    .is-armed .dg-conn::after {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .is-armed .dg-line {
+        stroke-dashoffset: 0 !important;
+    }
+
+    .is-armed .dg-conn::before {
+        transform: none !important;
+    }
+}
+
 /* ---- the idea behind it ---- */
 
 .idea {
