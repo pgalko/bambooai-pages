@@ -500,7 +500,8 @@ img {
     margin: 0;
 }
 
-/* 1: the brief, as the Brief tab shows it */
+/* 1: the brief, as the Brief tab shows it: a figure drafted on made-up numbers (tabs.css .ar-fig, its .tag.mu and .cap),
+   and the saved analysis the brief builds on */
 .mb-label {
     margin-bottom: 4px !important;
     color: rgba(255, 255, 255, 0.5);
@@ -514,43 +515,27 @@ img {
     margin-top: 10px !important;
 }
 
-.mb-q .clamp,
 .mb-line {
     display: -webkit-box;
     overflow: hidden;
     -webkit-box-orient: vertical;
-}
-
-.mb-q {
-    padding: 7px 9px;
-    background: #242424;
-    border: 1px solid var(--line);
-    border-radius: 5px;
-    font-weight: 500;
-}
-
-.mb-q .clamp {
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
-}
-
-.mb-line {
     -webkit-line-clamp: 2;
     line-clamp: 2;
 }
 
 .mb-fig {
-    margin-top: 10px;
-    padding: 6px 8px 8px;
+    padding: 6px 8px 7px;
     background: #242424;
     border: 1px solid var(--line);
     border-radius: 6px;
 }
 
+/* the number and title, with the tag beside them where it fits and under them where it does not */
 .mb-fig-hd {
     display: flex;
+    flex-wrap: wrap;
     align-items: baseline;
-    gap: 6px;
+    gap: 3px 6px;
     margin-bottom: 5px !important;
 }
 
@@ -560,14 +545,12 @@ img {
 }
 
 .mb-fig-hd .t {
-    flex: 1;
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    flex: 1 1 0%;
+    min-width: 60%;
 }
 
 .mb-fig-hd .tag {
+    margin-left: auto;
     padding: 0 6px;
     border: 1px solid var(--line);
     border-radius: 7px;
@@ -575,38 +558,52 @@ img {
     font-size: 0.6rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
+    white-space: nowrap;
 }
 
-.mb-plot {
+.mb-fig-hd .tag.mu {
+    border-color: var(--sand-line);
+    color: var(--sand);
+}
+
+.mb-heat {
     display: block;
     width: 100%;
     height: auto;
 }
 
-.mb-plot rect {
-    fill: rgb(17, 17, 17);
+.mb-heat .bg {
+    fill: rgb(17, 19, 23);
 }
 
-.mb-plot .g line {
-    stroke: #283442;
-    stroke-width: 0.6;
+.mb-heat .ax {
+    fill: none;
+    stroke: #91979f;
+    stroke-width: 0.5;
 }
 
-.mb-plot .tk text {
+.mb-heat .tk text {
     fill: #f2f5fa;
-    font: 6.5px var(--ui);
+    font: 5.8px var(--ui);
     opacity: 0.85;
 }
 
-.mb-plot polyline {
-    fill: none;
-    stroke: #4a7fd0;
-    stroke-width: 1.4;
-    stroke-linejoin: round;
+.mb-heat .scale {
+    stroke: rgba(255, 255, 255, 0.35);
+    stroke-width: 0.3;
 }
 
-.mb-plot .pt circle {
-    fill: #4a7fd0;
+.mb-heat .wm {
+    fill: #8a8a8a;
+    font: 12.5px var(--ui);
+    opacity: 0.28;
+}
+
+.mb-fig .mb-cap {
+    margin-top: 4px;
+    color: var(--sand);
+    font-size: 0.72rem;
+    line-height: 1.35;
 }
 
 /* 2: the run, as the left pane lists it */
