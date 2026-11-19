@@ -791,272 +791,46 @@ img {
     text-decoration-color: var(--sand-line);
 }
 
-/* the record: one number from the report, its recipe, the replay's verdict */
-
-.record {
-    margin: 0;
-    padding: 20px 22px 16px;
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    font-size: 0.94rem;
-    line-height: 1.45;
-}
-
-.record-source {
-    margin: 0 0 4px;
-    color: var(--text-muted);
-    font-size: 0.82rem;
-}
-
-.record-title {
-    margin: 0 0 12px;
-    color: var(--text-strong);
-    font-size: 1.08rem;
-    font-weight: 600;
-    line-height: 1.35;
-}
-
-.record-result {
-    margin: 0;
-}
-
-.result-label {
-    display: block;
-    margin-bottom: 6px;
-}
-
-.result-line {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 6px 14px;
-}
-
-.result-number {
-    color: var(--text-strong);
-    font-family: var(--mono);
-    font-size: 2rem;
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-}
-
-.result-ci {
-    color: var(--text);
-}
-
-.cite {
-    padding: 2px 8px;
-    border: 1px solid var(--green-line);
-    border-radius: 999px;
-    background: transparent;
-    color: var(--green);
-    font: 0.86rem/1.4 var(--mono);
-    cursor: pointer;
-}
-
-.cite:hover,
-.cite[aria-expanded="true"] {
-    background: rgba(80, 250, 123, 0.1);
-}
-
-.recipe {
-    margin-top: 14px;
-    padding-top: 12px;
-    border-top: 1px solid var(--line);
-}
-
-.record.is-collapsed .recipe {
-    display: none;
-}
-
-.recipe-top {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 6px 16px;
-    margin: 0 0 10px;
-}
-
-.recipe-head {
-    margin: 0;
-    color: var(--text-strong);
-    font-weight: 600;
-}
-
-.recipe-from {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 6px;
-    margin: 0;
-    color: var(--text-muted);
-    font-size: 0.86rem;
-}
-
-.chip {
-    padding: 1px 8px;
-    border: 1px solid var(--blue-line);
-    border-radius: 6px;
-    color: var(--blue-text);
-    font-size: 0.84rem;
-}
-
-.trace {
-    margin: 0 0 10px;
-    padding: 0;
-    list-style: none;
-}
-
-.trace li {
-    position: relative;
-    padding: 0 0 6px 24px;
-}
-
-/* the line from one step to the next, as the recipe diagram draws it */
-.trace li::after {
-    content: "";
-    position: absolute;
-    left: 4px;
-    top: 14px;
-    bottom: -2px;
-    border-left: 1px solid var(--line-strong);
-}
-
-.trace li::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 6px;
-    width: 9px;
-    height: 9px;
-    border: 1.5px solid var(--sand);
-    border-radius: 2px;
-    background: var(--panel);
-}
-
-.trace li:last-child {
-    padding-bottom: 0;
-}
-
-.trace li:last-child::after {
-    display: none;
-}
-
-.t-name {
-    color: var(--text-strong);
-    font-weight: 600;
-}
-
-.t-meta {
-    color: var(--sand);
-    font: 0.8rem/1.4 var(--mono);
-}
-
-.t-step {
-    display: block;
-    color: var(--text);
-    font-size: 0.88rem;
-}
-
-.trace .t-result::before {
-    border-color: var(--green);
-    background: var(--green);
-    border-radius: 50%;
-}
-
-.trace .t-result .t-name {
-    font-family: var(--mono);
-    font-size: 0.98rem;
-}
-
-.status {
-    display: inline-block;
-    margin-left: 8px;
-    padding: 0 8px;
-    border: 1px solid var(--green-line);
-    border-radius: 6px;
-    color: var(--green);
-    font-size: 0.82rem;
-}
-
-.recipe-note {
-    margin: 0;
-    color: var(--text-muted);
-    font-size: 0.84rem;
-}
-
-.record-replay {
-    margin: 12px 0 0;
-    padding-top: 10px;
-    border-top: 1px solid var(--line);
-    color: var(--green);
-    font-size: 0.92rem;
-}
-
-/* the one moment of motion: the cited number's recipe unfolds step by step when it first scrolls into view. The
-   script sets .will-unfold only when it runs, the reader has not asked for reduced motion and the record is not
-   yet on screen, so without the script nothing is ever hidden */
-.record.will-unfold .trace li,
-.record.will-unfold .recipe-head,
-.record.will-unfold .recipe-from,
-.record.will-unfold .recipe-note,
-.record.will-unfold .record-replay {
-    opacity: 0;
-    transform: translateY(4px);
-}
-
-.record.will-unfold.is-unfolding .trace li,
-.record.will-unfold.is-unfolding .recipe-head,
-.record.will-unfold.is-unfolding .recipe-from,
-.record.will-unfold.is-unfolding .recipe-note,
-.record.will-unfold.is-unfolding .record-replay {
-    opacity: 1;
-    transform: none;
-    transition: opacity 0.35s ease, transform 0.35s ease;
-    transition-delay: calc(var(--i, 0) * 110ms);
-}
-
-/* ---- sections ---- */
+/* ---- sections: each one a centred head, one screenshot and a few short points, with room around them ---- */
 
 /* the space between sections is set once, above each; the last one also gets it below */
 .section {
-    padding-block: clamp(64px, 8vw, 112px) 0;
+    padding-block: clamp(96px, 12vw, 160px) 0;
 }
 
 main > .section:last-child {
-    padding-bottom: clamp(64px, 8vw, 112px);
+    padding-bottom: clamp(96px, 12vw, 160px);
 }
 
 .section-head {
-    max-width: 46rem;
-    margin-bottom: clamp(28px, 4vw, 44px);
+    max-width: 60rem;
+    margin: 0 auto clamp(40px, 5vw, 60px);
+    text-align: center;
 }
 
 .section-head h2 {
-    margin: 0 0 14px;
-    font-size: clamp(1.85rem, 1.35rem + 1.7vw, 2.65rem);
-    line-height: 1.1;
-    letter-spacing: -0.022em;
+    margin: 0;
+    font-size: clamp(2rem, 1.35rem + 2.2vw, 3.05rem);
+    line-height: 1.08;
+    letter-spacing: -0.026em;
 }
 
 .section-head p {
-    margin: 0;
-    font-size: 1.1rem;
-}
-
-.section-head p + p {
-    margin-top: 14px;
+    max-width: 40rem;
+    margin: 18px auto 0;
+    text-wrap: balance;
+    font-size: clamp(1.06rem, 1rem + 0.3vw, 1.2rem);
+    line-height: 1.55;
 }
 
 /* which of the three analyses a section is, in its colour */
 .section-head .eyebrow {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
-    margin: 0 0 14px;
+    max-width: none;
+    margin: 0 0 16px;
     color: var(--c-text, var(--text-muted));
     font-size: 0.98rem;
     font-weight: 600;
@@ -1077,162 +851,9 @@ main > .section:last-child {
     font: 600 1.05rem/1 var(--ui);
 }
 
-/* a part within a section: a smaller head, the same measure */
-.sub-head {
-    max-width: 46rem;
-    margin: clamp(56px, 7vw, 88px) 0 clamp(24px, 3vw, 36px);
-}
-
-.sub-head h3 {
-    margin: 0 0 12px;
-    font-size: clamp(1.45rem, 1.2rem + 1vw, 1.9rem);
-    line-height: 1.15;
-    letter-spacing: -0.018em;
-}
-
-.sub-head p {
+/* the screenshot, as large as the page allows; a click opens it at full size */
+.showcase {
     margin: 0;
-    font-size: 1.05rem;
-}
-
-/* the Architect's screenshot, with the room the features below it need */
-.frame-shot {
-    margin-bottom: clamp(36px, 5vw, 56px);
-}
-
-.frame-shot > figcaption {
-    color: var(--text-muted);
-}
-
-/* "How it turned out", as the foot of a run's Brief tab shows it: a grid of what was expected and what was checked,
-   each with its verdict (tabs.css .ar-against) */
-dd.turned-out {
-    display: grid;
-    grid-template-columns: max-content minmax(0, 1fr) max-content;
-    align-items: baseline;
-    gap: 4px 12px;
-    margin-top: 6px;
-    padding: 9px 14px 11px;
-    background: #181818;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 6px;
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 13.5px;
-    line-height: 1.5;
-}
-
-.to-label {
-    grid-column: 1 / -1;
-    margin-bottom: 1px;
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-}
-
-.to-k {
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.to-t {
-    min-width: 0;
-    overflow-wrap: anywhere;
-}
-
-.to-v:not(:empty) {
-    padding: 0 8px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 9px;
-    font-size: 10.5px;
-    line-height: 17px;
-    white-space: nowrap;
-}
-
-.to-v.no {
-    border-color: rgba(255, 107, 107, 0.5);
-    color: #ff6b6b;
-}
-
-/* ---- the checks: the real record beside the list of what is checked ---- */
-
-.checks-lead {
-    display: grid;
-    grid-template-columns: minmax(0, 11fr) minmax(0, 9fr);
-    gap: clamp(28px, 4vw, 56px);
-    align-items: start;
-}
-
-.check-list {
-    margin: 0;
-}
-
-.check-list > div {
-    padding: 16px 0 18px;
-    border-top: 1px solid var(--line);
-}
-
-.check-list > div:first-child {
-    padding-top: 2px;
-    border-top: 0;
-}
-
-.check-list dt {
-    margin: 0 0 4px;
-    font-size: 1.05rem;
-    font-weight: 600;
-}
-
-.check-list dd {
-    margin: 0;
-    font-size: 0.98rem;
-}
-
-dd.check-example {
-    margin-top: 12px;
-    color: var(--text-muted);
-    font-size: 0.9rem;
-}
-
-dd.check-quote {
-    margin-top: 6px;
-}
-
-/* a list of features that follows another block in its section */
-.features-after {
-    margin-top: clamp(40px, 5vw, 56px);
-}
-
-/* ---- the principle ---- */
-
-.principle-label {
-    margin: 0 0 14px;
-    color: var(--text-muted);
-    font-size: 0.98rem;
-    font-weight: 600;
-    letter-spacing: 0;
-}
-
-.principle-text {
-    max-width: 46rem;
-    margin: 0;
-    color: var(--text);
-    font-size: clamp(1.1rem, 1rem + 0.35vw, 1.25rem);
-    line-height: 1.55;
-}
-
-/* ---- the screenshots: each one whole, with its caption; a click opens it at full size ---- */
-
-.shot-figure {
-    margin: 0;
-    overflow: hidden;
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-}
-
-.shot-figure + .shot-figure {
-    margin-top: clamp(24px, 3vw, 36px);
 }
 
 .shot {
@@ -1240,8 +861,11 @@ dd.check-quote {
     display: block;
     width: 100%;
     padding: 0;
-    border: 0;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 16px;
     background: var(--ink);
+    box-shadow: 0 32px 72px -36px rgba(0, 0, 0, 0.9);
     cursor: zoom-in;
 }
 
@@ -1275,234 +899,83 @@ dd.check-quote {
     }
 }
 
-.shot-figure figcaption {
-    margin: 0;
-    padding: 12px 16px 14px;
-    border-top: 1px solid var(--line);
+.showcase figcaption {
+    max-width: 40rem;
+    margin: 18px auto 0;
     color: var(--text-muted);
-    font-size: 0.9rem;
-}
-
-.shot-figure figcaption b {
-    color: var(--text-strong);
-    font-weight: 600;
-}
-
-/* ---- how a run works: what goes in, the turns, what comes out. Each box is edged in the colour the app's stream
-   gives that kind of thing: inputs and look-ups blue, cells sand, what comes out green, a failure red ---- */
-
-.flow {
-    margin: clamp(40px, 5.5vw, 64px) 0;
-}
-
-.flow-title {
-    margin: 0 0 18px;
-    color: var(--text-strong);
-    font-size: clamp(1.2rem, 1.1rem + 0.4vw, 1.4rem);
-    font-weight: 650;
-    letter-spacing: -0.01em;
-}
-
-.flow-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 3fr) 44px minmax(0, 5fr) 44px minmax(0, 3.2fr);
-    align-items: start;
-}
-
-.flow-col {
-    min-width: 0;
-}
-
-.flow-label {
-    margin: 0 0 8px;
-    color: var(--text-muted);
-    font-size: 0.86rem;
-}
-
-.flow-nodes {
-    display: grid;
-    gap: 8px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.node {
-    padding: 9px 12px 10px;
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-left: 2px solid var(--line-strong);
-    border-radius: 0 var(--radius-small) var(--radius-small) 0;
-    font-size: 0.88rem;
-    line-height: 1.45;
-}
-
-.node b {
-    display: block;
-    color: var(--text-strong);
-    font-size: 0.97rem;
-    font-weight: 600;
-}
-
-.node span {
-    display: block;
-    margin-top: 2px;
-    color: var(--text-muted);
-}
-
-.node-in,
-.node-look {
-    border-left-color: var(--blue);
-}
-
-.node-cell {
-    border-left-color: var(--sand);
-}
-
-.node-out {
-    border-left-color: var(--green);
-}
-
-.flow-work {
-    padding: 14px 16px 12px;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-}
-
-.flow-pair {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-    gap: 8px;
-}
-
-.flow-or {
-    align-self: center;
-    margin: 0;
-    color: var(--text-muted);
-    font-size: 0.86rem;
-}
-
-.flow-notes {
-    margin: 12px 0 0;
-    padding: 0;
-    list-style: none;
-    font-size: 0.9rem;
-}
-
-.flow-notes li {
-    display: flex;
-    gap: 8px;
-    padding: 3px 0;
-}
-
-.fn-mark {
-    flex: none;
-    width: 1em;
-    color: var(--text-muted);
+    font-size: 0.94rem;
+    line-height: 1.5;
     text-align: center;
+    text-wrap: balance;
 }
 
-.fn-fail {
-    color: var(--red);
-}
-
-.fn-loop {
-    color: var(--sand);
-}
-
-.flow-arrow {
+/* the points that follow, three to a row */
+.facts {
     display: grid;
-    place-items: center;
-    align-self: stretch;
-    padding-top: 28px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 36px clamp(28px, 4vw, 56px);
+    margin: clamp(56px, 7vw, 80px) 0 0;
+    padding: 0;
+    list-style: none;
 }
 
-.flow-arrow svg {
-    width: 26px;
-    height: 26px;
-    fill: none;
-    stroke: var(--text-muted);
-    stroke-width: 1.5;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+.section-head + .facts {
+    margin-top: 0;
 }
 
-.aside {
-    max-width: 46rem;
-    margin: 28px 0 0;
-    color: var(--text-muted);
-    font-size: 0.97rem;
+.facts li {
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
 }
 
-/* ---- the numbers and the words around them: hard and soft data, both inputs (blue), meeting in one analysis ---- */
-
-.bridge-in {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 2.4fr);
-    gap: 16px;
+.facts h3 {
+    margin: 0 0 6px;
+    font-size: 1.06rem;
+    font-weight: 600;
+    letter-spacing: -0.005em;
 }
 
-.bridge-side,
-.bridge-join {
-    position: relative;
-    padding: 16px 20px 18px;
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-left: 2px solid var(--blue);
-    border-radius: 0 var(--radius) var(--radius) 0;
-}
-
-.bridge-join {
-    margin-top: 32px;
-    border-left-color: var(--line-strong);
-}
-
-/* the line from each kind of data down into the analysis */
-.bridge-side::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 100%;
-    height: 33px;
-    border-left: 1.5px solid var(--line-strong);
-}
-
-.bridge h3,
-.bridge h4,
-.map-check h3,
-.map-check h4 {
-    margin: 0 0 10px;
-    color: var(--text-strong);
-    font-size: 1.2rem;
-    font-weight: 650;
-    letter-spacing: -0.01em;
-}
-
-.bridge-hard p {
+.facts p {
     margin: 0;
     font-size: 0.98rem;
 }
 
-.bridge-list {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 14px 28px;
-    margin: 0;
+/* ---- the idea behind it ---- */
+
+.idea {
+    text-align: center;
 }
 
-.bridge-list dt {
-    margin: 0 0 4px;
-    font-size: 1rem;
+.idea-label {
+    margin: 0 0 16px;
+    color: var(--text-muted);
+    font-size: 0.98rem;
     font-weight: 600;
 }
 
-.bridge-list dd {
-    margin: 0;
-    font-size: 0.95rem;
+.idea-text {
+    max-width: 46rem;
+    margin: 0 auto;
+    color: var(--text-strong);
+    font-size: clamp(1.15rem, 1.02rem + 0.5vw, 1.4rem);
+    line-height: 1.55;
+    text-wrap: balance;
 }
 
-/* a citation as the report shows it: a cell green, a passage blue */
+/* ---- sections fade in as they come into view. The script adds .reveal only when it runs, the reader has not asked
+   for reduced motion and the block is still below the fold, so without the script nothing is ever hidden ---- */
+.reveal {
+    opacity: 0;
+    transform: translateY(16px);
+}
+
+.reveal.is-in {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+/* a citation as the report shows it */
 .ref {
     padding: 0 6px;
     border: 1px solid;
@@ -1514,92 +987,6 @@ dd.check-quote {
 .ref-cell {
     border-color: var(--green-line);
     color: var(--green);
-}
-
-.ref-src {
-    border-color: var(--blue-line);
-    color: var(--blue-text);
-}
-
-/* ---- the code map ---- */
-
-.map-after {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 24px clamp(32px, 5vw, 72px);
-    align-items: start;
-    margin-top: clamp(32px, 4.5vw, 48px);
-}
-
-.map-check > p {
-    margin: 0;
-}
-
-.map-check > .check-example {
-    margin-top: 14px;
-    color: var(--text-muted);
-    font-size: 0.92rem;
-}
-
-.map-check > .check-quote {
-    margin-top: 8px;
-}
-
-.check-quote {
-    position: relative;
-    padding: 10px 12px 10px 30px;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-small);
-    background: var(--panel);
-    color: var(--text-strong);
-    font-size: 0.92rem;
-}
-
-.check-quote::before {
-    content: "";
-    position: absolute;
-    left: 12px;
-    top: 17px;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--sand);
-}
-
-.map-notes {
-    padding-top: 6px;
-}
-
-.map-note {
-    max-width: 46rem;
-    margin: 0 0 12px;
-    color: var(--text-muted);
-    font-size: 0.97rem;
-}
-
-/* ---- features ---- */
-
-.features {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0 40px;
-    margin: 0;
-}
-
-.features > div {
-    padding: 20px 0 28px;
-    border-top: 1px solid var(--line);
-}
-
-.features dt {
-    margin: 0 0 6px;
-    font-size: 1.05rem;
-    font-weight: 600;
-}
-
-.features dd {
-    margin: 0;
-    font-size: 0.98rem;
 }
 
 /* ---- hosted or open source ---- */
@@ -1641,6 +1028,11 @@ dd.check-quote {
 
 .edition li::marker {
     color: var(--text-muted);
+}
+
+/* the button sits at the foot of its card, level with the end of the other */
+.edition .actions {
+    margin-top: auto;
 }
 
 .install {
@@ -1971,39 +1363,13 @@ dd.check-quote {
     }
 }
 
-@media (max-width: 1100px) {
-    .bridge-in {
-        grid-template-columns: minmax(0, 1fr);
-    }
-
-    .bridge-hard::after {
-        display: none;
-    }
-}
-
 @media (max-width: 1023px) {
-    .record {
-        max-width: 680px;
-    }
-
     .stages {
         gap: 34px;
     }
 
     .stage + .stage::before {
         left: -30px;
-    }
-
-    .checks-lead {
-        grid-template-columns: minmax(0, 1fr);
-    }
-
-    .check-list {
-        max-width: 46rem;
-    }
-
-    .features {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
@@ -2066,36 +1432,6 @@ dd.check-quote {
     .site-nav li + li {
         border-top: 1px solid var(--line);
     }
-
-}
-
-@media (max-width: 900px) {
-    .flow-grid {
-        grid-template-columns: minmax(0, 1fr);
-        max-width: 600px;
-    }
-
-    .flow-arrow {
-        height: 44px;
-        padding-top: 0;
-    }
-
-    .flow-arrow svg {
-        transform: rotate(90deg);
-    }
-}
-
-@media (max-width: 860px) {
-    .map-after {
-        grid-template-columns: minmax(0, 1fr);
-        max-width: 46rem;
-    }
-
-
-
-    .bridge-join .bridge-list {
-        grid-template-columns: minmax(0, 1fr);
-    }
 }
 
 @media (max-width: 760px) {
@@ -2105,6 +1441,13 @@ dd.check-quote {
 
     .footer-grid {
         grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 680px) {
+    .facts {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 28px;
     }
 }
 
@@ -2125,46 +1468,12 @@ dd.check-quote {
         gap: 10px;
     }
 
-    .record {
-        padding: 18px 16px 16px;
-    }
-
     .stage {
         padding: 16px 14px 14px;
     }
 
-    dd.turned-out {
-        grid-template-columns: minmax(0, 1fr) max-content;
-    }
-
-    .to-k {
-        grid-column: 1 / -1;
-        margin-top: 4px;
-    }
-
-    .result-number {
-        font-size: 1.75rem;
-    }
-
-    .features {
-        grid-template-columns: minmax(0, 1fr);
-    }
-
-    .shot-figure figcaption {
-        padding: 10px 12px 12px;
-    }
-
-    .flow-pair,
-    .bridge-list {
-        grid-template-columns: minmax(0, 1fr);
-    }
-
-    .flow-or {
-        padding-left: 14px;
-    }
-
-    .section-head p {
-        font-size: 1.03rem;
+    .shot {
+        border-radius: 10px;
     }
 
     .actions .btn {
@@ -2192,5 +1501,12 @@ dd.check-quote {
     *::after {
         transition: none !important;
         animation: none !important;
+    }
+}
+
+@media print {
+    .reveal {
+        opacity: 1;
+        transform: none;
     }
 }
