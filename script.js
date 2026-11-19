@@ -1,5 +1,5 @@
-// BambooAI site: the menu, the hero's recipe, the screenshot lightbox, Launch App and its request form, the copy button.
-// No dependencies. Everything on the page works without it except the dialogs.
+// BambooAI site: the menu, the recipe of the cited number, the screenshot lightbox, Launch App and its request form,
+// the copy button. No dependencies. Everything on the page works without it except the dialogs.
 
 // The access requests go to the same Google Apps Script as before; it answers in plain text
 // ("success", or a reason such as "duplicate email").
@@ -7,8 +7,6 @@ const ACCESS_URL = 'https://script.google.com/macros/s/AKfycbzRf20J8lqnIpSdeEZ6H
 
 (function () {
     'use strict';
-
-    const root = document.documentElement;
 
     // ---- the menu on narrow screens ----
     const menuButton = document.querySelector('.menu-button');
@@ -29,21 +27,29 @@ const ACCESS_URL = 'https://script.google.com/macros/s/AKfycbzRf20J8lqnIpSdeEZ6H
         window.matchMedia('(min-width: 961px)').addEventListener('change', (e) => { if (e.matches) setMenu(false); });
     }
 
-    // ---- the hero: the cited number's recipe, unfolded once, then opened and closed with its [cell 2] chip ----
+    // ---- the checks: the cited number's recipe, unfolded once as it first comes into view, then opened and closed
+    // with its [cell 2] chip. Nothing is hidden unless this runs, motion is welcome, and the record is still below
+    // the fold; a record already on screen (a link straight to #checks) is shown as it is ----
     const record = document.querySelector('.record');
     if (record) {
         const cite = record.querySelector('.cite');
         const items = record.querySelectorAll('.recipe-head, .recipe-from, .trace li, .recipe-note, .record-replay');
         items.forEach((el, i) => el.style.setProperty('--i', String(i)));
 
-        if (root.classList.contains('unfold')) {
-            window.setTimeout(() => {
-                record.classList.add('is-unfolding');
+        const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const box = record.getBoundingClientRect();
+        const onScreen = box.top < window.innerHeight && box.bottom > 0;
+        if (!still && !onScreen && 'IntersectionObserver' in window) {
+            record.classList.add('will-unfold');
+            const watch = new IntersectionObserver((entries) => {
+                if (!entries.some((e) => e.isIntersecting)) return;
+                watch.disconnect();
                 window.setTimeout(() => {
-                    root.classList.remove('unfold');
-                    record.classList.remove('is-unfolding');
-                }, items.length * 110 + 500);
-            }, 450);
+                    record.classList.add('is-unfolding');
+                    window.setTimeout(() => record.classList.remove('will-unfold', 'is-unfolding'), items.length * 110 + 500);
+                }, 200);
+            }, { threshold: 0.35 });
+            watch.observe(record);
         }
 
         if (cite) {

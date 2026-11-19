@@ -1,7 +1,8 @@
-/* BambooAI site (2026 redesign). The palette is the app's own dark theme, and each colour keeps the job it has
-   in the app: blue for what went in (data, look-ups), sand for the cells and what the code made, green for what
-   came out (results, the primary action), red for a rolled-back attempt. The type is the app's: the system face
-   for words, Courier for anything quoted from the record. */
+/* BambooAI site (2026 redesign; organised round the three analyses for 2.8). The palette is the app's own dark
+   theme, and each colour keeps the job it has in the app: blue for what went in (data, look-ups), sand for the cells
+   and what the code made, green for what came out (results, the primary action), red for a rolled-back attempt.
+   The three analyses take the same colours: the question blue, the analysis sand, the checks green. The type is
+   the app's: the system face for words, Courier for anything quoted from the record. */
 
 :root {
     --ink: #181818;
@@ -60,7 +61,7 @@ body {
     text-rendering: optimizeLegibility;
 }
 
-h1, h2, h3, dt {
+h1, h2, h3, h4, dt {
     color: var(--text-strong);
     font-weight: 650;
     text-wrap: balance;
@@ -264,6 +265,31 @@ img {
     color: var(--text-strong);
 }
 
+/* the three analyses' numbers, each in its colour */
+.nav-n {
+    display: inline-grid;
+    place-items: center;
+    width: 18px;
+    height: 18px;
+    margin-right: 7px;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    font: 600 0.7rem/1 var(--mono);
+    vertical-align: 1px;
+}
+
+.nav-q {
+    color: var(--blue-text);
+}
+
+.nav-a {
+    color: var(--sand);
+}
+
+.nav-c {
+    color: var(--green);
+}
+
 .header-actions {
     display: flex;
     align-items: center;
@@ -319,36 +345,450 @@ img {
     padding-block: clamp(28px, 3.5vw, 48px) 0;
 }
 
-.hero-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
-    gap: clamp(32px, 5vw, 72px);
-    align-items: start;
-}
-
 .hero-text {
-    padding-top: clamp(0px, 2vw, 28px);
+    max-width: 62rem;
 }
 
 .hero h1 {
-    margin: 0 0 24px;
+    margin: 0 0 20px;
     font-size: clamp(2.25rem, 1.5rem + 2.6vw, 3.5rem);
     line-height: 1.06;
     letter-spacing: -0.028em;
 }
 
 .lede {
-    max-width: 34rem;
+    max-width: 46rem;
+    margin: 0;
     font-size: clamp(1.1rem, 1rem + 0.35vw, 1.25rem);
     line-height: 1.55;
 }
 
-.lede p {
-    margin: 0 0 16px;
+/* the three stages, left to right: the question (blue, what goes in), the analysis (sand, the cells), the checks (green,
+   what comes out). Each card ends on a piece of what that stage shows in the app, taken from real runs */
+
+.stage-q,
+.part-q {
+    --c: var(--blue);
+    --c-text: var(--blue-text);
 }
 
-.lede p:last-child {
-    margin-bottom: 0;
+.stage-a,
+.part-a {
+    --c: var(--sand);
+    --c-text: var(--sand);
+}
+
+.stage-c,
+.part-c {
+    --c: var(--green);
+    --c-text: var(--green);
+}
+
+.part-loop {
+    --c: var(--sand);
+    --c-text: var(--sand);
+}
+
+.stages {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 44px;
+    margin: clamp(32px, 4vw, 48px) 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.stage {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 18px 18px 16px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-top: 2px solid var(--c);
+    border-radius: var(--radius-small) var(--radius-small) var(--radius) var(--radius);
+}
+
+/* the arrow from one stage to the next, as the flow diagram draws it */
+/* where the browser can, the four rows of each card line up across the three: label, name, text, and what the stage
+   shows, which fills the rest of the card */
+@supports (grid-template-rows: subgrid) {
+    .stages {
+        grid-template-rows: auto auto auto 1fr;
+    }
+
+    .stage {
+        display: grid;
+        grid-row: span 4;
+        grid-template-rows: subgrid;
+        row-gap: 0;
+    }
+
+    .stages .stage-view {
+        margin-top: 0;
+    }
+}
+
+.stage + .stage::before {
+    content: "";
+    position: absolute;
+    left: -35px;
+    top: 24px;
+    width: 26px;
+    height: 26px;
+    background: center / 26px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.56)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 12h17M14 6l6 6-6 6'/%3E%3C/svg%3E");
+}
+
+.stage-of {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin: 0 0 8px;
+    color: var(--c-text);
+    font-size: 0.86rem;
+    font-weight: 600;
+}
+
+.stage-n {
+    display: inline-grid;
+    flex: none;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    border: 1.5px solid var(--c);
+    border-radius: 50%;
+    font: 600 0.8rem/1 var(--mono);
+}
+
+.stage-name {
+    margin: 0 0 6px;
+    font-size: 1.25rem;
+    font-weight: 650;
+    letter-spacing: -0.01em;
+}
+
+.stage-name a {
+    color: var(--text-strong);
+    text-decoration: none;
+}
+
+.stage-name a:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong);
+}
+
+.stage-text {
+    margin: 0 0 16px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.stage-view {
+    margin-top: auto;
+    padding: 12px;
+    overflow: hidden;
+    background: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-small);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.8rem;
+    line-height: 1.45;
+}
+
+.stage-view p {
+    margin: 0;
+}
+
+/* 1: the brief, as the Brief tab shows it */
+.mb-label {
+    margin-bottom: 4px !important;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.mb-label ~ .mb-label {
+    margin-top: 10px !important;
+}
+
+.mb-q .clamp,
+.mb-line {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+}
+
+.mb-q {
+    padding: 7px 9px;
+    background: #242424;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.mb-q .clamp {
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+}
+
+.mb-line {
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+}
+
+.mb-fig {
+    margin-top: 10px;
+    padding: 6px 8px 8px;
+    background: #242424;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+}
+
+.mb-fig-hd {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: 5px !important;
+}
+
+.mb-fig-hd .n {
+    color: rgba(255, 255, 255, 0.5);
+    font: 0.7rem var(--mono);
+}
+
+.mb-fig-hd .t {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.mb-fig-hd .tag {
+    padding: 0 6px;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.6rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.mb-plot {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.mb-plot rect {
+    fill: rgb(17, 17, 17);
+}
+
+.mb-plot .g line {
+    stroke: #283442;
+    stroke-width: 0.6;
+}
+
+.mb-plot .tk text {
+    fill: #f2f5fa;
+    font: 6.5px var(--ui);
+    opacity: 0.85;
+}
+
+.mb-plot polyline {
+    fill: none;
+    stroke: #4a7fd0;
+    stroke-width: 1.4;
+    stroke-linejoin: round;
+}
+
+.mb-plot .pt circle {
+    fill: #4a7fd0;
+}
+
+/* 2: the run, as the left pane lists it */
+.mini-stream {
+    display: grid;
+    align-content: start;
+    gap: 5px;
+}
+
+.ms-turn,
+.ms-cell {
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
+    min-width: 0;
+    white-space: nowrap;
+}
+
+.ms-turn {
+    padding: 5px 8px;
+    background: #242424;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+}
+
+.ms-cell {
+    margin-left: 8px !important;
+    padding: 4px 8px;
+    background: #242424;
+    border-left: 2px solid var(--sand);
+    border-radius: 0 4px 4px 0;
+    font: 0.74rem/1.45 var(--mono);
+}
+
+.ms-n {
+    color: var(--green);
+    font: 0.72rem var(--mono);
+}
+
+.ms-k {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.72rem;
+}
+
+.ms-x {
+    min-width: 0;
+    overflow: hidden;
+    color: rgba(255, 255, 255, 0.6);
+    text-overflow: ellipsis;
+}
+
+.ms-cell .ok {
+    color: var(--green);
+}
+
+.ms-in {
+    color: var(--sand);
+}
+
+/* a cell opened again, as the pane marks it */
+.ms-show {
+    border-left-color: var(--blue);
+}
+
+.ms-show .ok,
+.ms-show .ms-in {
+    color: var(--blue-text);
+}
+
+/* 3: the cited number, its recipe (dotted where steps are left out) and the replay's verdict */
+.mr-result {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 10px;
+    margin-bottom: 9px !important;
+}
+
+.mr-num {
+    color: var(--text-strong);
+    font: 700 1.25rem/1.1 var(--mono);
+}
+
+.mr-ci {
+    color: rgba(255, 255, 255, 0.74);
+}
+
+.mr-trace {
+    margin: 0 0 8px;
+    padding: 0;
+    list-style: none;
+}
+
+.mr-trace li {
+    position: relative;
+    padding: 0 0 4px 18px;
+}
+
+.mr-trace li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 8px;
+    height: 8px;
+    background: var(--ink);
+    border: 1.5px solid var(--sand);
+    border-radius: 2px;
+}
+
+.mr-trace li::after {
+    content: "";
+    position: absolute;
+    left: 4.5px;
+    top: 14px;
+    bottom: -1px;
+    border-left: 1px solid var(--line-strong);
+}
+
+.mr-trace .mr-gap {
+    height: 9px;
+    padding: 0;
+}
+
+.mr-trace .mr-gap::before {
+    display: none;
+}
+
+.mr-trace .mr-gap::after {
+    top: -1px;
+    bottom: -1px;
+    border-left-style: dotted;
+    border-left-width: 1.5px;
+}
+
+.mr-trace li:last-child::after {
+    display: none;
+}
+
+.mr-trace b {
+    color: var(--text-strong);
+    font-weight: 600;
+}
+
+.mr-meta {
+    color: var(--sand);
+    font: 0.68rem var(--mono);
+}
+
+.mr-step {
+    display: block;
+    overflow: hidden;
+    color: rgba(255, 255, 255, 0.6);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.mr-trace .mr-res::before {
+    background: var(--green);
+    border-color: var(--green);
+    border-radius: 50%;
+}
+
+.mr-res b {
+    font-family: var(--mono);
+}
+
+.mr-replay {
+    padding-top: 7px;
+    border-top: 1px solid var(--line);
+    color: var(--green);
+}
+
+.stages-after {
+    margin: 18px 0 0;
+    font-size: 0.92rem;
+    text-align: center;
+}
+
+.stages-after a {
+    color: var(--sand);
+    text-decoration-color: var(--sand-line);
 }
 
 /* the record: one number from the report, its recipe, the replay's verdict */
@@ -556,22 +996,23 @@ img {
     font-size: 0.92rem;
 }
 
-/* the one moment of motion: on load, the cited number's recipe unfolds step by step (the head script sets .unfold
-   unless the reader asks for reduced motion, and clears it after four seconds should this script not run) */
-.unfold .record .trace li,
-.unfold .record .recipe-head,
-.unfold .record .recipe-from,
-.unfold .record .recipe-note,
-.unfold .record .record-replay {
+/* the one moment of motion: the cited number's recipe unfolds step by step when it first scrolls into view. The
+   script sets .will-unfold only when it runs, the reader has not asked for reduced motion and the record is not
+   yet on screen, so without the script nothing is ever hidden */
+.record.will-unfold .trace li,
+.record.will-unfold .recipe-head,
+.record.will-unfold .recipe-from,
+.record.will-unfold .recipe-note,
+.record.will-unfold .record-replay {
     opacity: 0;
     transform: translateY(4px);
 }
 
-.unfold .record.is-unfolding .trace li,
-.unfold .record.is-unfolding .recipe-head,
-.unfold .record.is-unfolding .recipe-from,
-.unfold .record.is-unfolding .recipe-note,
-.unfold .record.is-unfolding .record-replay {
+.record.will-unfold.is-unfolding .trace li,
+.record.will-unfold.is-unfolding .recipe-head,
+.record.will-unfold.is-unfolding .recipe-from,
+.record.will-unfold.is-unfolding .recipe-note,
+.record.will-unfold.is-unfolding .record-replay {
     opacity: 1;
     transform: none;
     transition: opacity 0.35s ease, transform 0.35s ease;
@@ -604,6 +1045,180 @@ main > .section:last-child {
 .section-head p {
     margin: 0;
     font-size: 1.1rem;
+}
+
+.section-head p + p {
+    margin-top: 14px;
+}
+
+/* which of the three analyses a section is, in its colour */
+.section-head .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 14px;
+    color: var(--c-text, var(--text-muted));
+    font-size: 0.98rem;
+    font-weight: 600;
+}
+
+.eyebrow-n {
+    display: inline-grid;
+    place-items: center;
+    flex: none;
+    width: 28px;
+    height: 28px;
+    border: 1.5px solid var(--c, currentColor);
+    border-radius: 50%;
+    font: 600 0.88rem/1 var(--mono);
+}
+
+.part-loop .eyebrow-n {
+    font: 600 1.05rem/1 var(--ui);
+}
+
+/* a part within a section: a smaller head, the same measure */
+.sub-head {
+    max-width: 46rem;
+    margin: clamp(56px, 7vw, 88px) 0 clamp(24px, 3vw, 36px);
+}
+
+.sub-head h3 {
+    margin: 0 0 12px;
+    font-size: clamp(1.45rem, 1.2rem + 1vw, 1.9rem);
+    line-height: 1.15;
+    letter-spacing: -0.018em;
+}
+
+.sub-head p {
+    margin: 0;
+    font-size: 1.05rem;
+}
+
+/* the Architect's screenshot, with the room the features below it need */
+.frame-shot {
+    margin-bottom: clamp(36px, 5vw, 56px);
+}
+
+.frame-shot > figcaption {
+    color: var(--text-muted);
+}
+
+/* "How it turned out", as the foot of a run's Brief tab shows it: a grid of what was expected and what was checked,
+   each with its verdict (tabs.css .ar-against) */
+dd.turned-out {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr) max-content;
+    align-items: baseline;
+    gap: 4px 12px;
+    margin-top: 6px;
+    padding: 9px 14px 11px;
+    background: #181818;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 6px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 13.5px;
+    line-height: 1.5;
+}
+
+.to-label {
+    grid-column: 1 / -1;
+    margin-bottom: 1px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.to-k {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.to-t {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.to-v:not(:empty) {
+    padding: 0 8px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 9px;
+    font-size: 10.5px;
+    line-height: 17px;
+    white-space: nowrap;
+}
+
+.to-v.no {
+    border-color: rgba(255, 107, 107, 0.5);
+    color: #ff6b6b;
+}
+
+/* ---- the checks: the real record beside the list of what is checked ---- */
+
+.checks-lead {
+    display: grid;
+    grid-template-columns: minmax(0, 11fr) minmax(0, 9fr);
+    gap: clamp(28px, 4vw, 56px);
+    align-items: start;
+}
+
+.check-list {
+    margin: 0;
+}
+
+.check-list > div {
+    padding: 16px 0 18px;
+    border-top: 1px solid var(--line);
+}
+
+.check-list > div:first-child {
+    padding-top: 2px;
+    border-top: 0;
+}
+
+.check-list dt {
+    margin: 0 0 4px;
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.check-list dd {
+    margin: 0;
+    font-size: 0.98rem;
+}
+
+dd.check-example {
+    margin-top: 12px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+dd.check-quote {
+    margin-top: 6px;
+}
+
+/* a list of features that follows another block in its section */
+.features-after {
+    margin-top: clamp(40px, 5vw, 56px);
+}
+
+/* ---- the principle ---- */
+
+.principle-label {
+    margin: 0 0 14px;
+    color: var(--text-muted);
+    font-size: 0.98rem;
+    font-weight: 600;
+    letter-spacing: 0;
+}
+
+.principle-text {
+    max-width: 46rem;
+    margin: 0;
+    color: var(--text);
+    font-size: clamp(1.1rem, 1rem + 0.35vw, 1.25rem);
+    line-height: 1.55;
 }
 
 /* ---- the screenshots: each one whole, with its caption; a click opens it at full size ---- */
@@ -854,7 +1469,9 @@ main > .section:last-child {
 }
 
 .bridge h3,
-.map-check h3 {
+.bridge h4,
+.map-check h3,
+.map-check h4 {
     margin: 0 0 10px;
     color: var(--text-strong);
     font-size: 1.2rem;
@@ -1365,17 +1982,24 @@ main > .section:last-child {
 }
 
 @media (max-width: 1023px) {
-    .hero-grid {
+    .record {
+        max-width: 680px;
+    }
+
+    .stages {
+        gap: 34px;
+    }
+
+    .stage + .stage::before {
+        left: -30px;
+    }
+
+    .checks-lead {
         grid-template-columns: minmax(0, 1fr);
     }
 
-    .hero-text {
-        padding-top: 0;
-        max-width: 42rem;
-    }
-
-    .record {
-        max-width: 680px;
+    .check-list {
+        max-width: 46rem;
     }
 
     .features {
@@ -1384,6 +2008,28 @@ main > .section:last-child {
 }
 
 @media (max-width: 960px) {
+    .stages {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: none;
+        gap: 40px;
+        max-width: 640px;
+    }
+
+    .stage {
+        display: flex;
+        grid-row: auto;
+    }
+
+    .stage + .stage::before {
+        left: 50%;
+        top: -34px;
+        transform: translateX(-50%) rotate(90deg);
+    }
+
+    .stages-after {
+        max-width: 640px;
+    }
+
     .menu-button {
         display: block;
     }
@@ -1445,6 +2091,8 @@ main > .section:last-child {
         max-width: 46rem;
     }
 
+
+
     .bridge-join .bridge-list {
         grid-template-columns: minmax(0, 1fr);
     }
@@ -1479,6 +2127,19 @@ main > .section:last-child {
 
     .record {
         padding: 18px 16px 16px;
+    }
+
+    .stage {
+        padding: 16px 14px 14px;
+    }
+
+    dd.turned-out {
+        grid-template-columns: minmax(0, 1fr) max-content;
+    }
+
+    .to-k {
+        grid-column: 1 / -1;
+        margin-top: 4px;
     }
 
     .result-number {

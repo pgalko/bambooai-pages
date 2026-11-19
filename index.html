@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>BambooAI: AI data analysis you can follow</title>
-    <meta name="description" content="Upload your data and ask a question in plain words. BambooAI does the analysis step by step in Python, and you can follow it from your data to every number.">
+    <meta name="description" content="Ask a question about your data in plain words. BambooAI helps you think the question through, does the analysis step by step in Python, and checks its own work, so you can follow it from the question to every number.">
     <link rel="canonical" href="https://bambooai.io/">
     <meta name="theme-color" content="#181818">
     <meta name="color-scheme" content="dark">
@@ -15,13 +15,13 @@
     <meta property="og:site_name" content="BambooAI">
     <meta property="og:url" content="https://bambooai.io/">
     <meta property="og:title" content="BambooAI: AI data analysis you can follow">
-    <meta property="og:description" content="Ask a question about your data in plain words. BambooAI does the analysis step by step, and you can follow it from your data to every number.">
+    <meta property="og:description" content="Ask a question about your data in plain words. BambooAI helps you think it through, does the analysis step by step, and checks the work behind every number.">
     <meta property="og:image" content="https://bambooai.io/assets/images/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="style.css">
-    <script>document.documentElement.classList.add("js");if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("unfold");setTimeout(function(){document.documentElement.classList.remove("unfold")},4000)}</script>
+    <script>document.documentElement.classList.add("js");</script>
     <script src="script.js" defer></script>
 </head>
 <body>
@@ -37,10 +37,9 @@
             </a>
             <nav class="site-nav" id="site-nav" aria-label="Main">
                 <ul>
-                    <li><a href="#how">How it works</a></li>
-                    <li><a href="#context">Context</a></li>
-                    <li><a href="#code-map">Code map</a></li>
-                    <li><a href="#features">Features</a></li>
+                    <li><a href="#question"><span class="nav-n nav-q" aria-hidden="true">1</span>The question</a></li>
+                    <li><a href="#analysis"><span class="nav-n nav-a" aria-hidden="true">2</span>The analysis</a></li>
+                    <li><a href="#checks"><span class="nav-n nav-c" aria-hidden="true">3</span>The checks</a></li>
                     <li><a href="#get">Hosted or open source</a></li>
                 </ul>
             </nav>
@@ -57,56 +56,124 @@
     <main id="main">
 
         <section class="hero" id="top" aria-labelledby="hero-title">
-            <div class="wrap hero-grid">
+            <div class="wrap">
                 <div class="hero-text">
-                    <h1 id="hero-title">AI data analysis you can follow, from your data to every number.</h1>
-                    <div class="lede">
-                        <p>Upload your data and ask a question in plain words. BambooAI does the analysis itself: it writes and runs Python one step at a time, reads each result before deciding what to do next, and reads any notes or documents you’ve added along the way.</p>
-                        <p>You get a report that says what it found, how sure it is and what it couldn’t establish, with charts and a plain-language version. Every step stays visible, and the code map shows how each number was made, so you can check the work without reading the code.</p>
-                    </div>
+                    <h1 id="hero-title">AI data analysis you can follow, from the question to every number.</h1>
+                    <p class="lede">Upload your data and ask a question in plain words. BambooAI works through it in three stages: it helps you think the question through, does the analysis step by step in Python, and then checks its own work. Every stage stays visible, so you can follow how the answer was reached.</p>
                 </div>
 
-                <figure class="record" aria-labelledby="record-caption">
-                    <figcaption class="record-source" id="record-caption">From a real run on a year of a cyclist’s training data</figcaption>
-                    <div class="record-report">
-                        <p class="record-title">No fatigue-resistance decline in long rides; no trend or season proven</p>
-                        <p class="record-result">
-                            <span class="result-label">fatigue resistance, best 20-min power 2nd vs 1st half of ride, rides &gt;80&nbsp;km, all months (170 rides)</span>
-                            <span class="result-line">
-                                <span class="result-number">+1.01</span>
-                                <span class="result-ci">95% CI 0.99 to 1.03</span>
-                                <button class="cite" type="button" aria-expanded="true" aria-controls="recipe" aria-label="[cell 2], how this number was made">[cell 2]</button>
-                            </span>
-                        </p>
-                    </div>
-
-                    <div class="recipe" id="recipe">
-                        <div class="recipe-top">
-                            <p class="recipe-head">How this number was made</p>
-                            <p class="recipe-from">Made from <span class="chip chip-in">intervals</span> <span class="chip chip-in">Activity Summary</span></p>
+                <ol class="stages">
+                    <li class="stage stage-q">
+                        <p class="stage-of"><span class="stage-n" aria-hidden="true">1</span>Analysis of the analyst</p>
+                        <p class="stage-name"><a href="#question">The question</a></p>
+                        <p class="stage-text">Before any code runs, the Architect talks the question through with you and writes down a brief: what the answer is for, what you expect to see and what else might explain it.</p>
+                        <div class="stage-view mini-brief" aria-hidden="true">
+                            <p class="mb-label">What the analyst will be asked</p>
+                            <p class="mb-q"><span class="clamp">Draw a plot of the Fibonacci sequence read as Fibonacci’s rabbit population. Put months along the horizontal axis and pairs of rabbits on the vertical axis, with each month’s count computed from the recurrence that starts from one pair and adds the pairs born two months earlier, so the terms run 0, 1, 1, 2, 3, 5, 8, …</span></p>
+                            <p class="mb-label">What it is for</p>
+                            <p class="mb-line">I want to illustrate the Fibonacci sequence for my students, with whom I have been discussing the rabbit population hypothesis Fibonacci coined.</p>
+                            <div class="mb-fig">
+                                <p class="mb-fig-hd"><span class="n">1</span><span class="t">Fibonacci’s rabbits: pairs by month</span><span class="tag">draft</span></p>
+                                <svg class="mb-plot" viewBox="0 0 236 78" role="img" aria-label="Draft: pairs of rabbits by month, 0 to 144 over 12 months"><rect width="236" height="78" rx="4"/><g class="g"><line x1="30" y1="62.0" x2="226" y2="62.0"/><line x1="30" y1="43.9" x2="226" y2="43.9"/><line x1="30" y1="25.9" x2="226" y2="25.9"/><line x1="30.0" y1="10" x2="30.0" y2="62"/><line x1="79.0" y1="10" x2="79.0" y2="62"/><line x1="128.0" y1="10" x2="128.0" y2="62"/><line x1="177.0" y1="10" x2="177.0" y2="62"/><line x1="226.0" y1="10" x2="226.0" y2="62"/></g><g class="tk"><text x="26" y="65.0" text-anchor="end">0</text><text x="26" y="46.9" text-anchor="end">50</text><text x="26" y="28.9" text-anchor="end">100</text><text x="30.0" y="73" text-anchor="middle">0</text><text x="79.0" y="73" text-anchor="middle">3</text><text x="128.0" y="73" text-anchor="middle">6</text><text x="177.0" y="73" text-anchor="middle">9</text><text x="226.0" y="73" text-anchor="middle">12</text></g><polyline points="30.0,62.0 46.3,61.6 62.7,61.6 79.0,61.3 95.3,60.9 111.7,60.2 128.0,59.1 144.3,57.3 160.7,54.4 177.0,49.7 193.3,42.1 209.7,29.9 226.0,10.0"/><g class="pt"><circle cx="30.0" cy="62.0" r="1.9"/><circle cx="46.3" cy="61.6" r="1.9"/><circle cx="62.7" cy="61.6" r="1.9"/><circle cx="79.0" cy="61.3" r="1.9"/><circle cx="95.3" cy="60.9" r="1.9"/><circle cx="111.7" cy="60.2" r="1.9"/><circle cx="128.0" cy="59.1" r="1.9"/><circle cx="144.3" cy="57.3" r="1.9"/><circle cx="160.7" cy="54.4" r="1.9"/><circle cx="177.0" cy="49.7" r="1.9"/><circle cx="193.3" cy="42.1" r="1.9"/><circle cx="209.7" cy="29.9" r="1.9"/><circle cx="226.0" cy="10.0" r="1.9"/></g></svg>
+                            </div>
                         </div>
-                        <ol class="trace">
-                            <li><span class="t-name">intervals</span> <span class="t-meta">df&nbsp;· cell&nbsp;2</span><span class="t-step">primary dataset (DS.load)</span></li>
-                            <li><span class="t-name">Activity Summary</span> <span class="t-meta">summ&nbsp;· cell&nbsp;2&nbsp;· 448&nbsp;rows&nbsp;×&nbsp;83&nbsp;cols</span><span class="t-step">read activity_summary.csv, drop duplicate rows</span></li>
-                            <li><span class="t-name">intervals</span> <span class="t-meta">g&nbsp;→&nbsp;ids&nbsp;· cell&nbsp;2&nbsp;· list&nbsp;of&nbsp;171</span><span class="t-step">group by activity_id, keep rows where dmax &gt; 80000.0 and atype is Ride</span></li>
-                            <li><span class="t-name">intervals, by activity_id</span> <span class="t-meta">sub&nbsp;→&nbsp;a1,&nbsp;a2,&nbsp;…&nbsp;· cell&nbsp;2</span><span class="t-step">group by activity_id, resample by period, … difference</span></li>
-                            <li><span class="t-name">intervals + Activity Summary</span> <span class="t-meta">rides&nbsp;→&nbsp;v&nbsp;· cell&nbsp;2&nbsp;· 170&nbsp;values</span><span class="t-step">make a table from recs, join summ (left)</span></li>
-                            <li><span class="t-name">lo, hi, a number</span> <span class="t-meta">made&nbsp;in&nbsp;the&nbsp;code&nbsp;· cell&nbsp;2</span><span class="t-step">mean, standard deviation</span></li>
-                            <li class="t-result"><span class="t-name">+1.01 (0.99 to 1.03)</span> <span class="t-meta">RESULT&nbsp;· cell&nbsp;2</span><span class="status">recorded</span></li>
-                        </ol>
-                        <p class="recipe-note">The map shows how this number was made, not whether it is right.</p>
-                    </div>
-
-                    <p class="record-replay"><span class="tick" aria-hidden="true">✓</span> Replay reproduced the cited results in a fresh run (9 cells, 304 numbers).</p>
-                </figure>
+                    </li>
+                    <li class="stage stage-a">
+                        <p class="stage-of"><span class="stage-n" aria-hidden="true">2</span>Analysis of the data</p>
+                        <p class="stage-name"><a href="#analysis">The analysis</a></p>
+                        <p class="stage-text">The analyst writes and runs Python one step at a time and reads each result before deciding what to do next. Every step is kept, including the ones that failed.</p>
+                        <div class="stage-view mini-stream" aria-hidden="true">
+                            <p class="ms-turn"><span class="ms-n">Turn 7</span><span class="ms-k">cell</span><span class="ms-x">Cell 5 returned the numbers the report needs but also showed two things that change how the trend must be described: str…</span></p>
+                            <p class="ms-cell"><span class="ok">✓</span><span class="ms-in">In [6]</span><span class="ms-x">base (trend + annual harmonic) n=170 trend +0.104 (-0.017,+0.224) p=0.092</span></p>
+                            <p class="ms-turn"><span class="ms-n">Turn 8</span><span class="ms-k">cell</span><span class="ms-x">Cell 6 settled the main question: the unadjusted trend is +0.104/yr and not distinguishable from zero, but it flips to −0.059 o…</span></p>
+                            <p class="ms-cell"><span class="ok">✓</span><span class="ms-in">In [7]</span><span class="ms-x">--- is ride length a confounder? ---</span></p>
+                            <p class="ms-turn"><span class="ms-n">Turn 9</span><span class="ms-k">cell</span><span class="ms-x">Cell 7 cleared ride length as the explanation (corr +0.08, km coefficient p=0.44) and showed the whole “improvement” colla…</span></p>
+                            <p class="ms-cell"><span class="ok">✓</span><span class="ms-in">In [8]</span><span class="ms-x">--- specification curve: trend in ratio/yr ---</span></p>
+                            <p class="ms-turn"><span class="ms-n">Turn 10</span><span class="ms-k">look-up</span><span class="ms-x">The specification curve came back: none of ten defensible specifications shows a trend whose 95% CI excludes zero…</span></p>
+                            <p class="ms-cell ms-show"><span class="ok">↻</span><span class="ms-in">SHOW</span><span class="ms-x">--- cell 2 (re-opened) ---</span></p>
+                            <p class="ms-turn"><span class="ms-n">Turn 11</span><span class="ms-k">report</span><span class="ms-x">Cells 2, 3, 5–8 are all in view and every number the report needs is already printed and recorded as a RESULT line, so…</span></p>
+                        </div>
+                    </li>
+                    <li class="stage stage-c">
+                        <p class="stage-of"><span class="stage-n" aria-hidden="true">3</span>Analysis of the analysis</p>
+                        <p class="stage-name"><a href="#checks">The checks</a></p>
+                        <p class="stage-text">Every number in the report is checked against the code that produced it, the work is run again from scratch, and the code map shows how each result was made.</p>
+                        <div class="stage-view mini-record" aria-hidden="true">
+                            <p class="mr-result"><span class="mr-num">+1.01</span><span class="mr-ci">95% CI 0.99 to 1.03</span><span class="ref ref-cell">[cell 2]</span></p>
+                            <ol class="mr-trace">
+                                <li><b>intervals</b> <span class="mr-meta">df · cell 2</span><span class="mr-step">primary dataset (DS.load)</span></li>
+                                <li class="mr-gap"></li>
+                                <li><b>intervals</b> <span class="mr-meta">g → ids · cell 2 · list of 171</span><span class="mr-step">group by activity_id, keep rows where dmax &gt; 80000.0 and atype is Ride</span></li>
+                                <li class="mr-gap"></li>
+                                <li><b>intervals + Activity Summary</b> <span class="mr-meta">rides → v · cell 2 · 170 values</span><span class="mr-step">make a table from recs, join summ (left)</span></li>
+                                <li class="mr-gap"></li>
+                                <li class="mr-res"><b>+1.01 (0.99 to 1.03)</b> <span class="mr-meta">RESULT · cell 2</span></li>
+                            </ol>
+                            <p class="mr-replay"><span aria-hidden="true">✓</span> Replay reproduced the cited results in a fresh run (9 cells, 304 numbers).</p>
+                        </div>
+                    </li>
+                </ol>
+                <p class="stages-after"><a href="#again"><span aria-hidden="true">↻ </span>After the analysis: next questions, memory and routines</a></p>
             </div>
         </section>
 
-        <section class="section" id="how" aria-labelledby="how-title">
+        <section class="section part part-q" id="question" aria-labelledby="question-title">
             <div class="wrap">
                 <header class="section-head">
-                    <h2 id="how-title">See every step</h2>
-                    <p>As BambooAI works, each step appears in the app: the code it wrote, what that code printed, any attempt that failed, and the checks at the end. You can open any step to see exactly what it did.</p>
+                    <p class="eyebrow"><span class="eyebrow-n" aria-hidden="true">1</span>Analysis of the analyst</p>
+                    <h2 id="question-title">Work out the question first</h2>
+                    <p>Every analysis starts from someone’s view of the problem. It shapes what gets measured and compared, and what counts as an answer. When a question goes straight to an AI model, the model supplies that view on its own, usually without saying so. A sound analysis of the wrong question still misleads.</p>
+                    <p>The <b>Architect</b> is an optional step before the analysis. When it is switched on, nothing runs straight away. It talks the question through with you, much as a tutor would, and writes down what you agree on as a brief: the question the analyst will be asked, and what the result will be compared with.</p>
+                </header>
+
+                <figure class="shot-figure frame-shot">
+                    <button class="shot" type="button" data-full="assets/images/architect-3200.webp" data-alt="BambooAI with a question about the Fibonacci sequence framed by the Architect. On the left, the conversation, with two earlier analyses found among the saved ones. On the right, the Brief tab: the question the analyst will be asked, what it is for, and a draft of the figure.">
+                        <picture>
+                            <source type="image/webp" srcset="assets/images/architect-1000.webp 1000w, assets/images/architect-1600.webp 1600w, assets/images/architect-2400.webp 2400w" sizes="(min-width: 1248px) 1200px, 100vw">
+                            <img src="assets/images/architect-1600.jpg" width="1600" height="982" alt="BambooAI with a question about the Fibonacci sequence framed by the Architect. On the left, the conversation, with two earlier analyses found among the saved ones. On the right, the Brief tab: the question the analyst will be asked, what it is for, and a draft of the figure." loading="lazy" decoding="async">
+                        </picture>
+                        <span class="zoom-hint" aria-hidden="true">Enlarge</span>
+                    </button>
+                    <figcaption>A question about the Fibonacci sequence, framed with the Architect. On the left is the conversation, in which the Architect found two earlier analyses of the same sequence among the saved ones. On the right is the brief the analyst works from, with a draft of the figure, computed because the sequence follows from a rule.</figcaption>
+                </figure>
+
+                <dl class="features">
+                    <div>
+                        <dt>The conversation</dt>
+                        <dd>The Architect first finds out why you are asking: to make a decision, to test something you suspect, or to learn about a subject. It explains what you need to know before asking anything, offers choices where they help, and accepts “I don’t know” as an answer. The analysis starts when you are ready.</dd>
+                    </div>
+                    <div>
+                        <dt>What your view rests on</dt>
+                        <dd>The reasons you give are looked up in the loaded data and marked <i>holds</i>, <i>does not hold</i> or <i>cannot be checked</i>. A look-up can only count, list or total what is there; it never runs the analysis or tells you what the data will show.</dd>
+                    </div>
+                    <div>
+                        <dt>Other explanations</dt>
+                        <dd>Up to two other explanations can be tested alongside your own. The Architect may suggest one in the conversation, or propose one that a column in your data can tell apart, which is tested only if you tick it. When data is loaded, chance, measurement error and the way the cases were chosen are always tested too.</dd>
+                    </div>
+                    <div>
+                        <dt>Your saved analyses</dt>
+                        <dd>The analyses you save are the Architect’s memory. When a new question touches the same subject, it looks through them and shows what it finds as exact quotes, each with its date. In the picture above it found two earlier analyses of the same sequence. If you build on one, the analyst receives it as an earlier result to test rather than as a fact.</dd>
+                    </div>
+                    <div>
+                        <dt>Figure drafts</dt>
+                        <dd>If you ask what the result will look like, a draft of each figure appears in the brief before anything runs. When the shape follows from a rule, as it does here, the draft is computed. When only your data can give it, the draft is drawn on made-up numbers and labelled that way.</dd>
+                    </div>
+                    <div>
+                        <dt>The question as the analyst reads it</dt>
+                        <dd>The Architect words the question for the analyst as the conversation goes. Before the analysis starts, a separate model reads it with only the information the analyst will have, and anything it cannot make sense of goes back to the Architect to be reworded.</dd>
+                    </div>
+                </dl>
+
+                <p class="aside">Everything in the brief can be changed by hand, and every change is kept as a step you can go back to. The Architect’s messages are written by a model, so the brief is yours to correct. Once the analysis starts, it is held to the brief: if the data cannot provide what the brief asks for, the analyst stops and asks you instead of substituting something else.</p>
+            </div>
+        </section>
+
+        <section class="section part part-a" id="analysis" aria-labelledby="analysis-title">
+            <div class="wrap">
+                <header class="section-head">
+                    <p class="eyebrow"><span class="eyebrow-n" aria-hidden="true">2</span>Analysis of the data</p>
+                    <h2 id="analysis-title">See every step</h2>
+                    <p>Once the question is settled, the analyst starts work. Each step appears in the app as it happens: the code it wrote, what that code printed and any attempt that failed. You can open any step to see exactly what it did.</p>
                 </header>
 
                 <figure class="shot-figure">
@@ -126,7 +193,7 @@
                         <div class="flow-col">
                             <p class="flow-label">What you give it</p>
                             <ul class="flow-nodes">
-                                <li class="node node-in"><b>Your question</b></li>
+                                <li class="node node-in"><b>Your question</b><span>and its brief, if you used the Architect</span></li>
                                 <li class="node node-in"><b>Your data</b><span>files you upload, or a connected data source</span></li>
                                 <li class="node node-in"><b>Context</b><span>notes written alongside the data, the papers you attach, and the web</span></li>
                             </ul>
@@ -138,7 +205,7 @@
                                 <div class="flow-pair">
                                     <div class="node node-cell"><b>Writes and runs Python</b><span>in a session that stays open between steps, and reads the output before deciding what to do next</span></div>
                                     <p class="flow-or">or</p>
-                                    <div class="node node-look"><b>Looks something up</b><span>an earlier result, the notes and documents, the web, or a question for you</span></div>
+                                    <div class="node node-look"><b>Looks something up</b><span>an earlier result, the notes and documents, the web, a saved analysis the brief builds on, or a question for you</span></div>
                                 </div>
                                 <ul class="flow-notes">
                                     <li><span class="fn-mark fn-fail" aria-hidden="true">✗</span>When code fails, the session is put back the way it was, and the attempt stays visible.</li>
@@ -151,9 +218,9 @@
                         <div class="flow-col">
                             <p class="flow-label">What you get back</p>
                             <ul class="flow-nodes">
-                                <li class="node node-out"><b>A report</b><span>pointing to the code behind its numbers and the sources of its quotes, with figures and a plain-language version</span></li>
-                                <li class="node node-out"><b>Checks</b><span>every number in the report is matched against what the code printed, and the code behind it is run again from scratch</span></li>
-                                <li class="node node-out"><b>A code map</b><span><a href="#code-map">showing how each number was made</a></span></li>
+                                <li class="node node-out"><b>A report</b><span>what it found, how sure it is and what it couldn’t establish, with figures and a plain-language version</span></li>
+                                <li class="node node-out"><b>The checks</b><span><a href="#checks">the numbers checked against the code, the work run again, a code map and a reach report</a></span></li>
+                                <li class="node node-out"><b>Next questions</b><span><a href="#again">suggestions for where to go from here</a></span></li>
                             </ul>
                         </div>
                     </div>
@@ -167,27 +234,21 @@
                         </picture>
                         <span class="zoom-hint" aria-hidden="true">Enlarge</span>
                     </button>
-                    <figcaption>The Plots tab, with the report’s charts. They’re drawn after the report, from what the code left in the session.</figcaption>
+                    <figcaption>The Plots tab, with the report’s charts. They’re drawn after the report, from what the code left in the session. Figures agreed in the brief follow their drafts.</figcaption>
                 </figure>
 
-                <p class="aside">Each analysis ends with a summary of its steps, time and cost. Every model call is logged with its prompt, tokens, time and cost, and you can open the exact prompt behind any step in the current thread.</p>
-            </div>
-        </section>
-
-        <section class="section" id="context" aria-labelledby="context-title">
-            <div class="wrap">
-                <header class="section-head">
-                    <h2 id="context-title">The numbers and the context around them</h2>
+                <div class="sub-head" id="context">
+                    <h3>The numbers and the context around them</h3>
                     <p>Numbers tell you what happened. The notes people write around them often tell you why. BambooAI reads both, and every passage it reads keeps its place in the source, so you can check a quote against the original.</p>
-                </header>
+                </div>
                 <div class="bridge">
                     <div class="bridge-in">
                         <div class="bridge-side bridge-hard">
-                            <h3>Hard data</h3>
+                            <h4>Hard data</h4>
                             <p>Measurements and records of any kind, from lab results and sensor logs to survey scores and genetic data. Upload CSV, Parquet, JSON or Excel (.xlsx) files, several at once, or load from a connected data source.</p>
                         </div>
                         <div class="bridge-side bridge-soft">
-                            <h3>Soft data</h3>
+                            <h4>Soft data</h4>
                             <dl class="bridge-list">
                                 <div>
                                     <dt>Notes alongside the data</dt>
@@ -205,7 +266,7 @@
                         </div>
                     </div>
                     <div class="bridge-join">
-                        <h3>In one analysis</h3>
+                        <h4>In one analysis</h4>
                         <dl class="bridge-list">
                             <div>
                                 <dt>Your codebook</dt>
@@ -222,15 +283,99 @@
                         </dl>
                     </div>
                 </div>
+
+                <dl class="features features-after">
+                    <div>
+                        <dt>Quick, Deep or Adaptive</dt>
+                        <dd>Pick how much effort a question deserves: a quick lookup, a full analysis, or a longer investigation with a reviewer. Each mode has a budget of turns and cost, and the analyst knows it.</dd>
+                    </div>
+                    <div>
+                        <dt>Follow-ups and branches</dt>
+                        <dd>A follow-up carries on where the last run ended, with its variables still there. Branch off any earlier analysis and see them all on the thread map.</dd>
+                    </div>
+                    <div>
+                        <dt>Ask about a figure</dt>
+                        <dd>Every figure has a chat button. Your question starts a follow-up run, with the picture included when the model is set up to read images.</dd>
+                    </div>
+                </dl>
+
+                <p class="aside">BambooAI was built for data where the same things are measured again and again, and where you need to know where every number came from. It works on any tabular data.</p>
             </div>
         </section>
 
-        <section class="section" id="code-map" aria-labelledby="map-title">
+        <section class="section part part-c" id="checks" aria-labelledby="checks-title">
             <div class="wrap">
                 <header class="section-head">
-                    <h2 id="map-title">Trace any number back to the data</h2>
-                    <p>When an analysis finishes, BambooAI reads its code and the session’s record and draws a map from your data to each number. The map is built by fixed rules, with no AI involved, so the same analysis always gives the same map, and it never shows anything the code didn’t do.</p>
+                    <p class="eyebrow"><span class="eyebrow-n" aria-hidden="true">3</span>Analysis of the analysis</p>
+                    <h2 id="checks-title">Check the work</h2>
+                    <p>An AI model can write a long analysis in minutes, much faster than anyone can read it closely. So BambooAI keeps a full record of the work: the code, what it printed, the working notes and every model call. When the analysis ends, it checks the report against that record.</p>
                 </header>
+
+                <div class="checks-lead">
+                    <figure class="record" aria-labelledby="record-caption">
+                        <figcaption class="record-source" id="record-caption">From a real run on a year of a cyclist’s training data</figcaption>
+                        <div class="record-report">
+                            <p class="record-title">No fatigue-resistance decline in long rides; no trend or season proven</p>
+                            <p class="record-result">
+                                <span class="result-label">fatigue resistance, best 20-min power 2nd vs 1st half of ride, rides &gt;80&nbsp;km, all months (170 rides)</span>
+                                <span class="result-line">
+                                    <span class="result-number">+1.01</span>
+                                    <span class="result-ci">95% CI 0.99 to 1.03</span>
+                                    <button class="cite" type="button" aria-expanded="true" aria-controls="recipe" aria-label="[cell 2], how this number was made">[cell 2]</button>
+                                </span>
+                            </p>
+                        </div>
+
+                        <div class="recipe" id="recipe">
+                            <div class="recipe-top">
+                                <p class="recipe-head">How this number was made</p>
+                                <p class="recipe-from">Made from <span class="chip chip-in">intervals</span> <span class="chip chip-in">Activity Summary</span></p>
+                            </div>
+                            <ol class="trace">
+                                <li><span class="t-name">intervals</span> <span class="t-meta">df&nbsp;· cell&nbsp;2</span><span class="t-step">primary dataset (DS.load)</span></li>
+                                <li><span class="t-name">Activity Summary</span> <span class="t-meta">summ&nbsp;· cell&nbsp;2&nbsp;· 448&nbsp;rows&nbsp;×&nbsp;83&nbsp;cols</span><span class="t-step">read activity_summary.csv, drop duplicate rows</span></li>
+                                <li><span class="t-name">intervals</span> <span class="t-meta">g&nbsp;→&nbsp;ids&nbsp;· cell&nbsp;2&nbsp;· list&nbsp;of&nbsp;171</span><span class="t-step">group by activity_id, keep rows where dmax &gt; 80000.0 and atype is Ride</span></li>
+                                <li><span class="t-name">intervals, by activity_id</span> <span class="t-meta">sub&nbsp;→&nbsp;a1,&nbsp;a2,&nbsp;…&nbsp;· cell&nbsp;2</span><span class="t-step">group by activity_id, resample by period, … difference</span></li>
+                                <li><span class="t-name">intervals + Activity Summary</span> <span class="t-meta">rides&nbsp;→&nbsp;v&nbsp;· cell&nbsp;2&nbsp;· 170&nbsp;values</span><span class="t-step">make a table from recs, join summ (left)</span></li>
+                                <li><span class="t-name">lo, hi, a number</span> <span class="t-meta">made&nbsp;in&nbsp;the&nbsp;code&nbsp;· cell&nbsp;2</span><span class="t-step">mean, standard deviation</span></li>
+                                <li class="t-result"><span class="t-name">+1.01 (0.99 to 1.03)</span> <span class="t-meta">RESULT&nbsp;· cell&nbsp;2</span><span class="status">recorded</span></li>
+                            </ol>
+                            <p class="recipe-note">The map shows how this number was made, not whether it is right.</p>
+                        </div>
+
+                        <p class="record-replay"><span class="tick" aria-hidden="true">✓</span> Replay reproduced the cited results in a fresh run (9 cells, 304 numbers).</p>
+                    </figure>
+
+                    <dl class="check-list">
+                        <div>
+                            <dt>The report</dt>
+                            <dd>It says what was found, how sure the analysis is and what it couldn’t establish. Each number points to the cell that printed it, and each quote to its place in the source. A plain-language version comes with it, and either can be saved as a PDF.</dd>
+                        </div>
+                        <div>
+                            <dt>Number checks</dt>
+                            <dd>Every number in the report is compared with what the code printed, and the plain-language version with the technical one. A number that doesn’t match is flagged, not silently corrected.</dd>
+                        </div>
+                        <div>
+                            <dt>Replay</dt>
+                            <dd>The code behind the cited results is run again in a fresh Python session, and the numbers it prints are compared with the original run.</dd>
+                        </div>
+                        <div>
+                            <dt>The result and the brief</dt>
+                            <dd>If the question was framed with the Architect, the brief shows how the result turned out: whether you saw what you expected, and what each other explanation came to. Results the brief doesn’t account for are reported in the answer under <i>Did not fit</i>.</dd>
+                            <dd class="check-example">For a question about how soon two runs of the Lorenz system move apart, the end of the brief might read:</dd>
+                            <dd class="turned-out">
+                                <span class="to-label">How it turned out</span>
+                                <span class="to-k">You expected</span><span class="to-t">the distance first passes 1 at t&nbsp;=&nbsp;25.2 <span class="ref ref-cell">[cell 3]</span></span><span class="to-v no">not met</span>
+                                <span class="to-k">Also checked</span><span class="to-t">Part of the gap comes from the integrator’s rounding, not from the system: at a tolerance 1,000 times tighter the distance also passes 1 at t&nbsp;=&nbsp;25.2 <span class="ref ref-cell">[cell 4]</span></span><span class="to-v"></span>
+                            </dd>
+                        </div>
+                    </dl>
+                </div>
+
+                <div class="sub-head" id="code-map">
+                    <h3>Trace any number back to the data</h3>
+                    <p>When an analysis finishes, BambooAI reads its code and the session’s record and draws a map from your data to each number. The map is built by fixed rules, with no AI involved, so the same analysis always gives the same map, and it never shows anything the code didn’t do.</p>
+                </div>
 
                 <figure class="shot-figure">
                     <button class="shot" type="button" data-full="assets/images/codemap-steps-3200.webp" data-alt="The code map’s Steps view: one row per cell with the inputs as columns, the results each cell recorded, a rolled-back attempt, and a side panel listing what is worth checking.">
@@ -256,7 +401,7 @@
 
                 <div class="map-after">
                     <div class="map-check">
-                        <h3>Worth checking</h3>
+                        <h4>Worth checking</h4>
                         <p>The map also points out what deserves a second look: inputs that were offered but never used, values typed straight into the code that results depend on, and results that came out empty or were replaced.</p>
                         <p class="check-example">For example, the map might say:</p>
                         <p class="check-quote">CUT = 80000.0 is typed into cell 2, not read from the data; all 12 results rest on it</p>
@@ -266,41 +411,54 @@
                         <p class="map-note">You can open it from the summary at the end of an analysis, from a <span class="ref ref-cell">[cell n]</span> citation in the report, or from the eye icon on any cell in the notebook.</p>
                     </div>
                 </div>
+
+                <dl class="features features-after">
+                    <div>
+                        <dt>The reach report</dt>
+                        <dd>It lists anything the code touched outside your data: web addresses and how much was sent or received, files, the environment variables it read and any programs it started. Each entry says whether your question asked for it.</dd>
+                        <dd class="check-example">For example, the summary might say:</dd>
+                        <dd class="check-quote">cell 17 sent 42 KB to an address the question never named</dd>
+                    </div>
+                    <div>
+                        <dt>The reviewer</dt>
+                        <dd>In Adaptive mode, a second model with its own instructions reviews the evidence every eight turns. It can ask for another test, narrow a claim, or tell the analyst it is time to write the report.</dd>
+                    </div>
+                    <div>
+                        <dt>Usage and logs</dt>
+                        <dd>Every model call is logged with its prompt, tokens, time and cost, and you can open the exact prompt behind any step in the current thread. The Usage view shows where the money and the time went, by analysis, role and model.</dd>
+                    </div>
+                </dl>
             </div>
         </section>
 
-        <section class="section" id="features" aria-labelledby="features-title">
+        <section class="section part part-loop" id="again" aria-labelledby="again-title">
             <div class="wrap">
                 <header class="section-head">
-                    <h2 id="features-title">What else it does</h2>
-                    <p>BambooAI was built for data where the same things are measured again and again, and where you need to know where every number came from. It works on any tabular data.</p>
+                    <p class="eyebrow"><span class="eyebrow-n" aria-hidden="true">↻</span>After the analysis</p>
+                    <h2 id="again-title">Next questions, memory and routines</h2>
+                    <p>A finished analysis often leads to another question. BambooAI can suggest where to go next, keeps the analyses you save for the Architect to draw on, and can turn a method that worked into a routine you run on new data.</p>
                 </header>
                 <dl class="features">
                     <div>
-                        <dt>Quick, Deep or Adaptive</dt>
-                        <dd>Pick how much effort a question deserves: a quick lookup, a full analysis, or a longer investigation with a reviewer. Each mode has a budget of turns and cost, and the analyst knows it.</dd>
-                    </div>
-                    <div>
-                        <dt>Follow-ups and branches</dt>
-                        <dd>A follow-up carries on where the last run ended, with its variables still there. Branch off any earlier analysis, see them all on the thread map, or ask for five ideas on what to look at next.</dd>
-                    </div>
-                    <div>
-                        <dt>A plain-language version</dt>
-                        <dd>Every report also comes in plain English for readers who don’t code. You can save either one as a PDF.</dd>
-                    </div>
-                    <div>
-                        <dt>Routines</dt>
-                        <dd>Save a finished analysis as a routine and run it on new data without a model. Each run is checked and compared with the one before.</dd>
+                        <dt>Next questions</dt>
+                        <dd>When a run ends, Next questions offers five directions: refine focus, shift angle, test boundaries, blend elements and follow emergence. Each gives up to five questions based on what the analysis found or left open, and you can edit any of them before running it.</dd>
                     </div>
                     <div>
                         <dt>Memory</dt>
-                        <dd>Save a run, and what BambooAI learned about the dataset, like column quirks and approaches that worked, is there next time.</dd>
+                        <dd>When you frame a question on a subject you have worked on before, the Architect can draw on the analyses you saved, and where they disagree it says so and asks which way to go. Deleting a saved analysis removes it from memory.</dd>
                     </div>
                     <div>
-                        <dt>Ask about a figure</dt>
-                        <dd>Every figure has a chat button. Your question starts a follow-up run, with the picture included when the model is set up to read images.</dd>
+                        <dt>Routines</dt>
+                        <dd>A finished analysis can be saved as a routine and run on new data without a model. Each run is checked and compared with the one before, and a step that can’t be computed on the new data affects only the results that depend on it.</dd>
                     </div>
                 </dl>
+            </div>
+        </section>
+
+        <section class="section principle" aria-labelledby="principle-title">
+            <div class="wrap">
+                <h2 class="principle-label" id="principle-title">The idea behind it</h2>
+                <p class="principle-text">BambooAI is built on the view that AI-generated analysis should be open to the same scrutiny as any other analytical work. Reproducible calculations are an important part of that, but the question, the choice of methods, the assumptions and the interpretation need to stay open to examination too, and they still need a person to think them through.</p>
             </div>
         </section>
 
@@ -308,7 +466,7 @@
             <div class="wrap">
                 <header class="section-head">
                     <h2 id="get-title">Try it hosted, or run it yourself</h2>
-                    <p>It’s the same analyst either way. The difference is where it runs and which models it uses.</p>
+                    <p>It’s the same BambooAI either way. The difference is where it runs and which models it uses.</p>
                 </header>
                 <div class="editions">
                     <article class="edition" id="hosted" aria-labelledby="hosted-title">
@@ -352,7 +510,7 @@
                     <svg class="mark" aria-hidden="true" focusable="false"><use href="#leaves"></use></svg>
                     <span class="brand-name">BambooAI</span>
                 </a>
-                <p>AI data analysis you can follow, from your data to every number. Built in public by Palo Galko.</p>
+                <p>AI data analysis you can follow, from the question to every number. Built in public by Palo Galko.</p>
             </div>
             <nav class="footer-links" aria-label="Elsewhere">
                 <ul>
