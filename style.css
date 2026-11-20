@@ -352,12 +352,12 @@ img {
     max-width: 68rem;
 }
 
-/* what BambooAI is, above the headline */
+/* what BambooAI is, above the headline: quiet, since colour is kept for the stages and the diagram */
 .hero-kicker {
     margin: 0 0 14px;
-    color: var(--green);
+    color: var(--text-muted);
     font-size: 1.05rem;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .hero h1 {
@@ -1584,12 +1584,10 @@ main > .section:last-child {
     }
 }
 
-/* the two points under the diagram: where the design comes from, and what BambooAI itself is. Two to a row, one on a
-   phone, like the points under each stage */
+/* the three points under the diagram: why it is built for scrutiny, where the design comes from, and what BambooAI
+   itself is. Three to a row, as under each stage, and the same width as the record above them */
 .record-points {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    max-width: 60rem;
-    margin: clamp(56px, 7vw, 88px) auto 0;
+    margin-top: clamp(56px, 7vw, 88px);
 }
 
 @media print {
