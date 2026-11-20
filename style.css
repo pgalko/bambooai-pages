@@ -160,19 +160,22 @@ img {
     padding: 0 18px;
     border: 1px solid transparent;
     border-radius: var(--radius-small);
-    font: 600 0.98rem/1.1 var(--ui);
+    font: 500 0.98rem/1.1 var(--ui);
     text-decoration: none;
     cursor: pointer;
     white-space: nowrap;
 }
 
+/* the main action: tinted rather than filled, so it leads without weighing on the page */
 .btn-primary {
-    background: var(--green);
-    color: var(--green-ink);
+    background: rgba(80, 250, 123, 0.12);
+    color: var(--green);
+    border-color: rgba(80, 250, 123, 0.45);
 }
 
 .btn-primary:hover {
-    background: var(--green-hover);
+    background: rgba(80, 250, 123, 0.2);
+    border-color: rgba(80, 250, 123, 0.7);
 }
 
 .btn-secondary {
@@ -346,7 +349,15 @@ img {
 }
 
 .hero-text {
-    max-width: 62rem;
+    max-width: 68rem;
+}
+
+/* what BambooAI is, above the headline */
+.hero-kicker {
+    margin: 0 0 14px;
+    color: var(--green);
+    font-size: 1.05rem;
+    font-weight: 600;
 }
 
 .hero h1 {
@@ -356,11 +367,28 @@ img {
     letter-spacing: -0.028em;
 }
 
+/* the headline's two sentences, each on a line of its own at every width */
+.h1-l {
+    display: block;
+}
+
 .lede {
     max-width: 46rem;
     margin: 0;
     font-size: clamp(1.1rem, 1rem + 0.35vw, 1.25rem);
     line-height: 1.55;
+}
+
+/* three plain facts under the lede; on a narrow screen each moves to the next line whole */
+.hero-facts {
+    margin: 18px 0 0;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.hero-facts span:not([aria-hidden]) {
+    white-space: nowrap;
 }
 
 /* the three stages, left to right: the question (blue, what goes in), the analysis (sand, the cells), the checks (green,
@@ -1556,6 +1584,14 @@ main > .section:last-child {
     }
 }
 
+/* the two points under the diagram: where the design comes from, and what BambooAI itself is. Two to a row, one on a
+   phone, like the points under each stage */
+.record-points {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 60rem;
+    margin: clamp(56px, 7vw, 88px) auto 0;
+}
+
 @media print {
     .is-armed .dg-g,
     .is-armed .dg-ln,
@@ -1577,28 +1613,6 @@ main > .section:last-child {
     .is-armed .dg-conn::before {
         transform: none !important;
     }
-}
-
-/* ---- the idea behind it ---- */
-
-.idea {
-    text-align: center;
-}
-
-.idea-label {
-    margin: 0 0 16px;
-    color: var(--text-muted);
-    font-size: 0.98rem;
-    font-weight: 600;
-}
-
-.idea-text {
-    max-width: 46rem;
-    margin: 0 auto;
-    color: var(--text-strong);
-    font-size: clamp(1.15rem, 1.02rem + 0.5vw, 1.4rem);
-    line-height: 1.55;
-    text-wrap: balance;
 }
 
 /* ---- sections fade in as they come into view. The script adds .reveal only when it runs, the reader has not asked

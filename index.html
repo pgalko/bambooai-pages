@@ -16,7 +16,7 @@
     <meta property="og:url" content="https://bambooai.io/">
     <meta property="og:title" content="BambooAI: AI data analysis you can follow">
     <meta property="og:description" content="Ask a question about your data in plain words. BambooAI helps you think it through, does the analysis step by step, and checks the work behind every number.">
-    <meta property="og:image" content="https://bambooai.io/assets/images/og-image.png">
+    <meta property="og:image" content="https://bambooai.io/assets/images/og-image.png?v=2">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
@@ -58,15 +58,17 @@
         <section class="hero" id="top" aria-labelledby="hero-title">
             <div class="wrap">
                 <div class="hero-text">
-                    <h1 id="hero-title">AI data analysis you can follow, from the question to every number.</h1>
-                    <p class="lede">Upload your data and ask a question in plain words. BambooAI works through it in three stages: it helps you think the question through, does the analysis step by step in Python, and then checks its own work. Every stage stays visible, so you can follow how the answer was reached.</p>
+                    <p class="hero-kicker">AI data analysis you can follow</p>
+                    <h1 id="hero-title"><span class="h1-l">Every analysis starts with an idea.</span> <span class="h1-l">Put it into words, then test it.</span></h1>
+                    <p class="lede">Upload your data and ask a question in plain words. BambooAI helps you set out what you think is going on, tests it step by step in Python, and then checks its own work. Every stage stays visible, so you can follow how the answer was reached.</p>
+                    <p class="hero-facts"><span>Open source, MIT licence</span><span aria-hidden="true"> · </span><span>Any model, hosted or on your own machine</span><span aria-hidden="true"> · </span><span>Every analysis kept as a notebook</span></p>
                 </div>
 
                 <ol class="stages">
                     <li class="stage stage-q">
-                        <p class="stage-of"><span class="stage-n" aria-hidden="true">1</span>Analysis of the analyst</p>
+                        <p class="stage-of"><span class="stage-n" aria-hidden="true">1</span>Analysis of the idea</p>
                         <p class="stage-name"><a href="#question">The question</a></p>
-                        <p class="stage-text">Before any code runs, the Architect talks the question through with you and writes down a brief: what the answer is for, what you expect to see and what else might explain it.</p>
+                        <p class="stage-text">Before any code runs, the Architect helps you put what you think into words: a brief with what the answer is for, what you expect to see and what else might explain it.</p>
                         <div class="stage-view mini-brief" aria-hidden="true">
                             <p class="mb-label">What it will look like</p>
                             <div class="mb-fig">
@@ -95,7 +97,7 @@
                         </div>
                     </li>
                     <li class="stage stage-c">
-                        <p class="stage-of"><span class="stage-n" aria-hidden="true">3</span>Analysis of the analysis</p>
+                        <p class="stage-of"><span class="stage-n" aria-hidden="true">3</span>Analysis of the work</p>
                         <p class="stage-name"><a href="#checks">The checks</a></p>
                         <p class="stage-text">Every number in the report is checked against the code that produced it, the work is run again from scratch, and the code map shows how each result was made.</p>
                         <div class="stage-view mini-record" aria-hidden="true">
@@ -120,7 +122,7 @@
         <section class="section part part-q" id="question" aria-labelledby="question-title">
             <div class="wrap">
                 <header class="section-head">
-                    <p class="eyebrow"><span class="eyebrow-n" aria-hidden="true">1</span>Analysis of the analyst</p>
+                    <p class="eyebrow"><span class="eyebrow-n" aria-hidden="true">1</span>Analysis of the idea</p>
                     <h2 id="question-title">Work out the question first</h2>
                     <p>Before any analysis begins, the Architect works with you to find the right framing of the question, or the right representation of the problem. Without it, an AI model makes that choice on its own, usually without saying so.</p>
                 </header>
@@ -146,7 +148,7 @@
             <div class="wrap">
                 <header class="section-head">
                     <p class="eyebrow"><span class="eyebrow-n" aria-hidden="true">2</span>Analysis of the data</p>
-                    <h2 id="analysis-title">See every step</h2>
+                    <h2 id="analysis-title">Work out the answer step by step</h2>
                     <p>Each step of the analysis is visible as it happens, in full: the instructions the model received, its reasoning and working notes, the code it wrote, what that code printed and any attempt that failed.</p>
                 </header>
                 <figure class="showcase">
@@ -160,9 +162,9 @@
                     <figcaption>The app after an analysis, with each step on the left and the report’s charts on the right.</figcaption>
                 </figure>
                 <ul class="facts">
+                    <li><h3>Held to the brief</h3><p>What you expected and each other explanation are tested. If the data can’t give what the brief fixes, the analyst asks you instead of putting something else in its place.</p></li>
                     <li><h3>Quick, Deep or Adaptive</h3><p>Pick how much effort a question deserves. Each mode has a budget of turns and cost, and the analyst knows it.</p></li>
                     <li><h3>The context around the numbers</h3><p>It also reads the notes written alongside your data and the documents you attach, and cites each passage by its place in the source.</p></li>
-                    <li><h3>Follow-ups and branches</h3><p>A follow-up carries on where the last run ended. Branch off any earlier analysis and see them all on the thread map.</p></li>
                 </ul>
             </div>
         </section>
@@ -170,7 +172,7 @@
         <section class="section part part-c" id="checks" aria-labelledby="checks-title">
             <div class="wrap">
                 <header class="section-head">
-                    <p class="eyebrow"><span class="eyebrow-n" aria-hidden="true">3</span>Analysis of the analysis</p>
+                    <p class="eyebrow"><span class="eyebrow-n" aria-hidden="true">3</span>Analysis of the work</p>
                     <h2 id="checks-title">Check the work</h2>
                     <p>An AI model can write a long analysis in minutes, much faster than anyone can read it closely. So BambooAI keeps a full record of the work, and when the analysis ends, it checks the report against it.</p>
                 </header>
@@ -185,9 +187,9 @@
                     <figcaption>The code map traces each number back to your data. It is built by fixed rules, with no AI involved, and shows how a number was made, not whether it’s right.</figcaption>
                 </figure>
                 <ul class="facts">
+                    <li><h3>The result and the brief</h3><p>The brief shows whether you saw what you expected, and what came of each other explanation.</p></li>
                     <li><h3>Number checks</h3><p>Every number in the report is compared with what the code printed. One that doesn’t match is flagged, not silently corrected.</p></li>
                     <li><h3>Replay</h3><p>The code behind the cited results runs again in a fresh Python session, and the numbers are compared with the first run.</p></li>
-                    <li><h3>The result and the brief</h3><p>The brief shows whether you saw what you expected, and what came of each other explanation.</p></li>
                     <li><h3>The reach report</h3><p>It lists anything the code touched outside your data, and whether your question asked for it.</p></li>
                     <li><h3>The reviewer</h3><p>In Adaptive mode, a second model with its own instructions reviews the evidence every eight turns.</p></li>
                     <li><h3>Usage and logs</h3><p>Every model call is logged with its prompt, tokens, time and cost.</p></li>
@@ -202,7 +204,7 @@
                     <h2 id="again-title">Next questions, memory and routines</h2>
                 </header>
                 <ul class="facts">
-                    <li><h3>Next questions</h3><p>When a run ends, BambooAI suggests where to go next, based on what the analysis found or left open.</p></li>
+                    <li><h3>Next questions</h3><p>When a run ends, BambooAI suggests where to go next, based on what the analysis found or left open. A follow-up carries on where the run ended, and the thread map shows every branch.</p></li>
                     <li><h3>Memory</h3><p>The analyses you save become the Architect’s memory. Where they disagree, it says so and asks which way to go.</p></li>
                     <li><h3>Routines</h3><p>Save a finished analysis as a routine and run it on new data without a model.</p></li>
                 </ul>
@@ -230,7 +232,7 @@
                     <svg class="dg-ar dg-d dg-q" data-t="on:0.8" role="img" aria-label="From your question into the framing" viewBox="0 0 8 43" style="--x: 146px; --y: 36px; --w: 8px; --h: 43px; --n: 36"><path class="dg-line" d="M4 0 V36"></path><path class="dg-head" d="M0.5 36 L4 43 L7.5 36 Z"></path></svg>
                     <svg class="dg-ar dg-d dg-q" data-t="on:3.7" role="img" aria-label="From your data into the framing: what the brief rests on is looked up" viewBox="0 0 204 65" style="--x: 282px; --y: 14px; --w: 204px; --h: 65px; --n: 254"><path class="dg-line" d="M204 4 H4 V58"></path><path class="dg-head" d="M0.5 58 L4 65 L7.5 58 Z"></path></svg>
                     <p class="dg-lb dg-d dg-q" data-t="on:3.7" style="--x: 302px; --y: 28px; --w: 176px; text-align: center">looked up</p>
-                    <div class="dg-stage dg-g dg-q" data-t="on:1.2 act:1.2-5.8 loop:1.9-5.4 act:14.9-17 loop:15.1-16.9" style="--x: 0px; --y: 80px; --w: 320px; --h: 246px"><p class="dg-of">1 · Analysis of the analyst</p><p class="dg-name">Framing, and reframing</p><div class="dg-brief dg-ln" data-t="on:1.4"><p class="dg-bh"><span>The brief</span><span class="dg-vn"><span class="dg-ver" data-t="on:1.4-2.4">version 1</span><span class="dg-ver" data-t="on:2.4-3.2">version 2</span><span class="dg-ver" data-t="on:3.2-4.5">version 3</span><span class="dg-ver" data-t="on:4.5-5.1">version 4</span><span class="dg-ver last" data-t="on:5.1-15.5">version 5</span><span class="dg-ver" data-t="on:15.5-16.5">next question, version 1</span><span class="dg-ver" data-t="on:16.5">next question, version 2</span></span></p><ul class="dg-bl"><li class="dg-ln" data-t="on:1.5">What it is for</li><li class="dg-ln" data-t="on:1.7"><span>What you think, and why</span><span class="dg-mks"><span class="dg-mk ok" data-t="on:4.2">✓<span class="visually-hidden"> holds,</span></span><span class="dg-mk no" data-t="on:4.35">✕<span class="visually-hidden"> does not hold,</span></span><span class="dg-mk un" data-t="on:4.5">?<span class="visually-hidden"> cannot be checked</span></span></span></li><li class="dg-ln" data-t="on:2.0">What you expect to see</li><li class="dg-ln" data-t="on:2.3">What would change your mind</li><li class="dg-ln" data-t="on:4.8">Other explanations to test</li></ul></div></div>
+                    <div class="dg-stage dg-g dg-q" data-t="on:1.2 act:1.2-5.8 loop:1.9-5.4 act:14.9-17 loop:15.1-16.9" style="--x: 0px; --y: 80px; --w: 320px; --h: 246px"><p class="dg-of">1 · Analysis of the idea</p><p class="dg-name">Framing, and reframing</p><div class="dg-brief dg-ln" data-t="on:1.4"><p class="dg-bh"><span>The brief</span><span class="dg-vn"><span class="dg-ver" data-t="on:1.4-2.4">version 1</span><span class="dg-ver" data-t="on:2.4-3.2">version 2</span><span class="dg-ver" data-t="on:3.2-4.5">version 3</span><span class="dg-ver" data-t="on:4.5-5.1">version 4</span><span class="dg-ver last" data-t="on:5.1-15.5">version 5</span><span class="dg-ver" data-t="on:15.5-16.5">next question, version 1</span><span class="dg-ver" data-t="on:16.5">next question, version 2</span></span></p><ul class="dg-bl"><li class="dg-ln" data-t="on:1.5">What it is for</li><li class="dg-ln" data-t="on:1.7"><span>What you think, and why</span><span class="dg-mks"><span class="dg-mk ok" data-t="on:4.2">✓<span class="visually-hidden"> holds,</span></span><span class="dg-mk no" data-t="on:4.35">✕<span class="visually-hidden"> does not hold,</span></span><span class="dg-mk un" data-t="on:4.5">?<span class="visually-hidden"> cannot be checked</span></span></span></li><li class="dg-ln" data-t="on:2.0">What you expect to see</li><li class="dg-ln" data-t="on:2.3">What would change your mind</li><li class="dg-ln" data-t="on:4.8">Other explanations to test</li></ul></div></div>
                     <svg class="dg-ar dg-d dg-q" data-t="on:2.2" role="img" aria-label="From the framing into the record: the conversation and every version of the brief" viewBox="0 0 8 112" style="--x: 96px; --y: 326px; --w: 8px; --h: 112px; --n: 105"><path class="dg-line" d="M4 0 V105"></path><path class="dg-head" d="M0.5 105 L4 112 L7.5 105 Z"></path></svg>
                     <svg class="dg-ar dg-d dg-q" data-t="on:2.9" role="img" aria-label="From the record back into the framing: saved analyses, and how the result turned out" viewBox="0 0 8 111" style="--x: 216px; --y: 327px; --w: 8px; --h: 111px; --n: 104"><path class="dg-line" d="M4 111 V7"></path><path class="dg-head" d="M0.5 7 L4 0 L7.5 7 Z"></path></svg>
                     <p class="dg-lb dg-d dg-q" data-t="on:2.9" style="--x: 236px; --y: 374px; --w: 250px; text-align: left"><span class="dg-ver" data-t="on:2.9-14.3">saved analyses</span><span class="dg-ver last" data-t="on:14.3">how it turned out, saved analyses</span></p>
@@ -253,7 +255,7 @@
                     <svg class="dg-ar dg-d dg-c" data-t="on:11.0" role="img" aria-label="From the record to the checks, which read it" viewBox="0 0 8 111" style="--x: 988px; --y: 327px; --w: 8px; --h: 111px; --n: 104"><path class="dg-line" d="M4 111 V7"></path><path class="dg-head" d="M0.5 7 L4 0 L7.5 7 Z"></path></svg>
                     <p class="dg-lb dg-d dg-c" data-t="on:11.0" style="--x: 826px; --y: 374px; --w: 150px; text-align: right">read by the checks</p>
                     <p class="dg-conn dg-m dg-c" data-t="on:11.0"><span>read by the checks</span></p>
-                    <div class="dg-stage dg-g dg-c" data-t="on:10.6 act:10.6-14" style="--x: 832px; --y: 80px; --w: 320px; --h: 246px"><p class="dg-of">3 · Analysis of the analysis</p><p class="dg-name">Everything visible</p><ul class="dg-parts"><li class="dg-ln" data-t="on:12.0">Every number checked against the code</li><li class="dg-ln" data-t="on:12.2">The work run again from scratch</li><li class="dg-ln" data-t="on:12.4">Each number traced back to your data</li><li class="dg-ln" data-t="on:12.6">What the code touched outside your data</li><li class="dg-ln" data-t="on:12.8">How it turned out, against the brief</li></ul></div>
+                    <div class="dg-stage dg-g dg-c" data-t="on:10.6 act:10.6-14" style="--x: 832px; --y: 80px; --w: 320px; --h: 246px"><p class="dg-of">3 · Analysis of the work</p><p class="dg-name">Everything visible</p><ul class="dg-parts"><li class="dg-ln" data-t="on:12.0">Every number checked against the code</li><li class="dg-ln" data-t="on:12.2">The work run again from scratch</li><li class="dg-ln" data-t="on:12.4">Each number traced back to your data</li><li class="dg-ln" data-t="on:12.6">What the code touched outside your data</li><li class="dg-ln" data-t="on:12.8">How it turned out, against the brief</li></ul></div>
                     <svg class="dg-ar dg-d dg-c" data-t="on:13.3" role="img" aria-label="From the checks to an answer you can check" viewBox="0 0 8 43" style="--x: 988px; --y: 37px; --w: 8px; --h: 43px; --n: 36"><path class="dg-line" d="M4 43 V7"></path><path class="dg-head" d="M0.5 7 L4 0 L7.5 7 Z"></path></svg>
                     <p class="dg-conn dg-m dg-c" data-t="on:13.3"></p>
                     <p class="dg-chip dg-g dg-c" data-t="on:13.7" style="--x: 872px; --y: 0px; --w: 240px; --h: 36px">An answer you can check</p>
@@ -261,13 +263,10 @@
                     </div>
                     <div class="dg-foot"><button class="dg-ctl" type="button" hidden>Replay</button></div>
                 </figure>
-            </div>
-        </section>
-
-        <section class="section idea" aria-labelledby="idea-title">
-            <div class="wrap">
-                <h2 class="idea-label" id="idea-title">The idea behind it</h2>
-                <p class="idea-text">BambooAI is built on the view that AI-generated analysis should be open to the same scrutiny as any other analytical work. Reproducible calculations are an important part of that, but the question, the choice of methods, the assumptions and the interpretation need to stay open to examination too, and they still need a person to think them through.</p>
+                <ul class="facts record-points">
+                    <li><h3>Inspired by the notebook</h3><p>Analysts have long shown their work in notebooks: the code, what it printed and the notes, in order, in one Python session that keeps what each step built. BambooAI keeps every analysis that way, and that is what you read, what the checks test and what the replay runs.</p></li>
+                    <li><h3>Open source, any model</h3><p>BambooAI is open source, under the MIT licence. It works with models from all the main providers or with your own local ones, and every part can be changed: the model in each role, the instructions it follows, the code.</p></li>
+                </ul>
             </div>
         </section>
 
@@ -318,7 +317,7 @@
                     <svg class="mark" aria-hidden="true" focusable="false"><use href="#leaves"></use></svg>
                     <span class="brand-name">BambooAI</span>
                 </a>
-                <p>AI data analysis you can follow, from the question to every number. Built in public by Palo Galko.</p>
+                <p>Every analysis starts with an idea. Put it into words, then test it. Built in public by Palo Galko.</p>
             </div>
             <nav class="footer-links" aria-label="Elsewhere">
                 <ul>
