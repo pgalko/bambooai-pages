@@ -202,11 +202,46 @@
                 <header class="section-head">
                     <p class="eyebrow"><span class="eyebrow-n" aria-hidden="true">↻</span>After the analysis</p>
                     <h2 id="again-title">Next questions, memory and routines</h2>
+                    <p>An answer is rarely the end. What it found or left open leads to the next question, the analyses you save become the Architect’s memory, and a method that worked can be saved as a routine and run again on new data.</p>
                 </header>
+                <figure class="showcase">
+                    <button class="shot" type="button" data-full="assets/images/routine-2952.webp" data-alt="A routine in BambooAI, Long-ride first vs second half paired comparison: its purpose, its one input (the minimum distance for a long ride), the eight metrics it tracks, the check that it reproduced the original analysis, and its runs month by month from December 2025 to October 2026, each metric with a small trend line. The athlete’s name is blurred.">
+                        <picture>
+                            <source type="image/webp" srcset="assets/images/routine-1000.webp 1000w, assets/images/routine-1600.webp 1600w, assets/images/routine-2400.webp 2400w" sizes="(min-width: 1248px) 1152px, calc(100vw - 32px)">
+                            <img src="assets/images/routine-1600.jpg" width="1600" height="863" alt="A routine in BambooAI, Long-ride first vs second half paired comparison: its purpose, its one input (the minimum distance for a long ride), the eight metrics it tracks, the check that it reproduced the original analysis, and its runs month by month from December 2025 to October 2026, each metric with a small trend line. The athlete’s name is blurred." loading="lazy" decoding="async">
+                        </picture>
+                        <span class="zoom-hint" aria-hidden="true">Enlarge</span>
+                    </button>
+                    <figcaption>A routine made from one analysis and run month by month on new rides, without a model. Before its first run it reproduced the original analysis, and each run’s numbers are compared with the run before.</figcaption>
+                </figure>
                 <ul class="facts">
                     <li><h3>Next questions</h3><p>When a run ends, BambooAI suggests where to go next, based on what the analysis found or left open. A follow-up carries on where the run ended, and the thread map shows every branch.</p></li>
                     <li><h3>Memory</h3><p>The analyses you save become the Architect’s memory. Where they disagree, it says so and asks which way to go.</p></li>
                     <li><h3>Routines</h3><p>Save a finished analysis as a routine and run it on new data without a model.</p></li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section" id="usage" aria-labelledby="usage-title">
+            <div class="wrap">
+                <header class="section-head">
+                    <h2 id="usage-title">Every call accounted for</h2>
+                    <p>Every model call is recorded: which role made it, the model, the prompt, the tokens, the time and the cost. The usage view adds them up by analysis, role, model and day, and every figure comes from those records, not from a model.</p>
+                </header>
+                <figure class="showcase">
+                    <button class="shot" type="button" data-full="assets/images/usage-2472.webp" data-alt="The Usage view in BambooAI, on its Analyses tab: a list of a day’s analyses with what each cost and whether it reproduced, and for one analysis, a Lorenz-system question, its model cost, tokens, model time and cache savings, what each role spent, every call on a timeline, and the model it used.">
+                        <picture>
+                            <source type="image/webp" srcset="assets/images/usage-1000.webp 1000w, assets/images/usage-1600.webp 1600w, assets/images/usage-2400.webp 2400w" sizes="(min-width: 1248px) 1152px, calc(100vw - 32px)">
+                            <img src="assets/images/usage-1600.jpg" width="1600" height="1186" alt="The Usage view in BambooAI, on its Analyses tab: a list of a day’s analyses with what each cost and whether it reproduced, and for one analysis, a Lorenz-system question, its model cost, tokens, model time and cache savings, what each role spent, every call on a timeline, and the model it used." loading="lazy" decoding="async">
+                        </picture>
+                        <span class="zoom-hint" aria-hidden="true">Enlarge</span>
+                    </button>
+                    <figcaption>One analysis in the usage view: what it cost, its tokens and model time, what each role spent, and every call on a timeline.</figcaption>
+                </figure>
+                <ul class="facts">
+                    <li><h3>Each analysis, itemised</h3><p>What each question cost, how long it took and whether it reproduced, with the share each role spent.</p></li>
+                    <li><h3>Every call on record</h3><p>Each call keeps its role, model, prompt, tokens, time and cost, and the exact prompt behind any step is one click away.</p></li>
+                    <li><h3>Periods and exports</h3><p>Compare a period with the one before, break it down by role, model, mode or day, and export the records as CSV.</p></li>
                 </ul>
             </div>
         </section>
