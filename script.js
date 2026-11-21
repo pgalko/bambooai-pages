@@ -31,7 +31,7 @@ const ACCESS_URL = 'https://script.google.com/macros/s/AKfycbzRf20J8lqnIpSdeEZ6H
     // block is still below the fold; anything already on screen is shown as it is ----
     const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!still && 'IntersectionObserver' in window) {
-        const below = [...document.querySelectorAll('main .section-head, main .showcase, main .facts, main .editions')]
+        const below = [...document.querySelectorAll('main .section-head, main .showcase, main .br, main .facts, main .editions')]
             .filter((el) => el.getBoundingClientRect().top > window.innerHeight);
         const watch = new IntersectionObserver((entries) => {
             entries.forEach((e) => {

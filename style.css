@@ -2161,3 +2161,290 @@ main > .section:last-child {
         transform: none;
     }
 }
+
+/* ---- branch: start ---- */
+/* the branching section: the workflow map, the idea map and the analysis map as three cards, on one example. Wide,
+   the cards stand side by side as drawn, scaled in steps as the record diagram is; narrow, one under another, each
+   drawing scaled to its card. The way to what is on screen is lit, the ways left faint */
+.br {
+    container: br / inline-size;
+    margin: 0;
+}
+
+.br-stage {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.br-card {
+    container: br-card / inline-size;
+    padding: 20px 16px 22px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.015);
+}
+
+.br-w { --k: #e8e8e8; --k2: #ededed; --kh: #373737; --kr: rgba(232, 232, 232, 0.2); }
+.br-b { --k: var(--blue-text); --k2: #70b8ff; --kh: #242f3a; --kr: rgba(76, 166, 255, 0.2); }
+.br-s { --k: var(--sand); --k2: #dacaad; --kh: #34322e; --kr: rgba(209, 189, 152, 0.2); }
+
+.br-name,
+.br-group {
+    margin: 0 6px;
+    color: rgba(255, 255, 255, 0.5);
+    font: 600 11px/1.3 var(--ui);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.br-name b {
+    color: var(--k);
+    font-weight: 600;
+}
+
+.br-tree {
+    position: relative;
+    width: 336px;
+    height: var(--h);
+    margin: 26px auto 0;
+}
+
+.br-wires {
+    position: absolute;
+    inset: 0;
+    overflow: visible;
+}
+
+.br-bx {
+    position: absolute;
+    width: 164px;
+    height: 48px;
+    padding: 7px 10px 0;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 9px;
+    background: var(--panel);
+}
+
+.br-bx small,
+.br-l {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.br-bx small {
+    color: rgba(255, 255, 255, 0.46);
+    font: 500 11px/1.35 var(--ui);
+}
+
+.br-l {
+    margin-top: 1px;
+    color: rgba(255, 255, 255, 0.9);
+    font: 500 12.5px/1.35 var(--ui);
+}
+
+.br-bx.lit {
+    border-color: var(--k);
+}
+
+.br-bx.lit small {
+    color: var(--k2);
+}
+
+.br-bx.here {
+    background: var(--kh);
+    box-shadow: 0 0 0 3px var(--kr), 0 12px 32px -14px var(--k);
+}
+
+.br-bx.off {
+    opacity: 0.4;
+}
+
+.br-tag {
+    position: absolute;
+    top: -9px;
+    right: 10px;
+    padding: 0 7px 1px;
+    border: 1px solid var(--sand);
+    border-radius: 999px;
+    background: var(--ink);
+    color: var(--sand);
+    font: 500 10px/1.5 var(--ui);
+}
+
+.br-note {
+    margin: 22px 6px 0;
+    color: rgba(255, 255, 255, 0.6);
+    font: 400 12.5px/1.55 var(--ui);
+}
+
+.br-note b {
+    color: rgba(255, 255, 255, 0.86);
+    font-weight: 500;
+}
+
+/* narrow: the cards inside a chain under a rule that names them, the analysis under the idea */
+.br-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 26px 0 14px;
+}
+
+.br-group::before,
+.br-group::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.br-arrow {
+    display: flex;
+    justify-content: center;
+    padding: 6px 0;
+}
+
+.br-arrow svg {
+    transform: rotate(90deg);
+}
+
+.br-key {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 34px;
+    margin: 26px 0 0;
+    color: rgba(255, 255, 255, 0.58);
+    font: 400 12px/1.3 var(--ui);
+}
+
+.br-key span {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.br-key i {
+    width: 22px;
+    height: 2px;
+    border-radius: 1px;
+    background: rgba(255, 255, 255, 0.28);
+}
+
+.br-key i.br-lit {
+    background: #e8e8e8;
+}
+
+/* a card narrower than its drawing: the drawing in steps to fit */
+@container br-card (max-width: 335px) {
+    .br-tree { zoom: 0.92; }
+}
+
+@container br-card (max-width: 309px) {
+    .br-tree { zoom: 0.83; }
+}
+
+@container br-card (max-width: 279px) {
+    .br-tree { zoom: 0.74; }
+}
+
+@container br-card (max-width: 249px) {
+    .br-tree { zoom: 0.66; }
+}
+
+/* wide: the three cards side by side as drawn - 1152 by 520 - the two of a chain under a bracket, an arrow from
+   the idea to the analysis between them; scaled in steps to the width there is */
+@container br (min-width: 900px) {
+    .br-stage {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(3, 362.667px);
+        grid-template-rows: 44px 476px;
+        column-gap: 32px;
+        width: 1152px;
+        max-width: none;
+        zoom: 0.78;
+    }
+
+    .br-card {
+        grid-row: 2;
+        padding: 21px 12.333px 0;
+    }
+
+    .br-card-idea { grid-column: 2; }
+    .br-card-an { grid-column: 3; }
+
+    .br-name {
+        margin: 0 8.667px;
+    }
+
+    .br-tree {
+        height: 290px;
+        margin: 27.7px 0 0;
+    }
+
+    .br-note {
+        margin: 26px 8.667px 0;
+    }
+
+    .br-group {
+        position: relative;
+        display: block;
+        grid-row: 1;
+        grid-column: 2 / 4;
+        margin: 0;
+    }
+
+    .br-group::before {
+        position: absolute;
+        top: 10px;
+        right: 1px;
+        left: 1px;
+        height: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.32);
+        border-bottom: 0;
+        background: none;
+    }
+
+    .br-group::after {
+        display: none;
+    }
+
+    .br-group span {
+        position: relative;
+        display: block;
+        width: max-content;
+        margin: 2px auto 0;
+        padding: 0 12px;
+        background: var(--ink);
+    }
+
+    .br-arrow {
+        position: absolute;
+        top: 276px;
+        left: 757.333px;
+        padding: 0;
+    }
+
+    .br-arrow svg {
+        transform: none;
+    }
+}
+
+@container br (min-width: 980px) {
+    .br-stage { zoom: 0.85; }
+}
+
+@container br (min-width: 1060px) {
+    .br-stage { zoom: 0.92; }
+}
+
+@container br (min-width: 1152px) {
+    .br-stage { zoom: 1; }
+}
+/* ---- branch: end ---- */
